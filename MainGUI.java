@@ -8,6 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import cards.QuizCard;
+import cards.SettingsCard;
+import cards.StatsCard;
+
 /**
  * Code modified from https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/layout/TabDemoProject/src/layout/TabDemo.java
  * @author Daniel
@@ -34,16 +38,13 @@ public class MainGUI {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		 
         //Create Quiz card
-        JPanel quizCard = new JPanel();
-        quizCard.add(new JTextField("TextField", 20));
+        JPanel quizCard = QuizCard.createContents();
         
         //Create Stats card
-        JPanel statsCard = new JPanel();
-        statsCard.add(new JTextField("TextField", 20));
+        JPanel statsCard = StatsCard.createContents();
         
         //Create Settings card
-        JPanel settingsCard = new JPanel();
-        settingsCard.add(new JTextField("TextField", 20));
+        JPanel settingsCard = SettingsCard.createContents();
         
         //Add all the cards to the tabbedPane layout
         tabbedPane.addTab(QUIZ, quizCard);
