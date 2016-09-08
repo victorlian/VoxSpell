@@ -1,13 +1,21 @@
 package cards;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import spellingAid.Statistics;
+import spellingAid.StatsTableModel;
+import spellingAid.Word;
+import spellingAid.WordStats;
 
 /**
  * This class populates the contents of a Card
@@ -26,7 +34,7 @@ public class StatsCard extends Card {
 		JPanel statsCard = new JPanel();
 		statsCard.setLayout(new GridLayout(1,0));
 
-        final JTable table = new JTable(_statistics.getTableData(), _statistics.getColumnHeadings());
+        final JTable table = new JTable(new StatsTableModel());
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
 
@@ -35,7 +43,28 @@ public class StatsCard extends Card {
 
         //Add the scroll pane to this panel.
         statsCard.add(scrollPane);
-
+        
+        JButton testBtn = new JButton("Test");
+        statsCard.add(testBtn);
+        
+        testBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Word newWord = new Word("Orange");
+				newWord.setFailed();
+				
+				List<Word> newWordList = new ArrayList<>();
+				newWordList.add(newWord);
+				
+				newWord = new Word("Black");
+				newWord.setMastered();
+				
+				newWordList.add(newWord);
+				
+				_statistics.recordQuizResults(newWordList, 2);
+			}
+        });
+        
 		return statsCard;
 	}
 
