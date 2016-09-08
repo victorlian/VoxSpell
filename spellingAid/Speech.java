@@ -11,5 +11,20 @@ package spellingAid;
  *
  */
 public class Speech {
-
+	/**
+	 * This method will read out a word.
+	 * 
+	 * @param word
+	 */
+	public void sayWord(Word word){
+		
+	}
+	
+	/**
+	 * This method will say whatever the input is.
+	 * @param toSay
+	 */
+	public void saySentence(String toSay){
+		
+	}
 }

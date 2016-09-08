@@ -40,6 +40,12 @@ public class WordList {
 		}
 		else{
 			List<String> singleLevel = _wordList.get(level);
+			
+			int maxAmount = singleLevel.size();
+			if (amount > maxAmount){
+				throw new RuntimeException("Not enough words in list");
+			}
+			
 			ArrayList<Integer> integerList = new ArrayList<Integer>(singleLevel.size());
 			List<Word> randomWordList = new ArrayList<Word>(amount);
 			for (int i=0; i<singleLevel.size(); i++){
