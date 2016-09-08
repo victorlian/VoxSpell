@@ -1,21 +1,13 @@
 package cards;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 
 import spellingAid.Statistics;
 import spellingAid.StatsTableModel;
-import spellingAid.Word;
-import spellingAid.WordStats;
 
 /**
  * This class populates the contents of a Card
@@ -29,11 +21,15 @@ public class StatsCard extends Card {
 	public StatsCard() {
 		_statistics = Statistics.getInstance();
 	}
-
+	
+	/**
+	 * Populate the card with UI objects
+	 */
 	public JPanel createContents() {
 		JPanel statsCard = new JPanel();
 		statsCard.setLayout(new GridLayout(1,0));
-
+		
+		//Create the JTable and use the StatsTableModel
         final JTable table = new JTable(new StatsTableModel());
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);

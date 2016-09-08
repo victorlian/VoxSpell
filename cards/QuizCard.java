@@ -33,6 +33,9 @@ public class QuizCard extends Card implements ActionListener {
 	
 	public QuizCard() {}
 	
+	/**
+	 * Populates the Quiz Card UI
+	 */
 	public JPanel createContents() {
 		JPanel quizCard = new JPanel();
 		
@@ -72,16 +75,23 @@ public class QuizCard extends Card implements ActionListener {
 		constraints.gridy = 2;
 		quizCard.add(btnSubmit, constraints);
 		
+		addActionListeners();
+		
 		return quizCard;
 	}
-
+	
+	/**
+	 * Adds the actionListeners to the buttons
+	 */
 	public void addActionListeners() {
 		btnNewQuiz.addActionListener(this);
 		btnSubmit.addActionListener(this);
 		btnSayAgain.addActionListener(this);
 	}
 	
-	//ActionListener Class
+	/**
+	 * ActionListener class
+	 */
 	public void actionPerformed(ActionEvent e) {
 		String text;
 		if (e.getSource() instanceof JButton) {

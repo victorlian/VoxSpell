@@ -13,7 +13,7 @@ import java.util.List;
  * Responsibilities:
  * 1. Store all the words and their successStatus. (and their level).
  * 2. Allows a JTable model to fetch information from it??? (or maybe use this as a JTable!)
- * @author Daniel and Victor
+ * @author Daniel 
  *
  */
 public class Statistics {
@@ -25,14 +25,20 @@ public class Statistics {
 									            "Success",
 									            "Faults",
 									            "Fails"};
-										
+	/**
+	 * Private constructor as it is a singleton
+	 * Initialise all the lists in the masterlist to prevent errors
+	 */
 	private Statistics() {
-		//Initialise all the lists in the masterlist
 		for (int i=0; i<11; i++) {
 			_masterList.add(new ArrayList<>());
 		}
 	}
 	
+	/**
+	 * Singleton so passing an instance of itself to other people
+	 * @return
+	 */
 	public static Statistics getInstance() {
 		if (_statistics == null) {
 			_statistics = new Statistics();
@@ -40,6 +46,10 @@ public class Statistics {
 		return _statistics;
 	}
 	
+	/**
+	 * Takes a TableModel and stores it in a field for firing off changes
+	 * @param statsTableModel
+	 */
 	public void passModel(StatsTableModel statsTableModel) {
 		_statsTableModel = statsTableModel;
 	}
@@ -82,41 +92,6 @@ public class Statistics {
 	 */
 	public String getColumnHeadings(int index) {
 		return columnNames[index];
-	}
-	
-	/**
-	 * This method converts the masterlist to a 2D array for the JTable
-	 * @return tableData;
-	 */
-	public Object[][] getTableData() {
-		int index = 0;
-		Object[][] tableData = new Object[_masterList.size()][5];
-		for (int i=0; i < _masterList.size(); i++) {
-			List<WordStats> currentList = _masterList.get(i);
-		    for (int j=0; j<currentList.size(); j++) {
-		    	WordStats currentWord = currentList.get(j);
-		    	
-		    	//Level as string
-		    	tableData[index][0] = i+1;
-		    	
-		    	//Word as string
-		    	tableData[index][1] = currentWord.getWord().toString();
-		    	System.out.println(currentWord.getWord().toString());
-		    	
-		    	//Success stat as string
-		    	tableData[index][2] = currentWord.getSuccess();
-		    	
-		    	//Fault stat as string
-		    	tableData[index][3] = currentWord.getFault();
-		    	
-		    	//Fail stat as string
-		    	tableData[index][4] = currentWord.getFail();
-		    	
-		    	index++;
-		    }
-		}
-
-		return tableData;
 	}
 	
 	/**
