@@ -11,6 +11,7 @@ import spellingAid.Speech;
 import spellingAid.Word;
 import spellingAid.WordList;
 
+//gitCheck!
 public class Testing {
 	/**
 	 * Testing the fileManager reads in the wordList properly. 
