@@ -1,6 +1,13 @@
 package cards;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import spellingAid.Statistics;
 
 /**
  * This class populates the contents of a Card
@@ -10,12 +17,24 @@ import javax.swing.JTextField;
  *
  */
 public class StatsCard extends Card {
-	public StatsCard() {}
+	Statistics _statistics = null;
+	public StatsCard() {
+		_statistics = Statistics.getInstance();
+	}
 
 	public JPanel createContents() {
 		JPanel statsCard = new JPanel();
+		statsCard.setLayout(new GridLayout(1,0));
 
-		statsCard.add(new JTextField("StatsCard", 20));
+        final JTable table = new JTable(_statistics.getTableData(), _statistics.getColumnHeadings());
+        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table.setFillsViewportHeight(true);
+
+        //Create the scroll pane and add the table to it.
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        //Add the scroll pane to this panel.
+        statsCard.add(scrollPane);
 
 		return statsCard;
 	}

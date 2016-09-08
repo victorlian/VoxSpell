@@ -20,16 +20,24 @@ public class WordStats {
 		_word = word;
 	}
 	
-	public boolean equal(Word word) {
-		return _word.equals(word);
-	}
-	
 	/**
 	 * Change the stat according to the index passed in
 	 * @param index
 	 */
 	public void changeStat(int index) {
 		_stats[index]++;
+	}
+	
+	public int getSuccess() {
+		return _stats[0];
+	}
+	
+	public int getFault() {
+		return _stats[1];
+	}
+	
+	public int getFail() {
+		return _stats[2];
 	}
 	
 	/**
