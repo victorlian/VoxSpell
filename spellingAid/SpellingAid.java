@@ -1,4 +1,4 @@
-
+package spellingAid;
 
 public class SpellingAid {
 	public static void main(String[] args) {		

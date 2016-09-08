@@ -12,13 +12,13 @@ import javax.swing.JTextArea;
  * @author Daniel
  *
  */
-public class MenuCard {
+public class MenuCard extends Card {
 	private static JTextArea txtOutput = new JTextArea(10, 30);
 	private static final String MENUTEXT = "Hi Victor";
 	
 	public MenuCard() {}
 
-	public static JPanel createContents() {
+	public JPanel createContents() {
 		JPanel menuCard = new JPanel();
 		menuCard.setLayout(new BorderLayout());
 
@@ -29,5 +29,41 @@ public class MenuCard {
 		menuCard.add(txtOutput, BorderLayout.CENTER);
 		
 		return menuCard;
+	}
+
+	@Override
+	public void appendText(String text) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableStartButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enableStartButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableSubmissionButtons() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enableSubmissionButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayMainMenu() {
+		// TODO Auto-generated method stub
+		
 	}
 }

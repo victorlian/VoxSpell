@@ -11,6 +11,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import spellingAid.Viewer;
+
 /**
  * This class populates the contents of a Card
  * Mainly to make the MainGUI class less cluttered and make it
@@ -18,7 +20,7 @@ import javax.swing.border.EmptyBorder;
  * @author Daniel
  *
  */
-public class QuizCard {
+public class QuizCard extends Card {
 	private static JTextField txtInput = new JTextField("Spell your words here!");
 	private static JButton btnSubmit = new JButton("Submit");
 	private static JButton btnSayAgain = new JButton("Repeat Word");
@@ -27,7 +29,7 @@ public class QuizCard {
 	
 	public QuizCard() {}
 	
-	public static JPanel createContents() {
+	public JPanel createContents() {
 		JPanel quizCard = new JPanel();
 		
 		quizCard.setLayout(new GridBagLayout());
@@ -60,15 +62,6 @@ public class QuizCard {
 		constraints.gridy = 2;
 		quizCard.add(btnSayAgain, constraints);
 		
-		/**
-		//Empty JPanel for spacing purposes
-		constraints.weightx = 0.5;
-		constraints.gridwidth = 2;
-		constraints.gridx = 1;
-		constraints.gridy = 2;
-		quizCard.add(new JPanel(), constraints);
-		*/
-		
 		constraints.weightx = 0.4;
 		constraints.gridwidth = 1;
 		constraints.gridx = 3;
@@ -78,7 +71,35 @@ public class QuizCard {
 		return quizCard;
 	}
 
-	public void addActionListeners() {
+	@Override
+	public void appendText(String text) {
+		txtOutput.append(text);
+	}
 
+	@Override
+	public void disableStartButton() {
+		btnNewQuiz.setEnabled(false);
+	}
+
+	@Override
+	public void enableStartButton() {
+		btnNewQuiz.setEnabled(true);
+	}
+
+	@Override
+	public void disableSubmissionButtons() {
+		btnSayAgain.setEnabled(false);
+		btnSubmit.setEnabled(false);
+	}
+
+	@Override
+	public void enableSubmissionButton() {
+		btnSayAgain.setEnabled(true);
+		btnSubmit.setEnabled(true);
+	}
+
+	@Override
+	public void displayMainMenu() {
+		txtOutput.setText("Quiz Completed\nSelect 'New Quiz' to start another Quiz");
 	}
 }

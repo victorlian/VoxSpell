@@ -9,14 +9,50 @@ import javax.swing.JTextField;
  * @author Daniel
  *
  */
-public class StatsCard {
+public class StatsCard extends Card {
 	public StatsCard() {}
 
-	public static JPanel createContents() {
+	public JPanel createContents() {
 		JPanel statsCard = new JPanel();
 
 		statsCard.add(new JTextField("StatsCard", 20));
 
 		return statsCard;
+	}
+
+	@Override
+	public void appendText(String text) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableStartButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enableStartButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableSubmissionButtons() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enableSubmissionButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayMainMenu() {
+		// TODO Auto-generated method stub
+		
 	}
 }
