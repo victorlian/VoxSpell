@@ -37,4 +37,11 @@ public interface Viewer {
 	 */
 	public void displayMainMenu();
 	
+	/**
+	 * This method will be called when the user can have a video reward.
+	 * It should pop up an option pane to allow the user to select if they
+	 * want to play the video.
+	 */
+	public void videoOption();
+	
 }
