@@ -66,4 +66,10 @@ public class MenuCard extends Card {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void videoOption() {
+		// TODO Auto-generated method stub
+		
+	}
 }

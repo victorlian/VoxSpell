@@ -154,4 +154,9 @@ public class MainGUI implements Viewer {
 	public void displayMainMenu() {
 		getCurrentCard().displayMainMenu();
 	}
+
+	@Override
+	public void videoOption() {
+		getCurrentCard().videoOption();
+	}
 }

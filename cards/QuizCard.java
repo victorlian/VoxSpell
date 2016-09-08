@@ -137,4 +137,10 @@ public class QuizCard extends Card implements ActionListener {
 	public void displayMainMenu() {
 		txtOutput.setText("Quiz Completed\nSelect 'New Quiz' to start another Quiz");
 	}
+
+	@Override
+	public void videoOption() {
+		// TODO Auto-generated method stub
+		
+	}
 }
