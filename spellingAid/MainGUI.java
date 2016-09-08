@@ -15,6 +15,11 @@ import cards.SettingsCard;
 import cards.StatsCard;
 
 /**
+ * This class handles the GUI of the program. It creates a tabbed pane structure.
+ * When a method from the Viewer interface is called, we first work out which card
+ * is currently selected before then calling the method on that card itself. All the cards
+ * extend the Card class which is abstract and also implements the Viewer interface.
+ * 
  * Code modified from
  * https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.
  * oracle.com/javase/tutorial/uiswing/examples/layout/TabDemoProject/src/layout/
@@ -99,16 +104,16 @@ public class MainGUI implements Viewer {
 
 		String name = card.getName();
 		switch (name) {
-		case MENU:
-			return _menuCard;
-		case QUIZ:
-			return _quizCard;
-		case STATS:
-			return _statsCard;
-		case SETTINGS:
-			return _settingsCard;
-		default:
-			return null;
+			case MENU:
+				return _menuCard;
+			case QUIZ:
+				return _quizCard;
+			case STATS:
+				return _statsCard;
+			case SETTINGS:
+				return _settingsCard;
+			default:
+				return null;
 		}
 	}
 	

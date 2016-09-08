@@ -20,11 +20,15 @@ import spellingAid.Viewer;
  * @author Daniel
  *
  */
-public class QuizCard extends Card {
+public class QuizCard extends Card implements ActionListener {
+	private static final String SUBMIT = "Submit";
+	private static final String SAYAGAIN = "Repeat Word";
+	private static final String NEWQUIZ = "New Quiz";
+	
 	private static JTextField txtInput = new JTextField("Spell your words here!");
-	private static JButton btnSubmit = new JButton("Submit");
-	private static JButton btnSayAgain = new JButton("Repeat Word");
-	private static JButton btnNewQuiz = new JButton("New Quiz");
+	private static JButton btnSubmit = new JButton(SUBMIT);
+	private static JButton btnSayAgain = new JButton(SAYAGAIN);
+	private static JButton btnNewQuiz = new JButton(NEWQUIZ);
 	private static JTextArea txtOutput = new JTextArea(10, 30);
 	
 	public QuizCard() {}
@@ -71,34 +75,55 @@ public class QuizCard extends Card {
 		return quizCard;
 	}
 
-	@Override
+	public void addActionListeners() {
+		btnNewQuiz.addActionListener(this);
+		btnSubmit.addActionListener(this);
+		btnSayAgain.addActionListener(this);
+	}
+	
+	//ActionListener Class
+	public void actionPerformed(ActionEvent e) {
+		String text;
+		if (e.getSource() instanceof JButton) {
+			JButton button = (JButton) e.getSource();
+			text = button.getText();
+		} else {
+			text = "textField";
+		}
+		
+		//Actions depending on the button
+		switch(text) {
+			case NEWQUIZ:
+			
+			case SUBMIT:
+			
+			case SAYAGAIN:
+			
+		}
+	}
+	
 	public void appendText(String text) {
 		txtOutput.append(text);
 	}
 
-	@Override
 	public void disableStartButton() {
 		btnNewQuiz.setEnabled(false);
 	}
 
-	@Override
 	public void enableStartButton() {
 		btnNewQuiz.setEnabled(true);
 	}
 
-	@Override
 	public void disableSubmissionButtons() {
 		btnSayAgain.setEnabled(false);
 		btnSubmit.setEnabled(false);
 	}
 
-	@Override
 	public void enableSubmissionButton() {
 		btnSayAgain.setEnabled(true);
 		btnSubmit.setEnabled(true);
 	}
 
-	@Override
 	public void displayMainMenu() {
 		txtOutput.setText("Quiz Completed\nSelect 'New Quiz' to start another Quiz");
 	}
