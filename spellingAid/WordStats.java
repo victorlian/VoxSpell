@@ -15,6 +15,10 @@ public class WordStats {
 		return _word.equals(word);
 	}
 	
+	/**
+	 * Get the word in this WordStats object.
+	 * @return Word
+	 */
 	public Word getWord() {
 		return _word;
 	}
