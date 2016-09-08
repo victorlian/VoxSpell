@@ -44,27 +44,6 @@ public class StatsCard extends Card {
         //Add the scroll pane to this panel.
         statsCard.add(scrollPane);
         
-        JButton testBtn = new JButton("Test");
-        statsCard.add(testBtn);
-        
-        testBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Word newWord = new Word("Orange");
-				newWord.setFailed();
-				
-				List<Word> newWordList = new ArrayList<>();
-				newWordList.add(newWord);
-				
-				newWord = new Word("Black");
-				newWord.setMastered();
-				
-				newWordList.add(newWord);
-				
-				_statistics.recordQuizResults(newWordList, 2);
-			}
-        });
-        
 		return statsCard;
 	}
 

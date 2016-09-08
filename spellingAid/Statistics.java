@@ -27,24 +27,8 @@ public class Statistics {
 									            "Fails"};
 										
 	private Statistics() {
-		Word newWord = new Word("Magical");
-		newWord.setMastered();
-		WordStats newWordStats = new WordStats(newWord);
-		newWordStats.changeStat(newWord.getSuccessStatus().ordinal());
-		
-		List<WordStats> newWordList = new ArrayList<>();
-		newWordList.add(newWordStats);
-		
-		newWord = new Word("Sherlock");
-		newWord.setFaulted();
-		newWordStats = new WordStats(newWord);
-		newWordStats.changeStat(newWord.getSuccessStatus().ordinal());
-		
-		newWordList.add(newWordStats);
-		
-		_masterList.add(newWordList);
-		
-		for (int i=1; i<11; i++) {
+		//Initialise all the lists in the masterlist
+		for (int i=0; i<11; i++) {
 			_masterList.add(new ArrayList<>());
 		}
 	}
