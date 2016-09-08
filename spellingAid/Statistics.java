@@ -31,11 +31,18 @@ public class Statistics {
 		for (Word currentWord : newWords) {
 			for (WordStats currentWordStat : currentLevel) {
 				if (currentWordStat.getWord().equals(currentWord)) {
-					//Equals
+					//Get the result of the word and change the stat
+					//the ordinal should correspond to the array index of the result
+					currentWordStat.changeStat(currentWord.getSuccessStatus().ordinal());
+					break;
 				}
 			}
 			
-			//Not Equals
+			//Create a new WordStats object, increment the corresponding stat then add it
+			//to the master list
+			WordStats newWordStats = new WordStats(currentWord);
+			newWordStats.changeStat(currentWord.getSuccessStatus().ordinal());
+			currentLevel.add(new WordStats(currentWord));
 		}
 	}
 }
