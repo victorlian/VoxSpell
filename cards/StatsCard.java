@@ -17,7 +17,9 @@ import spellingAid.StatsTableModel;
  *
  */
 public class StatsCard extends Card {
+	private JPanel _statsCard;
 	Statistics _statistics = null;
+	
 	public StatsCard() {
 		_statistics = Statistics.getInstance();
 	}
@@ -26,8 +28,8 @@ public class StatsCard extends Card {
 	 * Populate the card with UI objects
 	 */
 	public JPanel createContents() {
-		JPanel statsCard = new JPanel();
-		statsCard.setLayout(new GridLayout(1,0));
+		_statsCard = new JPanel();
+		_statsCard.setLayout(new GridLayout(1,0));
 		
 		//Create the JTable and use the StatsTableModel
         final JTable table = new JTable(new StatsTableModel());
@@ -38,9 +40,9 @@ public class StatsCard extends Card {
         JScrollPane scrollPane = new JScrollPane(table);
 
         //Add the scroll pane to this panel.
-        statsCard.add(scrollPane);
+        _statsCard.add(scrollPane);
         
-		return statsCard;
+		return _statsCard;
 	}
 
 	@Override
@@ -80,8 +82,19 @@ public class StatsCard extends Card {
 	}
 
 	@Override
-	public void videoOption() {
+	public boolean videoOption() {
 		// TODO Auto-generated method stub
-		
+		return false;
+	}
+
+	@Override
+	public boolean levelUpOption() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public JPanel getPanel() {
+		return _statsCard;
 	}
 }

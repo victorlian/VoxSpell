@@ -11,8 +11,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import spellingAid.Viewer;
-
 /**
  * This class populates the contents of a Card
  * Mainly to make the MainGUI class less cluttered and make it
@@ -25,6 +23,7 @@ public class QuizCard extends Card implements ActionListener {
 	private static final String SAYAGAIN = "Repeat Word";
 	private static final String NEWQUIZ = "New Quiz";
 	
+	private JPanel _quizCard;
 	private static JTextField txtInput = new JTextField("Spell your words here!");
 	private static JButton btnSubmit = new JButton(SUBMIT);
 	private static JButton btnSayAgain = new JButton(SAYAGAIN);
@@ -37,10 +36,10 @@ public class QuizCard extends Card implements ActionListener {
 	 * Populates the Quiz Card UI
 	 */
 	public JPanel createContents() {
-		JPanel quizCard = new JPanel();
+		_quizCard = new JPanel();
 		
-		quizCard.setLayout(new GridBagLayout());
-		quizCard.setBorder(new EmptyBorder(5,5,5,5));
+		_quizCard.setLayout(new GridBagLayout());
+		_quizCard.setBorder(new EmptyBorder(5,5,5,5));
 
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.HORIZONTAL;
@@ -50,34 +49,34 @@ public class QuizCard extends Card implements ActionListener {
 		constraints.gridwidth = 4;
 		constraints.gridx = 0;
 		constraints.gridy = 0;
-		quizCard.add(scroll, constraints);
+		_quizCard.add(scroll, constraints);
 		
 		constraints.gridwidth = 4;
 		constraints.gridx = 0;
 		constraints.gridy = 1;
-		quizCard.add(txtInput, constraints);
+		_quizCard.add(txtInput, constraints);
 		
 		constraints.weightx = 0.3;
 		constraints.gridwidth = 1;
 		constraints.gridx = 0;
 		constraints.gridy = 2;
-		quizCard.add(btnNewQuiz, constraints);
+		_quizCard.add(btnNewQuiz, constraints);
 		
 		constraints.weightx = 0.3;
 		constraints.gridwidth = 1;
 		constraints.gridx = 1;
 		constraints.gridy = 2;
-		quizCard.add(btnSayAgain, constraints);
+		_quizCard.add(btnSayAgain, constraints);
 		
 		constraints.weightx = 0.4;
 		constraints.gridwidth = 1;
 		constraints.gridx = 3;
 		constraints.gridy = 2;
-		quizCard.add(btnSubmit, constraints);
+		_quizCard.add(btnSubmit, constraints);
 		
 		addActionListeners();
 		
-		return quizCard;
+		return _quizCard;
 	}
 	
 	/**
@@ -139,8 +138,19 @@ public class QuizCard extends Card implements ActionListener {
 	}
 
 	@Override
-	public void videoOption() {
+	public boolean videoOption() {
 		// TODO Auto-generated method stub
-		
+		return false;
+	}
+
+	@Override
+	public boolean levelUpOption() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public JPanel getPanel() {
+		return _quizCard;
 	}
 }

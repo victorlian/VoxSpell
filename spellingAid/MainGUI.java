@@ -3,8 +3,8 @@ package spellingAid;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -120,43 +120,41 @@ public class MainGUI implements Viewer {
 	/**
 	 * These functions call the current cards function from the Viewer interface
 	 */
-	@Override
 	public void appendText(String text) {
 		getCurrentCard().appendText(text);
 	}
 
-	@Override
 	public void disableStartButton() {
 		getCurrentCard().disableStartButton();
 	}
 
-	@Override
 	public void enableStartButton() {
 		getCurrentCard().enableStartButton();
 	}
 
-	@Override
 	public void disableSubmissionButtons() {
 		getCurrentCard().disableSubmissionButtons();
 	}
 
-	@Override
 	public void enableSubmissionButton() {
 		getCurrentCard().enableSubmissionButton();
 	}
 
-	@Override
-	public void popErrorMessage(String errorMsg) {
-		JOptionPane.showMessageDialog(_frame, errorMsg ,"Error",JOptionPane.ERROR_MESSAGE);
-	}
-
-	@Override
 	public void displayMainMenu() {
 		getCurrentCard().displayMainMenu();
 	}
+	
+	public void popMessage(String msg, MessageType typeOfMessage) {
+		getCurrentCard().popMessage(msg, typeOfMessage);
+	}
 
-	@Override
-	public void videoOption() {
-		getCurrentCard().videoOption();
+	public boolean videoOption() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean levelUpOption() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

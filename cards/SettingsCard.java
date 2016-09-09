@@ -10,14 +10,16 @@ import javax.swing.JTextField;
  *
  */
 public class SettingsCard extends Card {
+	private JPanel _settingsCard;
+	
 	public SettingsCard() {}
 
 	public JPanel createContents() {
-		JPanel settingsCard = new JPanel();
+		_settingsCard = new JPanel();
 
-		settingsCard.add(new JTextField("SettingsCard", 20));
+		_settingsCard.add(new JTextField("SettingsCard", 20));
 
-		return settingsCard;
+		return _settingsCard;
 	}
 
 	@Override
@@ -57,8 +59,19 @@ public class SettingsCard extends Card {
 	}
 
 	@Override
-	public void videoOption() {
+	public boolean videoOption() {
 		// TODO Auto-generated method stub
-		
+		return false;
+	}
+
+	@Override
+	public boolean levelUpOption() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public JPanel getPanel() {
+		return _settingsCard;
 	}
 }

@@ -16,19 +16,21 @@ public class MenuCard extends Card {
 	private static JTextArea txtOutput = new JTextArea(10, 30);
 	private static final String MENUTEXT = "Hi Victor";
 	
+	private JPanel _menuCard;
+	
 	public MenuCard() {}
 
 	public JPanel createContents() {
-		JPanel menuCard = new JPanel();
-		menuCard.setLayout(new BorderLayout());
+		_menuCard = new JPanel();
+		_menuCard.setLayout(new BorderLayout());
 
 		JScrollPane scroll = new JScrollPane(txtOutput);
 		txtOutput.setEditable(false);
 		txtOutput.setText(MENUTEXT);
 		
-		menuCard.add(txtOutput, BorderLayout.CENTER);
+		_menuCard.add(scroll, BorderLayout.CENTER);
 		
-		return menuCard;
+		return _menuCard;
 	}
 
 	@Override
@@ -68,8 +70,18 @@ public class MenuCard extends Card {
 	}
 
 	@Override
-	public void videoOption() {
+	public boolean videoOption() {
 		// TODO Auto-generated method stub
-		
+		return false;
+	}
+
+	@Override
+	public boolean levelUpOption() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public JPanel getPanel() {
+		return _menuCard;
 	}
 }

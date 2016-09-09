@@ -1,5 +1,6 @@
 package spellingAid;
 
+
 /**
  * This interface has all the methods that needs to be
  * implemented in the mainGUI class so that the 
