@@ -17,17 +17,10 @@ public class StatsTableModel extends AbstractTableModel {
 	Statistics _statistics = Statistics.getInstance();
 	
 	/**
-	 * Making sure to pass Statistics class a copy of the model (this)
-	 */
-	public StatsTableModel() {
-		_statistics.passModel(this);
-	}
-	
-	/**
 	 * There will always be a fixed amount of columns so we return a fixed value
 	 */
 	public int getColumnCount() {
-		return 5;
+		return 4;
 	}
 
 	/**

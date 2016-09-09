@@ -21,7 +21,7 @@ public class Statistics {
 	private StatsTableModel _statsTableModel;
 	private List<List<WordStats>> _masterList = new ArrayList<>();
 	private int _level = 0;
-	private static final String[] columnNames = { "Level", "Word", "Success", "Faults", "Fails" };
+	private static final String[] columnNames = { "Word", "Success", "Faults", "Fails" };
 
 	/**
 	 * Private constructor as it is a singleton Initialise all the lists in the
@@ -139,12 +139,10 @@ public class Statistics {
 		for (WordStats currentWord : currentList) {
 			if (count == rows) {
 				if (columns == 0) {
-					return _masterList.indexOf(currentList) + 1;
-				} else if (columns == 1) {
 					return currentWord.getWord().toString();
-				} else if (columns == 2) {
+				} else if (columns == 1) {
 					return currentWord.getSuccess();
-				} else if (columns == 3) {
+				} else if (columns == 2) {
 					return currentWord.getFault();
 				} else {
 					return currentWord.getFail();

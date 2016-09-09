@@ -12,6 +12,7 @@ import javax.swing.JTable;
 
 import spellingAid.Statistics;
 import spellingAid.StatsTableModel;
+import spellingAid.TestingStatistics;
 
 /**
  * This class populates the contents of a Card
@@ -22,7 +23,7 @@ import spellingAid.StatsTableModel;
  */
 public class StatsCard extends Card implements ActionListener {
 	private JPanel _statsCard;
-	private static final String[] petStrings = { "Level 1", 
+	private static final String[] levelStrings = { "Level 1", 
 			"Level 2", 
 			"Level 3",
 			"Level 4", 
@@ -35,6 +36,7 @@ public class StatsCard extends Card implements ActionListener {
 			"Level 11" };
 	
 	private static Statistics _statistics = null;
+	private static StatsTableModel _statsTableModel = new StatsTableModel();
 	
 	public StatsCard() {
 		_statistics = Statistics.getInstance();
@@ -47,13 +49,15 @@ public class StatsCard extends Card implements ActionListener {
 		_statsCard = new JPanel();
 		_statsCard.setLayout(new BorderLayout());
 		
-		JComboBox levelList = new JComboBox(petStrings);
+		JComboBox levelList = new JComboBox(levelStrings);
 		levelList.addActionListener(this);
 		
 		//Create the JTable and use the StatsTableModel
-        final JTable table = new JTable(new StatsTableModel());
+        final JTable table = new JTable(_statsTableModel);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
+        
+        _statistics.passModel(_statsTableModel);
 
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
@@ -61,6 +65,9 @@ public class StatsCard extends Card implements ActionListener {
         //Add the scroll pane to this panel.
         _statsCard.add(levelList, BorderLayout.NORTH);
         _statsCard.add(scrollPane, BorderLayout.CENTER);
+        
+        //Testing Input
+        TestingStatistics.testStatisticsDisplay(_statistics);
         
 		return _statsCard;
 	}
