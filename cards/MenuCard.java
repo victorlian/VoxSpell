@@ -14,9 +14,9 @@ import javax.swing.JTextArea;
  */
 public class MenuCard extends Card {
 	private static JTextArea txtOutput = new JTextArea(10, 30);
-	private static final String MENUTEXT = "========================================\n"
+	private static final String MENUTEXT = "=======================================================================\n"
 			+ " SpellingAid  -  Daniel and Victor\n"
-			+ "========================================\n"
+			+ "=======================================================================\n"
 			+ "\n Welcome to the SpellingAid program, to begin, select one of the tabs above\n"
 			+ "\n Quiz - Start a quiz"
 			+ "\n Statistics - See statistics from this session"

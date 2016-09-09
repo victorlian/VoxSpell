@@ -3,6 +3,11 @@ package spellingAid;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Populate the Statistics Table Model
+ * @author Daniel
+ *
+ */
 public class TestingStatistics {
 	/**
 	 * Generate words for each level to ensure they display correctly
