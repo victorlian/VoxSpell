@@ -24,49 +24,35 @@ public class SettingsCard extends Card {
 
 	@Override
 	public void appendText(String text) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void disableStartButton() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void enableStartButton() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void disableSubmissionButtons() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void enableSubmissionButton() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	@Override
 	public void displayMainMenu() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public boolean videoOption() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean levelUpOption() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

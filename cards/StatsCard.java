@@ -1,7 +1,11 @@
 package cards;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,9 +20,21 @@ import spellingAid.StatsTableModel;
  * @author Daniel
  *
  */
-public class StatsCard extends Card {
+public class StatsCard extends Card implements ActionListener {
 	private JPanel _statsCard;
-	Statistics _statistics = null;
+	private static final String[] petStrings = { "Level 1", 
+			"Level 2", 
+			"Level 3",
+			"Level 4", 
+			"Level 5",
+			"Level 6",
+			"Level 7",
+			"Level 8",
+			"Level 9",
+			"Level 10",
+			"Level 11" };
+	
+	private static Statistics _statistics = null;
 	
 	public StatsCard() {
 		_statistics = Statistics.getInstance();
@@ -29,7 +45,10 @@ public class StatsCard extends Card {
 	 */
 	public JPanel createContents() {
 		_statsCard = new JPanel();
-		_statsCard.setLayout(new GridLayout(1,0));
+		_statsCard.setLayout(new BorderLayout());
+		
+		JComboBox levelList = new JComboBox(petStrings);
+		levelList.addActionListener(this);
 		
 		//Create the JTable and use the StatsTableModel
         final JTable table = new JTable(new StatsTableModel());
@@ -40,56 +59,55 @@ public class StatsCard extends Card {
         JScrollPane scrollPane = new JScrollPane(table);
 
         //Add the scroll pane to this panel.
-        _statsCard.add(scrollPane);
+        _statsCard.add(levelList, BorderLayout.NORTH);
+        _statsCard.add(scrollPane, BorderLayout.CENTER);
         
 		return _statsCard;
+	}
+	
+	/**
+	 * Updates the current level selected.
+	 * Fires an update to the table.
+	 */
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		JComboBox cb = (JComboBox) ae.getSource();
+        String level = (String) cb.getSelectedItem();
+        
+		_statistics.setLevel(Integer.valueOf(level.substring(level.length() - 1)));
 	}
 
 	@Override
 	public void appendText(String text) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void disableStartButton() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void enableStartButton() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void disableSubmissionButtons() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void enableSubmissionButton() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void displayMainMenu() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public boolean videoOption() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean levelUpOption() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
