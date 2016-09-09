@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -135,18 +136,6 @@ public class QuizCard extends Card implements ActionListener {
 
 	public void displayMainMenu() {
 		txtOutput.setText("Quiz Completed\nSelect 'New Quiz' to start another Quiz");
-	}
-
-	@Override
-	public boolean videoOption() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean levelUpOption() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override

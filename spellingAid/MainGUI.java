@@ -29,7 +29,7 @@ import cards.StatsCard;
  *
  */
 public class MainGUI implements Viewer {
-	private final static String MENU = "Menu";
+	private final static String MENU = "Welcome";
 	private final static String QUIZ = "Quiz";
 	private final static String STATS = "Statistics";
 	private final static String SETTINGS = "Settings";
@@ -149,12 +149,10 @@ public class MainGUI implements Viewer {
 	}
 
 	public boolean videoOption() {
-		// TODO Auto-generated method stub
-		return false;
+		return getCurrentCard().videoOption();
 	}
 
 	public boolean levelUpOption() {
-		// TODO Auto-generated method stub
-		return false;
+		return getCurrentCard().videoOption();
 	}
 }

@@ -9,9 +9,9 @@ import java.util.List;
  * 
  * Singleton Class as there can only be one instance of it.
  * 
- * Responsibilities: 1. Store all the words and their successStatus. (and their
- * level). 2. Allows a JTable model to fetch information from it??? (or maybe
- * use this as a JTable!)
+ * Responsibilities: 
+ * 1. Store all the words and their successStatus. (and their level). 
+ * 2. Allows a JTable model to fetch information from it
  * 
  * @author Daniel
  *

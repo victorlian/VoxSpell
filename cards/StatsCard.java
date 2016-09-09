@@ -109,16 +109,6 @@ public class StatsCard extends Card implements ActionListener {
 	}
 
 	@Override
-	public boolean videoOption() {
-		return false;
-	}
-
-	@Override
-	public boolean levelUpOption() {
-		return false;
-	}
-
-	@Override
 	public JPanel getPanel() {
 		return _statsCard;
 	}

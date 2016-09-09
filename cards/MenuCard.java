@@ -63,16 +63,6 @@ public class MenuCard extends Card {
 	public void displayMainMenu() {
 	}
 
-	@Override
-	public boolean videoOption() {
-		return false;
-	}
-
-	@Override
-	public boolean levelUpOption() {
-		return false;
-	}
-
 	public JPanel getPanel() {
 		return _menuCard;
 	}
