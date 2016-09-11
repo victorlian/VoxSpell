@@ -1,7 +1,10 @@
-package spellingAid;
+package testing;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import spellingAid.Statistics;
+import spellingAid.Word;
 
 /**
  * Populate the Statistics Table Model

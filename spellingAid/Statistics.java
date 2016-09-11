@@ -72,6 +72,7 @@ public class Statistics {
 					// the ordinal should correspond to the array index of the
 					// result
 					currentWordStat.changeStat(currentWord.getSuccessStatus().ordinal());
+					currentWordStat.setRecentSuccess(currentWord.getSuccessStatus());
 					break;
 				}
 			}
@@ -81,10 +82,30 @@ public class Statistics {
 			// to the master list
 			WordStats newWordStats = new WordStats(currentWord);
 			newWordStats.changeStat(currentWord.getSuccessStatus().ordinal());
+			newWordStats.setRecentSuccess(currentWord.getSuccessStatus());
 			currentLevel.add(newWordStats);
 		}
 
 		_statsTableModel.fireTableDataChanged();
+	}
+	
+	/**
+	 * This function returns a list of the recently failed words in a given level
+	 * 
+	 * @param level
+	 * @return failList
+	 */
+	public List<Word> failList(int level) {
+		List<Word> failList = new ArrayList<>();
+		List<WordStats> currentLevel = _masterList.get(level - 1);
+		
+		for (WordStats currWordStats : currentLevel) {
+			if (currWordStats.getRecentSuccess().equals(Word.SuccessStatus.FAILED)) {
+				failList.add(currWordStats.getWord());
+			}
+		}
+		
+		return failList;
 	}
 
 	/**

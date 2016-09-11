@@ -12,7 +12,7 @@ import javax.swing.JTable;
 
 import spellingAid.Statistics;
 import spellingAid.StatsTableModel;
-import spellingAid.TestingStatistics;
+import testing.TestingStatistics;
 
 /**
  * This class populates the contents of a Card

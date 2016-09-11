@@ -12,6 +12,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import spellingAid.Quiz;
+
 /**
  * This class populates the contents of a Card
  * Mainly to make the MainGUI class less cluttered and make it
@@ -30,6 +32,8 @@ public class QuizCard extends Card implements ActionListener {
 	private static JButton btnSayAgain = new JButton(SAYAGAIN);
 	private static JButton btnNewQuiz = new JButton(NEWQUIZ);
 	private static JTextArea txtOutput = new JTextArea(10, 30);
+	
+	private Quiz _currentQuiz;
 	
 	public QuizCard() {}
 	
@@ -104,12 +108,57 @@ public class QuizCard extends Card implements ActionListener {
 		//Actions depending on the button
 		switch(text) {
 			case NEWQUIZ:
-			
+				//Give the user dialog options
+				quizTypeDialog();
 			case SUBMIT:
 			
 			case SAYAGAIN:
 			
 		}
+	}
+	
+	public void quizTypeDialog() {
+		String[] quizOptions = {"New Quiz", "Review Quiz"};
+		String quizType = (String) JOptionPane.showInputDialog(
+                _quizCard,
+                "Please select a type of Quiz: ",
+                "Select a Quiz Type",
+                JOptionPane.PLAIN_MESSAGE,
+                null, //No Icon
+                quizOptions,
+                "New Quiz");
+		
+		if (quizType.equals(quizOptions[0])) {
+			int level = selectLevelType();
+			System.out.println(level + "");
+		} else {
+			
+		}
+	}
+	
+	public int selectLevelType() {
+		//New Quiz - select starting level
+		String[] levelOptions = {"Level 1", 
+				"Level 2", 
+				"Level 3",
+				"Level 4", 
+				"Level 5",
+				"Level 6",
+				"Level 7",
+				"Level 8",
+				"Level 9",
+				"Level 10",
+				"Level 11" };
+		String level = (String) JOptionPane.showInputDialog(
+                _quizCard,
+                "Please select the starting level: ",
+                "Select a starting level",
+                JOptionPane.PLAIN_MESSAGE,
+                null, //No Icon
+                levelOptions,
+                "Level 1");
+		
+		return Integer.valueOf(level.substring(level.length() - 1));
 	}
 	
 	public void appendText(String text) {

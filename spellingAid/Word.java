@@ -20,7 +20,7 @@ public class Word {
 	 * @author victor
 	 *
 	 */
-	public enum SuccessStatus{
+	public enum SuccessStatus {
 		MASTERED, FAULTED, FAILED;
 	}
 	private String _word;

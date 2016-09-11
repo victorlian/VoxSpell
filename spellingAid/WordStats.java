@@ -15,6 +15,7 @@ import java.util.List;
 public class WordStats {
 	private Word _word;
 	private int[] _stats = new int[3];
+	private Word.SuccessStatus _latestSuccess = Word.SuccessStatus.FAILED;
 	
 	public WordStats(Word word) {
 		_word = word;
@@ -46,5 +47,13 @@ public class WordStats {
 	 */
 	public Word getWord() {
 		return _word;
+	}
+	
+	public void setRecentSuccess(Word.SuccessStatus latestSuccess) {
+		_latestSuccess = latestSuccess;
+	}
+	
+	public Word.SuccessStatus getRecentSuccess() {
+		return _latestSuccess;
 	}
 }
