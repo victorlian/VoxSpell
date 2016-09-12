@@ -39,7 +39,7 @@ public class TestingStatistics {
 		newWordsList.add(newWord);
 		
 		newWord = new Word("had");
-		newWord.setMastered();
+		newWord.setFailed();
 		newWordsList.add(newWord);
 		
 		_statistics.recordQuizResults(newWordsList, level);
@@ -52,7 +52,7 @@ public class TestingStatistics {
 		newWordsList.add(newWord);
 		
 		newWord = new Word("be");
-		newWord.setMastered();
+		newWord.setFaulted();
 		newWordsList.add(newWord);
 		
 		_statistics.recordQuizResults(newWordsList, level);

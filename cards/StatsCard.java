@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -37,6 +38,8 @@ public class StatsCard extends Card implements ActionListener {
 	
 	private static Statistics _statistics = null;
 	private static StatsTableModel _statsTableModel = new StatsTableModel();
+	private static JTable _table;
+	private static JLabel _label = new JLabel();
 	
 	public StatsCard() {
 		_statistics = Statistics.getInstance();
@@ -53,21 +56,24 @@ public class StatsCard extends Card implements ActionListener {
 		levelList.addActionListener(this);
 		
 		//Create the JTable and use the StatsTableModel
-        final JTable table = new JTable(_statsTableModel);
-        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
-        table.setFillsViewportHeight(true);
+        _table = new JTable(_statsTableModel);
+        _table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        _table.setFillsViewportHeight(true);
         
         _statistics.passModel(_statsTableModel);
 
         //Create the scroll pane and add the table to it.
-        JScrollPane scrollPane = new JScrollPane(table);
+        JScrollPane scrollPane = new JScrollPane(_table);
 
         //Add the scroll pane to this panel.
         _statsCard.add(levelList, BorderLayout.NORTH);
         _statsCard.add(scrollPane, BorderLayout.CENTER);
+        _statsCard.add(_label, BorderLayout.SOUTH);
         
         //Testing Input
         TestingStatistics.testStatisticsDisplay(_statistics);
+        
+        _label.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
         
 		return _statsCard;
 	}
@@ -79,9 +85,14 @@ public class StatsCard extends Card implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		JComboBox cb = (JComboBox) ae.getSource();
-        String level = (String) cb.getSelectedItem();
+        String levelString = (String) cb.getSelectedItem();
         
-		_statistics.setLevel(Integer.valueOf(level.substring(level.length() - 1)));
+        levelString = levelString.substring(levelString.length() - 2);
+        levelString = levelString.trim();
+        int level = Integer.valueOf(levelString);
+        
+		_statistics.setLevel(level);
+		_label.setText("Spelling Accuracy: " + _statistics.getAccuracy(level) + "%");
 	}
 
 	@Override

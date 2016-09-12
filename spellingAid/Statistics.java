@@ -107,6 +107,28 @@ public class Statistics {
 		
 		return failList;
 	}
+	
+	/**
+	 * This function calculates the success rate of spelling. It divides the number of total successes
+	 * for the level by the number of attempts for the level. Faults will count for 0.5 a success.
+	 * 
+	 * @param level
+	 * @return percentage of success
+	 */
+	public int getAccuracy(int level) {
+		List<WordStats> wordStats = _masterList.get(level-1);
+		
+		double attempts = 0;
+		double successes = 0;
+		
+		for (WordStats currWord : wordStats) {
+			attempts += currWord.getNumberofAttempts();
+			successes += ((double) currWord.getFault())/2; //Half a success
+			successes += currWord.getSuccess();
+		}
+		
+		return (int) ((successes/attempts)*100);
+	}
 
 	/**
 	 * Set the level to view in the Statistics table

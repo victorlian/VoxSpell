@@ -41,6 +41,10 @@ public class WordStats {
 		return _stats[2];
 	}
 	
+	public int getNumberofAttempts() {
+		return _stats[0] + _stats[1] + _stats[2];
+	}
+	
 	/**
 	 * Get the word in this WordStats object.
 	 * @return Word
