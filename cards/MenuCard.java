@@ -39,30 +39,6 @@ public class MenuCard extends Card {
 		return _menuCard;
 	}
 
-	@Override
-	public void appendText(String text) {
-	}
-
-	@Override
-	public void disableStartButton() {
-	}
-
-	@Override
-	public void enableStartButton() {
-	}
-
-	@Override
-	public void disableSubmissionButtons() {
-	}
-
-	@Override
-	public void enableSubmissionButton() {
-	}
-
-	@Override
-	public void displayMainMenu() {
-	}
-
 	public JPanel getPanel() {
 		return _menuCard;
 	}

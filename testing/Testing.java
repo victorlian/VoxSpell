@@ -41,7 +41,7 @@ public class Testing {
 	 */
 	@Test
 	public void testGenerateRandomWords(){
-		WordList list = new WordList();
+		WordList list = new WordList(null);
 		try {
 			list.generateRandomWords(12, 10);
 		}

@@ -96,30 +96,6 @@ public class StatsCard extends Card implements ActionListener {
 	}
 
 	@Override
-	public void appendText(String text) {
-	}
-
-	@Override
-	public void disableStartButton() {
-	}
-
-	@Override
-	public void enableStartButton() {
-	}
-
-	@Override
-	public void disableSubmissionButtons() {
-	}
-
-	@Override
-	public void enableSubmissionButton() {
-	}
-
-	@Override
-	public void displayMainMenu() {
-	}
-
-	@Override
 	public JPanel getPanel() {
 		return _statsCard;
 	}

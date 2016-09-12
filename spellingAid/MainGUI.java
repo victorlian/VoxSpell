@@ -28,7 +28,7 @@ import cards.StatsCard;
  * @author Daniel
  *
  */
-public class MainGUI implements Viewer {
+public class MainGUI {
 	private final static String MENU = "Welcome";
 	private final static String QUIZ = "Quiz";
 	private final static String STATS = "Statistics";
@@ -115,44 +115,5 @@ public class MainGUI implements Viewer {
 			default:
 				return null;
 		}
-	}
-	
-	/**
-	 * These functions call the current cards function from the Viewer interface
-	 */
-	public void appendText(String text) {
-		getCurrentCard().appendText(text);
-	}
-
-	public void disableStartButton() {
-		getCurrentCard().disableStartButton();
-	}
-
-	public void enableStartButton() {
-		getCurrentCard().enableStartButton();
-	}
-
-	public void disableSubmissionButtons() {
-		getCurrentCard().disableSubmissionButtons();
-	}
-
-	public void enableSubmissionButton() {
-		getCurrentCard().enableSubmissionButton();
-	}
-
-	public void displayMainMenu() {
-		getCurrentCard().displayMainMenu();
-	}
-	
-	public void popMessage(String msg, MessageType typeOfMessage) {
-		getCurrentCard().popMessage(msg, typeOfMessage);
-	}
-
-	public boolean videoOption() {
-		return getCurrentCard().videoOption();
-	}
-
-	public boolean levelUpOption() {
-		return getCurrentCard().videoOption();
 	}
 }

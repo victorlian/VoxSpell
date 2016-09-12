@@ -12,7 +12,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import spellingAid.MessageType;
 import spellingAid.Quiz;
+import spellingAid.Viewer;
 
 /**
  * This class populates the contents of a Card
@@ -21,7 +23,7 @@ import spellingAid.Quiz;
  * @author Daniel
  *
  */
-public class QuizCard extends Card implements ActionListener {
+public class QuizCard extends Card implements ActionListener, Viewer {
 	private static final String SUBMIT = "Submit";
 	private static final String SAYAGAIN = "Repeat Word";
 	private static final String NEWQUIZ = "New Quiz";
@@ -178,17 +180,48 @@ public class QuizCard extends Card implements ActionListener {
 		btnSubmit.setEnabled(false);
 	}
 
-	public void enableSubmissionButton() {
-		btnSayAgain.setEnabled(true);
-		btnSubmit.setEnabled(true);
-	}
-
 	public void displayMainMenu() {
 		txtOutput.setText("Quiz Completed\nSelect 'New Quiz' to start another Quiz");
 	}
 
-	@Override
 	public JPanel getPanel() {
 		return _quizCard;
+	}
+
+	public void enableSubmissionButtons() {
+		btnSayAgain.setEnabled(true);
+		btnSubmit.setEnabled(true);
+	}
+	
+	public void popMessage(String msg, MessageType typeOfMessage) {
+		if (typeOfMessage == MessageType.ERROR) {
+			JOptionPane.showMessageDialog(getPanel(), msg, "Error", JOptionPane.ERROR_MESSAGE);
+		} else if (typeOfMessage == MessageType.WARNING) {
+			JOptionPane.showMessageDialog(getPanel(), msg, "Warning", JOptionPane.WARNING_MESSAGE);
+		} else if (typeOfMessage == MessageType.INFORMATION) {
+			JOptionPane.showMessageDialog(getPanel(), msg, "Information", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	public boolean videoOption() {
+		int result = JOptionPane.showConfirmDialog(getPanel(), "Would you like to see the video reward?", "Reward!",
+				JOptionPane.YES_NO_OPTION);
+
+		if (result == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean levelUpOption() {
+		int result = JOptionPane.showConfirmDialog(getPanel(), "Would you like to level up?", "Level Up!",
+				JOptionPane.YES_NO_OPTION);
+
+		if (result == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
