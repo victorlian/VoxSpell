@@ -1,6 +1,5 @@
 package spellingAid;
 
-
 /**
  * This interface has all the methods that needs to be
  * implemented in the mainGUI class so that the 
@@ -25,7 +24,7 @@ public interface Viewer {
 	public void enableStartButton();
 	//submission buttons include: repeat+submit.
 	public void disableSubmissionButtons();
-	public void enableSubmissionButton();
+	public void enableSubmissionButtons();
 	
 	/**
 	 * This method will pop up a message as a Dialogue/Option Pane.

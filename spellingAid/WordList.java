@@ -24,8 +24,16 @@ public class WordList {
 	 * Constructor that will read in the wordList using the 
 	 * FileManager class.
 	 */
-	public WordList (){
-		_wordList = _fm.readWordList();
+	public WordList (Quiz quiz){
+		if (quiz instanceof NewQuiz){
+			_wordList = _fm.readWordList();
+		}
+		//else if (quiz instanceof Review){
+		//
+		//}
+		else {
+			throw new RuntimeException("Invalid Quiz type for wordlist constructor.");
+		}
 	}
 	
 	/**
