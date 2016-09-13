@@ -23,6 +23,9 @@ public class VideoReward {
 	 * Code based from http://capricasoftware.co.uk/#/projects/vlcj/tutorial/my-first-media-player
 	 */
 	public VideoReward() {
+	}
+	
+	public void createContents() {
 		_videoReward = new JFrame("Video Reward");
 		JPanel panel = new JPanel(new BorderLayout());
 		_mediaPlayerComponent = new EmbeddedMediaPlayerComponent();

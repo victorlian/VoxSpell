@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import spellingAid.MessageType;
-import spellingAid.Quiz;
 import spellingAid.VideoReward;
 import spellingAid.Viewer;
 
@@ -36,7 +35,8 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static JButton btnNewQuiz = new JButton(NEWQUIZ);
 	private static JTextArea txtOutput = new JTextArea(10, 30);
 	
-	private Quiz _currentQuiz;
+	//This should hold a reference to the current quiz at some point
+	//private Quiz _currentQuiz;
 	
 	public QuizCard() {}
 	
@@ -228,5 +228,6 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 
 	public void playVideo() {
 		VideoReward vidReward = new VideoReward();
+		vidReward.createContents();
 	}
 }

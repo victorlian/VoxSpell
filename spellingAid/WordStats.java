@@ -1,8 +1,5 @@
 package spellingAid;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * This class holds the Word object along with a list of stats
  * index:

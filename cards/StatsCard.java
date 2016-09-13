@@ -1,7 +1,6 @@
 package cards;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -52,7 +51,7 @@ public class StatsCard extends Card implements ActionListener {
 		_statsCard = new JPanel();
 		_statsCard.setLayout(new BorderLayout());
 		
-		JComboBox levelList = new JComboBox(levelStrings);
+		JComboBox<String> levelList = new JComboBox<String>(levelStrings);
 		levelList.addActionListener(this);
 		
 		//Create the JTable and use the StatsTableModel
@@ -84,7 +83,8 @@ public class StatsCard extends Card implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		JComboBox cb = (JComboBox) ae.getSource();
+		@SuppressWarnings("unchecked")
+		JComboBox<String> cb = (JComboBox<String>) ae.getSource();
         String levelString = (String) cb.getSelectedItem();
         
         levelString = levelString.substring(levelString.length() - 2);

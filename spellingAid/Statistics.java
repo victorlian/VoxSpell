@@ -159,9 +159,7 @@ public class Statistics {
 		int count = 0;
 
 		for (List<WordStats> currentList : _masterList) {
-			for (WordStats currentWord : currentList) {
-				count++;
-			}
+			count += currentList.size();
 		}
 
 		return count;

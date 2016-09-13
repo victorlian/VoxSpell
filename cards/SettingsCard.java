@@ -6,11 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 import spellingAid.VideoReward;
 
@@ -71,6 +69,7 @@ public class SettingsCard extends Card implements ActionListener {
 			System.out.println("NZ");
 			
 			VideoReward vidReward = new VideoReward();
+			vidReward.createContents();
 		}
 	}
 }
