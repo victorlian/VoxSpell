@@ -49,12 +49,6 @@ public interface Viewer {
 	public boolean videoOption();
 	
 	/**
-	 * This method will be called when a video reward should be played.
-	 * @return
-	 */
-	public boolean playVideo();
-	
-	/**
 	 * This method will be called when the user can be given the option to
 	 * level up. 
 	 * 

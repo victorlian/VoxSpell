@@ -54,26 +54,33 @@ public class NewQuiz extends Quiz implements Option{
 		return _instance;
 	}
 	
+	/**
+	 * This method will allow moving up the difficulty level by 1.
+	 * If the quiz is at maximum level (11), then an information 
+	 * message will pop up and tell the user that they are at the highest level
+	 * possible.
+	 */
+	public void nextLevel(){
+		if (_currentLevel == MAX_LEVEL ){
+			_mainViewer.popMessage("You are at the highest level (Level 11) already!", MessageType.INFORMATION);
+		}
+		else {
+			_currentLevel++;
+		}
+	}
+	
+
 	
 	/**
 	 * Method that will do the following when all words in a quiz 
 	 * have been spelt.
 	 * 1. Pass the list of spelt words to Statistics Class.
 	 * 2. Allow the play a video option.
-	 * 3. Ask user if they want to level up or stay at current level.
 	 * 
 	 * Method overriden from abstract class.
 	 */
 	@Override
 	protected void endOfQuiz(){
-		if (_numberOfCorrectWords>=9){
-			if(_mainViewer.videoOption()){
-				_mainViewer.playVideo();
-			}
-			if(_mainViewer.levelUpOption()){
-				nextLevel();
-			}
-		}
 		
 	}
 

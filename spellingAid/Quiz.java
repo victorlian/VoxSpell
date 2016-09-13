@@ -111,21 +111,6 @@ public abstract class Quiz implements Option{
 	}
 	
 	/**
-	 * This method will allow moving up the difficulty level by 1.
-	 * If the quiz is at maximum level (11), then an information 
-	 * message will pop up and tell the user that they are at the highest level
-	 * possible.
-	 */
-	protected void nextLevel(){
-		if (_currentLevel == MAX_LEVEL ){
-			_mainViewer.popMessage("You are at the highest level (Level 11) already!", MessageType.INFORMATION);
-		}
-		else {
-			_currentLevel++;
-		}
-	}
-	
-	/**
 	 * Allowing children classes to do specific things after the completion of
 	 * a test.
 	 */
