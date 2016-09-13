@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import spellingAid.MessageType;
 import spellingAid.Quiz;
+import spellingAid.VideoReward;
 import spellingAid.Viewer;
 
 /**
@@ -208,6 +209,8 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				JOptionPane.YES_NO_OPTION);
 
 		if (result == 0) {
+			//Open the video reward
+			VideoReward vidReward = new VideoReward();
 			return true;
 		} else {
 			return false;

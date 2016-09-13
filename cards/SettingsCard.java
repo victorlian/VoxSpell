@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import spellingAid.VideoReward;
+
 /**
  * This class populates the contents of a Card Mainly to make the MainGUI class
  * less cluttered and make it easier to modify the card UI
@@ -67,6 +69,8 @@ public class SettingsCard extends Card implements ActionListener {
 			System.out.println("Default");
 		case NZBUTTON:
 			System.out.println("NZ");
+			
+			VideoReward vidReward = new VideoReward();
 		}
 	}
 }
