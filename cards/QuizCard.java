@@ -209,8 +209,6 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				JOptionPane.YES_NO_OPTION);
 
 		if (result == 0) {
-			//Open the video reward
-			VideoReward vidReward = new VideoReward();
 			return true;
 		} else {
 			return false;
@@ -226,5 +224,9 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		} else {
 			return false;
 		}
+	}
+
+	public void playVideo() {
+		VideoReward vidReward = new VideoReward();
 	}
 }

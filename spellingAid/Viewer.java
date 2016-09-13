@@ -52,7 +52,7 @@ public interface Viewer {
 	 * This method will be called when a video reward should be played.
 	 * @return
 	 */
-	public boolean playVideo();
+	public void playVideo();
 	
 	/**
 	 * This method will be called when the user can be given the option to
