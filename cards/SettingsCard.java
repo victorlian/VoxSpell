@@ -65,11 +65,13 @@ public class SettingsCard extends Card implements ActionListener {
 		switch (e.getActionCommand()) {
 		case DEFBUTTON:
 			System.out.println("Default");
+			break;
 		case NZBUTTON:
 			System.out.println("NZ");
 			
 			VideoReward vidReward = new VideoReward();
 			vidReward.createContents();
+			break;
 		}
 	}
 }
