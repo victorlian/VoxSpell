@@ -20,6 +20,7 @@ package spellingAid;
  * 2. Update the record (all the fields).
  * 3. Set to move on to the next word.
  * 4. Singleton Class, use getInstance for object from this class.
+ * 5. Once a quiz has completed, send all the information to stats class.
  * 
  * @author victor
  *
@@ -36,7 +37,7 @@ public class NewQuiz extends Quiz implements Option{
 	private NewQuiz (Viewer viewer, int startingLevel){
 		super(viewer, startingLevel);
 		_numberOfTests = WORDS_PER_LEVEL;
-		_wordToTest=_wordList.generateRandomWords(_currentLevel, _currentLevel);
+		_wordToTest=_wordList.generateRandomWords(_currentLevel, _numberOfTests);
 		_currentWord=_wordToTest.get(0);
 	}
 	
@@ -51,6 +52,9 @@ public class NewQuiz extends Quiz implements Option{
 		if (_instance==null){
 			_instance = new NewQuiz(viewer, startingLevel);
 		}
+		else {
+			_instance.initializeQuiz();
+		}
 		return _instance;
 	}
 	
@@ -58,14 +62,21 @@ public class NewQuiz extends Quiz implements Option{
 	/**
 	 * Method that will do the following when all words in a quiz 
 	 * have been spelt.
-	 * 1. Pass the list of spelt words to Statistics Class.
-	 * 2. Allow the play a video option.
-	 * 3. Ask user if they want to level up or stay at current level.
+	 * 1. Display a summary of the current quiz session.
+	 * 2. Pass the list of spelt words to Statistics Class.
+	 * 3. Allow the play a video option.
+	 * 4. Ask user if they want to level up or stay at current level.
 	 * 
 	 * Method overriden from abstract class.
 	 */
 	@Override
 	protected void endOfQuiz(){
+		_mainViewer.appendText("End of current Quiz at level: " + _currentLevel + ".");
+		_mainViewer.appendText("You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!");
+		//Record stats
+		Statistics stats = Statistics.getInstance();
+		stats.recordQuizResults(_wordToTest, _currentLevel);
+		//Video and level up options.
 		if (_numberOfCorrectWords>=9){
 			if(_mainViewer.videoOption()){
 				_mainViewer.playVideo();
@@ -81,7 +92,20 @@ public class NewQuiz extends Quiz implements Option{
      * Unsupported operation in this class.
      */
 	@Override
-	protected void endOfWord() {
+	protected boolean endOfWord() {
 		// Nothing needs to be done.
+		return false;
+	}
+
+	/**
+	 * Reinitializes quiz fields to configure for a new starting quiz.
+	 */
+	@Override
+	protected void initializeQuiz() {
+		_wordToTest=_wordList.generateRandomWords(_currentLevel, _numberOfTests);
+		_currentWord=_wordToTest.get(0);
+		_testNumber=0;
+		_numberOfCorrectWords=0;
+		_numberOfTimesSpelt=0;
 	}
 }

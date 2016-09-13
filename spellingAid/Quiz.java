@@ -16,6 +16,7 @@ import java.util.List;
  * 	1.3	All the words that was spelled or is going to be spelled in this quiz.
  * 	1.4 The list of words to be spelled. (Generated using wordList class)
  * 	1.5 The number of words spelled correctly.
+ * 	1.6 The number of times the current word has been spelt (to determine successStatus/etc)
  * 2. Say instructions (using Speech Class)
  * 3. Append text instructions (using MainViewer Class)
  * 
@@ -39,6 +40,7 @@ public abstract class Quiz implements Option{
 	protected List<Word> _wordToTest;
 	protected Word _currentWord;
 	protected int _numberOfCorrectWords;
+	protected int _numberOfTimesSpelt;
 	
 	/**
 	 * Protected constructor for child class only.
@@ -72,7 +74,8 @@ public abstract class Quiz implements Option{
 			spellTest();
 		}
 		else{
-			throw new RuntimeException("No more words to be tested.");
+			_mainViewer.enableStartButton();
+			_mainViewer.displayMainMenu();
 		}
 	}
 	
@@ -97,7 +100,9 @@ public abstract class Quiz implements Option{
 	 * endOfWord(), endOfQuiz();
 	 */
 	public final void nextWord (){
-		endOfWord();
+		if (endOfWord()){
+			return;
+		}
 		if (_testNumber==_numberOfTests-1){
 			endOfQuiz();
 		}
@@ -108,6 +113,14 @@ public abstract class Quiz implements Option{
 			}
 			_currentWord=_wordToTest.get(_testNumber);
 		}
+		_numberOfTimesSpelt=0;
+	}
+	
+	/**
+	 * This method will repeat the current word using festival.
+	 */
+	public void repeatWord(){
+		_currentWord.sayWord();
 	}
 	
 	/**
@@ -133,7 +146,51 @@ public abstract class Quiz implements Option{
 	
 	/**
 	 * Allowing children classes to do specific things after a word is spelled.
+	 * Note that if returns true, it will skip the process of loading next word.
 	 */
-	protected abstract void endOfWord();
+	protected abstract boolean endOfWord();
+	
+	/**
+	 * This method should always be called when getting the instance of quiz.
+	 * As it reinitializes all the fields based on the level.
+	 */
+	protected abstract void initializeQuiz();
+	
+	//++++++++++++++++++++++++++++++++++++++++++++++
+	//Helper methods for other classes to call:
+	
+	/**
+	 * This method will say and display the instruction input.
+	 */
+	public void sayAndDisplay(String s){
+		_speech.saySentence(s);
+		_mainViewer.appendText(s);
+	}
+	
+	/**
+	 * This method will increment the count for the number of times the current
+	 * word is spelt. Only to be called after submission.
+	 */
+	public void incrementSpeltTimes(){
+		_numberOfTimesSpelt++;
+	}
+	
+	/**
+	 * Getter for number of spelt times.
+	 */
+	public int getNumberOfTimesSpelt(){
+		return _numberOfTimesSpelt;
+	}
+	
+	/**
+	 * This method will display the input on the GUI.
+	 */
+	public void display (String s){
+		_mainViewer.appendText(s);
+	}
+	
+	public Word getCurrentWord(){
+		return _currentWord;
+	}
 
 }
