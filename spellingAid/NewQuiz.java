@@ -1,5 +1,5 @@
 package spellingAid;
-
+//Test git.
 /**
  * This is a class represents a new quiz that user started.
  * (code reused from assignment 2)
