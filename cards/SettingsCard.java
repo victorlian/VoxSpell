@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -45,9 +46,18 @@ public class SettingsCard extends Card implements ActionListener {
 		JPanel radioPanel = new JPanel(new GridLayout(0, 1));
 		radioPanel.add(defVoiceBtn);
 		radioPanel.add(nzVoiceBtn);
+		
+		JButton debugBtn = new JButton("Debug");
+		debugBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//ADD YOUR CODE HERE VICTOR
+			}
+		});
 
 		_settingsCard.add(new JLabel("Speech Voice"), BorderLayout.NORTH);
 		_settingsCard.add(radioPanel, BorderLayout.LINE_START);
+		_settingsCard.add(debugBtn, BorderLayout.SOUTH);
 
 		defVoiceBtn.addActionListener(this);
 		nzVoiceBtn.addActionListener(this);
