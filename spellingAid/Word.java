@@ -29,6 +29,7 @@ public class Word {
 	
 	public Word (String word){
 		_word = word;
+		_speech = new Speech();
 	}
 	
 	/**
@@ -45,7 +46,7 @@ public class Word {
 	 * @return
 	 */
 	public boolean isSpeltCorrect(String spelling){
-		if (spelling.equals(_word)){
+		if (spelling.equals(_word.toLowerCase())){
 			return true;
 		}
 		else{

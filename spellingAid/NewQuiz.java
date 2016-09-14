@@ -75,7 +75,7 @@ public class NewQuiz extends Quiz implements Option{
 		_mainViewer.appendText("You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!");
 		//Record stats
 		Statistics stats = Statistics.getInstance();
-		stats.recordQuizResults(_wordToTest, _currentLevel);
+ 
 		//Video and level up options.
 		if (_numberOfCorrectWords>=9){
 			if(_mainViewer.videoOption()){

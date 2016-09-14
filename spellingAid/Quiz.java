@@ -83,7 +83,7 @@ public abstract class Quiz implements Option{
 	 * This method will say the word to spell and enable the submit button.
 	 */
 	protected void spellTest(){
-		_mainViewer.appendText("Please spell word " + _testNumber+1 + " of " + _numberOfTests+ ": ");
+		_mainViewer.appendText("Please spell word " + (_testNumber+1) + " of " + _numberOfTests + ": ");
 		_speech.saySentence("Please Spell...");
 		_currentWord.sayWord();
 		_currentWord.sayWord();
@@ -103,11 +103,11 @@ public abstract class Quiz implements Option{
 		if (endOfWord()){
 			return;
 		}
+		_testNumber++;
 		if (_testNumber==_numberOfTests-1){
 			endOfQuiz();
 		}
 		else{
-			_testNumber++;
 			if(_currentWord.getSuccessStatus().equals(Word.SuccessStatus.MASTERED)){
 				_numberOfCorrectWords++;
 			}

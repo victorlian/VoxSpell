@@ -39,7 +39,7 @@ public class Submission implements Option{
 		
 		Word.SuccessStatus currentWordSS=currentWord.getSuccessStatus();
 		//if the current word already have a successStatus
-		if (!currentWordSS.equals(null)){
+		if (!(currentWordSS == null)){
 			//if the current word has failed then should be in review for spell out.
 			if(currentWordSS.equals(Word.SuccessStatus.FAILED)){
 				//TODO
@@ -60,6 +60,7 @@ public class Submission implements Option{
 					_quiz.incrementSpeltTimes();
 					_quiz.sayAndDisplay("Incorrect, try once more!");
 					_quiz.execute();
+					return;	
 				}
 				break;
 			case 1:

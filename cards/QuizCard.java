@@ -13,6 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import spellingAid.MessageType;
+import spellingAid.NewQuiz;
+import spellingAid.Option;
+import spellingAid.Quiz;
+import spellingAid.Submission;
 import spellingAid.VideoReward;
 import spellingAid.Viewer;
 
@@ -36,7 +40,8 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static JTextArea txtOutput = new JTextArea(10, 30);
 	
 	//This should hold a reference to the current quiz at some point
-	//private Quiz _currentQuiz;
+	private Quiz _currentQuiz;
+	private Option _option;
 	
 	public QuizCard() {}
 	
@@ -111,16 +116,43 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		//Actions depending on the button
 		switch(text) {
 			case NEWQUIZ:
+				disableStartButton();
+				txtInput.setText("");
+				
 				//Give the user dialog options
-				quizTypeDialog();
+				int level = quizTypeDialog();
+				_currentQuiz = NewQuiz.getInstance(this, level);
+				_option = _currentQuiz;
+				
+				txtOutput.setText("New Quiz");
+				break;
 			case SUBMIT:
-			
+				if (_currentQuiz == null) {
+					throw new RuntimeException("Quiz is null");
+				}
+				
+				//TODO modify text to avoid empty input and invalid characters
+				String textInput = txtInput.getText();
+				if (textInput == null) {
+					return;
+				}
+				
+				Submission submission = new Submission(_currentQuiz, txtInput.getText());
+				_option = submission;
+				
+				txtInput.setText("");
+				break;
 			case SAYAGAIN:
-			
+				_currentQuiz.repeatWord();
+				return;
+		}
+		
+		if (_option != null) {
+			_option.execute();
 		}
 	}
 	
-	public void quizTypeDialog() {
+	public int quizTypeDialog() {
 		String[] quizOptions = {"New Quiz", "Review Quiz"};
 		String quizType = (String) JOptionPane.showInputDialog(
                 _quizCard,
@@ -132,10 +164,9 @@ public class QuizCard extends Card implements ActionListener, Viewer {
                 "New Quiz");
 		
 		if (quizType.equals(quizOptions[0])) {
-			int level = selectLevelType();
-			System.out.println(level + "");
+			return selectLevelType();
 		} else {
-			
+			return -1;
 		}
 	}
 	
@@ -165,7 +196,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	}
 	
 	public void appendText(String text) {
-		txtOutput.append(text);
+		txtOutput.append(_currentQuiz.NL + text);
 	}
 
 	public void disableStartButton() {
