@@ -119,9 +119,19 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				disableStartButton();
 				txtInput.setText("");
 				
+				int level;
 				//Give the user dialog options
-				int level = quizTypeDialog();
-				_currentQuiz = NewQuiz.getInstance(this, level);
+				if (quizTypeDialog()) {
+					//Review Quiz
+					level = selectLevelType();
+					//TODO put in Review Quiz
+					//_currentQuiz = ReviewQuiz.getInstance(this, level);
+				} else {
+					//Normal Quiz
+					level = selectLevelType();
+					_currentQuiz = NewQuiz.getInstance(this, level);
+				}
+
 				_option = _currentQuiz;
 				
 				txtOutput.setText("New Quiz");
@@ -152,7 +162,12 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		}
 	}
 	
-	public int quizTypeDialog() {
+	/**
+	 * Return true if Review quiz
+	 * Return false if Normal quiz
+	 * @return
+	 */
+	public boolean quizTypeDialog() {
 		String[] quizOptions = {"New Quiz", "Review Quiz"};
 		String quizType = (String) JOptionPane.showInputDialog(
                 _quizCard,
@@ -164,9 +179,9 @@ public class QuizCard extends Card implements ActionListener, Viewer {
                 "New Quiz");
 		
 		if (quizType.equals(quizOptions[0])) {
-			return selectLevelType();
+			return false;
 		} else {
-			return -1;
+			return true;
 		}
 	}
 	

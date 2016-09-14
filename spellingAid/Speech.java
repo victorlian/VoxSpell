@@ -2,6 +2,8 @@ package spellingAid;
 
 import java.io.IOException;
 
+import javax.swing.SwingWorker;
+
 /**
  * This is the class representing the speech synthesis.
  * Responsibilities:
@@ -12,21 +14,14 @@ import java.io.IOException;
  * @author victor
  *
  */
-public class Speech {
-	/**
-	 * This method will read out a word.
-	 * 
-	 * @param word
-	 */
-	public void sayWord(Word word){
-		festivalSayIt(word.toString());
-	}
-	
+public class Speech extends SwingWorker<Void, Void>{
+	private String _toSay = "";
 	/**
 	 * This method will say whatever the input is.
 	 * @param toSay
 	 */
-	public void saySentence(String toSay){
+	public void say(String toSay){
+		_toSay = toSay;
 		festivalSayIt(toSay);
 	}
 	
@@ -48,10 +43,11 @@ public class Speech {
 	 * @return
 	 */
 	private void festivalSayIt (String toSay){
-		String cmd = "echo \"" + toSay + "\" | festival --tts ";
+		String cmd = "echo \"" + _toSay + "\" | festival --tts ";
 		ProcessBuilder builder = new ProcessBuilder ("/bin/bash", "-c", cmd);
 		try {
 			Process process = builder.start();
+			this.execute();
 			process.waitFor();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -59,5 +55,12 @@ public class Speech {
 			e.printStackTrace();
 		}
 		return;
+	}
+
+
+	@Override
+	protected Void doInBackground() throws Exception {
+		System.out.println(_toSay + "\n");
+		return null;
 	}
 }

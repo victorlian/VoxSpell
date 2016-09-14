@@ -84,9 +84,8 @@ public abstract class Quiz implements Option{
 	 */
 	protected void spellTest(){
 		_mainViewer.appendText("Please spell word " + (_testNumber+1) + " of " + _numberOfTests + ": ");
-		_speech.saySentence("Please Spell...");
-		_currentWord.sayWord();
-		_currentWord.sayWord();
+		String sayWords = "Please Spell ... " + _currentWord.toString() + " ... " + _currentWord.toString();
+		_speech.say(sayWords);
 		_mainViewer.enableSubmissionButtons();
 	}
 	
@@ -120,7 +119,8 @@ public abstract class Quiz implements Option{
 	 * This method will repeat the current word using festival.
 	 */
 	public void repeatWord(){
-		_currentWord.sayWord();
+		//_currentWord.sayWord();
+		_speech.say(_currentWord.toString());
 	}
 	
 	/**
@@ -163,7 +163,7 @@ public abstract class Quiz implements Option{
 	 * This method will say and display the instruction input.
 	 */
 	public void sayAndDisplay(String s){
-		_speech.saySentence(s);
+		_speech.say(s);
 		_mainViewer.appendText(s);
 	}
 	
