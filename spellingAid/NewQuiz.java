@@ -78,8 +78,10 @@ public class NewQuiz extends Quiz implements Option{
 	 */
 	@Override
 	protected void endOfQuiz(){
-		_mainViewer.appendText(NL + "End of current Quiz at level: " + _currentLevel + "." + NL);
-		_mainViewer.appendText("You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!" +NL +NL);
+		String msg = "End of current Quiz at level: " + _currentLevel + ".";
+		msg += "You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!";
+		_mainViewer.popMessage(msg, MessageType.INFORMATION);
+		
 		//Record stats
 		Statistics stats = Statistics.getInstance();
 		stats.recordQuizResults(_wordToTest, _currentLevel);

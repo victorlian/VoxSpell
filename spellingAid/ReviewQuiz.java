@@ -79,8 +79,9 @@ public class ReviewQuiz extends Quiz implements Option{
 	 */
 	@Override
 	protected void endOfQuiz(){
-		_mainViewer.appendText(NL + "End of current Quiz at level: " + _currentLevel + "." + NL);
-		_mainViewer.appendText("You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!" +NL +NL);
+		String msg = "End of review at level: " + _currentLevel + ".";
+		msg += "You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!";
+		_mainViewer.popMessage(msg, MessageType.INFORMATION);
 	}
 
 	@Override
