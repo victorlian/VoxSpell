@@ -49,7 +49,7 @@ public abstract class Quiz implements Option{
 	 */
 	protected Quiz (Viewer viewer, int level){
 		_mainViewer = viewer;
-		_speech = new Speech ();
+		_speech = new Speech();
 		_wordList = new WordList(this);
 		_currentLevel = level;
 		_numberOfCorrectWords=0;
@@ -119,8 +119,7 @@ public abstract class Quiz implements Option{
 	 * This method will repeat the current word using festival.
 	 */
 	public void repeatWord(){
-		//_currentWord.sayWord();
-		_speech.say(_currentWord.toString());
+		_currentWord.sayWord();
 	}
 	
 	/**
@@ -165,6 +164,13 @@ public abstract class Quiz implements Option{
 	public void sayAndDisplay(String s){
 		_speech.say(s);
 		_mainViewer.appendText(s);
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**

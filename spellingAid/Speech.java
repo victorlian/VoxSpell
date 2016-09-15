@@ -11,11 +11,12 @@ import javax.swing.SwingWorker;
  * 2. Read out instructions (txt to speech)
  * 3. Set the voice of festival.
  * 
- * @author victor
+ * @author Victor & Daniel
  *
  */
-public class Speech extends SwingWorker<Void, Void>{
+public class Speech {
 	private String _toSay = "";
+	
 	/**
 	 * This method will say whatever the input is.
 	 * @param toSay
@@ -39,28 +40,14 @@ public class Speech extends SwingWorker<Void, Void>{
 	/**
 	 * This is a private helper method that will
 	 * allow bash-festival to say the input.
+	 * 
+	 * It calls the SwingWorker class SpeechSwingWorker
 	 * @param toSay
 	 * @return
 	 */
 	private void festivalSayIt (String toSay){
-		String cmd = "echo \"" + _toSay + "\" | festival --tts ";
-		ProcessBuilder builder = new ProcessBuilder ("/bin/bash", "-c", cmd);
-		try {
-			Process process = builder.start();
-			this.execute();
-			process.waitFor();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		SpeechSwingWorker ssw = new SpeechSwingWorker(_toSay);
+		ssw.execute();
 		return;
-	}
-
-
-	@Override
-	protected Void doInBackground() throws Exception {
-		System.out.println(_toSay + "\n");
-		return null;
 	}
 }
