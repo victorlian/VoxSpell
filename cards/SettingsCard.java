@@ -49,23 +49,39 @@ public class SettingsCard extends Card implements ActionListener {
 		radioPanel.add(defVoiceBtn);
 		radioPanel.add(nzVoiceBtn);
 		
+		//==============================================
+		//For Debug use BELOWWWWWWW
+		
+		//note:instance should exsist so should have no problem passing null;
+		//Also note that getInstance will initialize quiz back to test 1;
 		JButton debugBtn = new JButton("Debug");
 		debugBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//ADD YOUR CODE HERE VICTOR
-				
-				//note:instance should exsist so should have no problem passing null;
-				//Also note that getInstance will initialize quiz back to test 1;
-				Quiz quiz = NewQuiz.getInstance(null, 1);
-				quiz.toNumberX(null, 8, 7);
+				Quiz quiz = NewQuiz.getInstance(null, 12345);
+				quiz.toNumberX(null, 9, 8);
 				
 			}
 		});
+		
+		JButton cheatBtn = new JButton("Cheat");
+		cheatBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Quiz quiz = NewQuiz.getInstance(null, 12345);
+				quiz.cheat();
+			}
+		});
+		//==============================================
+		//For Debug use UPPPPPPPPP
 
 		_settingsCard.add(new JLabel("Speech Voice"), BorderLayout.NORTH);
 		_settingsCard.add(radioPanel, BorderLayout.LINE_START);
+		
+		//FORDEBUG================
 		_settingsCard.add(debugBtn, BorderLayout.SOUTH);
+		_settingsCard.add(cheatBtn, BorderLayout.EAST);		
+		//FORDEBUG================
 
 		defVoiceBtn.addActionListener(this);
 		nzVoiceBtn.addActionListener(this);
