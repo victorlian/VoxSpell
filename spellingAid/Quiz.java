@@ -75,6 +75,7 @@ public abstract class Quiz implements Option{
 		}
 		else{
 			_mainViewer.enableStartButton();
+			_mainViewer.disableSubmissionButtons();
 			_mainViewer.displayMainMenu();
 		}
 	}
@@ -102,15 +103,16 @@ public abstract class Quiz implements Option{
 		if (endOfWord()){
 			return;
 		}
+		if(_currentWord.getSuccessStatus().equals(Word.SuccessStatus.MASTERED)){
+			_numberOfCorrectWords++;
+		}
 
 		if (_testNumber==_numberOfTests-1){
-			endOfQuiz();
 			_testNumber++;
+			endOfQuiz();
+
 		}
 		else{
-			if(_currentWord.getSuccessStatus().equals(Word.SuccessStatus.MASTERED)){
-				_numberOfCorrectWords++;
-			}
 			_testNumber++;
 			_currentWord=_wordToTest.get(_testNumber);
 		}
@@ -227,7 +229,7 @@ public abstract class Quiz implements Option{
 		_testNumber=skipTo;
 		_currentWord=_wordToTest.get(skipTo);
 		_numberOfTimesSpelt=0;
-		
+		_numberOfCorrectWords=numberCorrect;
 	}
 	
 	/**
