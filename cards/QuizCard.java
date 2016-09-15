@@ -40,7 +40,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static JTextArea txtOutput = new JTextArea(10, 30);
 	
 	//This should hold a reference to the current quiz at some point
-	private Quiz _currentQuiz;
+	private Quiz _quiz;
 	private Option _option;
 	
 	public QuizCard() {}
@@ -129,15 +129,15 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				} else {
 					//Normal Quiz
 					level = selectLevelType();
-					_currentQuiz = NewQuiz.getInstance(this, level);
+					_quiz = NewQuiz.getInstance(this, level);
 				}
 
-				_option = _currentQuiz;
+				_option = _quiz;
 				
-				txtOutput.setText("New Quiz");
+				txtOutput.setText("New Quiz begins: " + _quiz.NL);
 				break;
 			case SUBMIT:
-				if (_currentQuiz == null) {
+				if (_quiz == null) {
 					throw new RuntimeException("Quiz is null");
 				}
 				
@@ -147,13 +147,13 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					return;
 				}
 				
-				Submission submission = new Submission(_currentQuiz, txtInput.getText());
+				Submission submission = new Submission(_quiz, txtInput.getText());
 				_option = submission;
 				
 				txtInput.setText("");
 				break;
 			case SAYAGAIN:
-				_currentQuiz.repeatWord();
+				_quiz.repeatWord();
 				return;
 		}
 		
@@ -211,7 +211,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	}
 	
 	public void appendText(String text) {
-		txtOutput.append(_currentQuiz.NL + text);
+		txtOutput.append(text);
 	}
 
 	public void disableStartButton() {
@@ -228,7 +228,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	}
 
 	public void displayMainMenu() {
-		txtOutput.setText("Quiz Completed\nSelect 'New Quiz' to start another Quiz");
+		txtOutput.append("Quiz Completed\nSelect 'New Quiz' to start another Quiz");
 	}
 
 	public JPanel getPanel() {
