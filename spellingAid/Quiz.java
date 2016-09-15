@@ -49,7 +49,7 @@ public abstract class Quiz implements Option{
 	 */
 	protected Quiz (Viewer viewer, int level){
 		_mainViewer = viewer;
-		_speech = new Speech ();
+		_speech = new Speech();
 		_wordList = new WordList(this);
 		_currentLevel = level;
 		_numberOfCorrectWords=0;
@@ -84,9 +84,8 @@ public abstract class Quiz implements Option{
 	 */
 	protected void spellTest(){
 		_mainViewer.appendText("Please spell word " + (_testNumber+1) + " of " + _numberOfTests + ": ");
-		_speech.saySentence("Please Spell...");
-		_currentWord.sayWord();
-		_currentWord.sayWord();
+		String sayWords = "Please Spell ... " + _currentWord.toString() + " ... " + _currentWord.toString();
+		_speech.say(sayWords);
 		_mainViewer.enableSubmissionButtons();
 	}
 	
@@ -165,8 +164,15 @@ public abstract class Quiz implements Option{
 	 * This method will say and display the instruction input.
 	 */
 	public void sayAndDisplay(String s){
-		_speech.saySentence(s);
+		_speech.say(s);
 		_mainViewer.appendText(s);
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**

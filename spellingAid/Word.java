@@ -36,7 +36,7 @@ public class Word {
 	 * This method would use festival to pronounce the Word Object.
 	 */
 	public void sayWord(){
-		_speech.sayWord(this);
+		_speech.say(this._word);
 	}
 	
 	/**

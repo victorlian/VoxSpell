@@ -2,6 +2,8 @@ package spellingAid;
 
 import java.io.IOException;
 
+import javax.swing.SwingWorker;
+
 /**
  * This is the class representing the speech synthesis.
  * Responsibilities:
@@ -9,24 +11,18 @@ import java.io.IOException;
  * 2. Read out instructions (txt to speech)
  * 3. Set the voice of festival.
  * 
- * @author victor
+ * @author Victor & Daniel
  *
  */
 public class Speech {
-	/**
-	 * This method will read out a word.
-	 * 
-	 * @param word
-	 */
-	public void sayWord(Word word){
-		festivalSayIt(word.toString());
-	}
+	private String _toSay = "";
 	
 	/**
 	 * This method will say whatever the input is.
 	 * @param toSay
 	 */
-	public void saySentence(String toSay){
+	public void say(String toSay){
+		_toSay = toSay;
 		festivalSayIt(toSay);
 	}
 	
@@ -44,20 +40,14 @@ public class Speech {
 	/**
 	 * This is a private helper method that will
 	 * allow bash-festival to say the input.
+	 * 
+	 * It calls the SwingWorker class SpeechSwingWorker
 	 * @param toSay
 	 * @return
 	 */
 	private void festivalSayIt (String toSay){
-		String cmd = "echo \"" + toSay + "\" | festival --tts ";
-		ProcessBuilder builder = new ProcessBuilder ("/bin/bash", "-c", cmd);
-		try {
-			Process process = builder.start();
-			process.waitFor();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		SpeechSwingWorker ssw = new SpeechSwingWorker(_toSay);
+		ssw.execute();
 		return;
 	}
 }

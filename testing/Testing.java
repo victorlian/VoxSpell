@@ -73,11 +73,11 @@ public class Testing {
 		Word word = new Word("University");
 
 		System.out.println("Should say: "+ word.toString());
-		speech.sayWord(word);
+		speech.say(word.toString());
 
 		String toSay = "Welcome to Spelling Aid";
 		System.out.println("Should say: " + toSay);
-		speech.saySentence(toSay);
+		speech.say(toSay);
 
 	}
 }
