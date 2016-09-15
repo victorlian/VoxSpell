@@ -209,7 +209,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
                 levelOptions,
                 "Level 1");
 		
-		return Integer.valueOf(level.substring(level.length() - 1));
+		return Integer.valueOf(level.substring(6));
 	}
 	
 	public void appendText(String text) {
@@ -230,7 +230,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	}
 
 	public void displayMainMenu() {
-		txtOutput.append("Quiz Completed\nSelect 'New Quiz' to start another Quiz");
+		txtOutput.append("Quiz Completed\nPlease Select 'New Quiz' to start another quiz.");
 	}
 
 	public JPanel getPanel() {

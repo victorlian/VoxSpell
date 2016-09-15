@@ -98,14 +98,17 @@ public abstract class Quiz implements Option{
 	 * This method will be called to configure quiz to take the next word.
 	 * If the currentWord is the last word, then launch end of quiz.
 	 * 
+	 * Return type is false when this method does not initialize the next word
+	 * successfully, and so quiz.execute should not be called again.
+	 * 
 	 * This is a template method. (hence final)
 	 * 
 	 * Methods to be implemented:
 	 * endOfWord(), endOfQuiz();
 	 */
-	public final void nextWord (){
+	public final boolean nextWord (){
 		if (endOfWord()){
-			return;
+			return false;
 		}
 		if(_currentWord.getSuccessStatus().equals(Word.SuccessStatus.MASTERED)){
 			_numberOfCorrectWords++;
@@ -121,6 +124,7 @@ public abstract class Quiz implements Option{
 			_currentWord=_wordToTest.get(_testNumber);
 		}
 		_numberOfTimesSpelt=0;
+		return true;
 	}
 	
 	/**
@@ -219,9 +223,9 @@ public abstract class Quiz implements Option{
 	 * A list of words should be passed in as the spelt words. 
 	 * (they need to have successStatus)
 	 * If the reference passed in is not the correct size, then words will be 
-	 * the old one generated and set to success.
+	 * the old one generated and set to the given successStatus
 	 */
-	public void toNumberX (List<Word> wordsSpelt, int skipTo, int numberCorrect){
+	public void toNumberX (List<Word> wordsSpelt, int skipTo, int numberCorrect, Word.SuccessStatus ss){
 		if (wordsSpelt != null && wordsSpelt.size()==skipTo-1){
 			for (int i=0; i<wordsSpelt.size();i++){
 				_wordToTest.remove(i);
@@ -231,7 +235,15 @@ public abstract class Quiz implements Option{
 		else {
 			for (int i=0; i<skipTo; i++){
 				Word word = _wordToTest.get(i);
-				word.setMastered();
+				if (ss.equals(Word.SuccessStatus.MASTERED)){
+					word.setMastered();
+				}
+				else if (ss.equals(Word.SuccessStatus.FAULTED)){
+					word.setFaulted();
+				}
+				else {
+					word.setFailed();
+				}
 			}
 		}
 

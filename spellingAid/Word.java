@@ -40,9 +40,10 @@ public class Word {
 	}
 	
 	/**
-	 * This method would use festival to spell out the Word Object.
+	 * This method returns the string that should be passed to festival
+	 * to spell the word out.
 	 */
-	public void spellWord(){
+	public String StringToSpellWord(){
 		String spelling = "";
 		for (int charIndex=0; charIndex<_word.length(); charIndex++){
 			String singleChar = _word.substring(charIndex, charIndex+1);
@@ -50,9 +51,9 @@ public class Word {
 			if (singleChar.equals("a")){
 				singleChar = "ay";
 			}
-			spelling = spelling + singleChar + " . . ";
+			spelling = spelling + singleChar + " ... ";
 		}
-		_speech.say(spelling);
+		return spelling;
 	}
 	
 	/**

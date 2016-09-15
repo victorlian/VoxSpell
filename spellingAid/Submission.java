@@ -44,7 +44,14 @@ public class Submission implements Option{
 		if (!(currentWordSS == null)){
 			//if the current word has failed then should be in review for spell out.
 			if(currentWordSS.equals(Word.SuccessStatus.FAILED)){
-				//TODO
+				_quiz.incrementSpeltTimes();
+				if (correct){
+					_quiz.sayAndDisplay("Correct!" + _quiz.NL);
+				}
+				else {
+					_quiz.sayAndDisplay("Incorrect!" + _quiz.NL);
+					_quiz._mainViewer.popMessage("Correct spelling is: " + currentWord.toString(), MessageType.INFORMATION);
+				}
 			}
 			else {
 				throw new RuntimeException("Should not be in submitting if word has status.");
@@ -71,6 +78,7 @@ public class Submission implements Option{
 					currentWord.setFaulted();
 				}
 				else {
+					_quiz.incrementSpeltTimes();
 					_quiz.sayAndDisplay("Incorrect!"+ _quiz.NL);
 					currentWord.setFailed();
 				}
@@ -80,8 +88,10 @@ public class Submission implements Option{
 			}
 		}
 		//Attempt to load the next word and start quiz.
-		_quiz.nextWord();
-		_quiz.execute();
+		if(_quiz.nextWord()){
+			_quiz.execute();
+		}
+		
 		
 	}
 	

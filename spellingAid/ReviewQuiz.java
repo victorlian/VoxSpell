@@ -83,10 +83,21 @@ public class ReviewQuiz extends Quiz implements Option{
 		msg += "You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!";
 		_mainViewer.popMessage(msg, MessageType.INFORMATION);
 	}
-
+	
+	/**
+	 * Method that will be called after a single word has been finished
+	 * spelled. Intention is to allow for the word to be spelled out.
+	 */
 	@Override
 	protected boolean endOfWord() {
-		// TODO Auto-generated method stub
+		if (_currentWord.getSuccessStatus().equals(Word.SuccessStatus.FAILED) && _numberOfTimesSpelt==2){
+			_mainViewer.appendText("Follow the spelling and spell this word again: ");
+			String sayWords = _currentWord.toString() + " ... " + "is spelled as ... " + _currentWord.StringToSpellWord();
+			sayWords += "Now, please spell: " + _currentWord.toString() + " ... again"; 
+			_speech.say(sayWords);
+			_mainViewer.enableSubmissionButtons();
+			return true;
+		}
 		return false;
 	}
 	

@@ -13,7 +13,9 @@ import javax.swing.JRadioButton;
 
 import spellingAid.NewQuiz;
 import spellingAid.Quiz;
+import spellingAid.ReviewQuiz;
 import spellingAid.VideoReward;
+import spellingAid.Word;
 
 /**
  * This class populates the contents of a Card Mainly to make the MainGUI class
@@ -54,12 +56,14 @@ public class SettingsCard extends Card implements ActionListener {
 		
 		//note:instance should exsist so should have no problem passing null;
 		//Also note that getInstance will initialize quiz back to test 1;
+		JPanel debugPanel = new JPanel (new GridLayout(0,3));
+		
 		JButton debugBtn = new JButton("Debug");
 		debugBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Quiz quiz = NewQuiz.getInstance(null, 12345);
-				quiz.toNumberX(null, 9, 8);
+				quiz.toNumberX(null, 9, 9, Word.SuccessStatus.FAILED);
 				
 			}
 		});
@@ -72,6 +76,19 @@ public class SettingsCard extends Card implements ActionListener {
 				quiz.cheat();
 			}
 		});
+		
+		JButton reviewBtn = new JButton("ReviewDebug");
+		reviewBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Quiz quiz = ReviewQuiz.getInstance(null, 12345);
+				quiz.toNumberX(null, 8, 8, Word.SuccessStatus.MASTERED);
+			}
+		});
+		
+		debugPanel.add(debugBtn);
+		debugPanel.add(cheatBtn);
+		debugPanel.add(reviewBtn);
 		//==============================================
 		//For Debug use UPPPPPPPPP
 
@@ -79,8 +96,7 @@ public class SettingsCard extends Card implements ActionListener {
 		_settingsCard.add(radioPanel, BorderLayout.LINE_START);
 		
 		//FORDEBUG================
-		_settingsCard.add(debugBtn, BorderLayout.SOUTH);
-		_settingsCard.add(cheatBtn, BorderLayout.EAST);		
+		_settingsCard.add(debugPanel, BorderLayout.SOUTH);
 		//FORDEBUG================
 
 		defVoiceBtn.addActionListener(this);
