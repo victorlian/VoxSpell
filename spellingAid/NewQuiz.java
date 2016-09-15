@@ -49,6 +49,12 @@ public class NewQuiz extends Quiz implements Option{
 	 * @return
 	 */
 	public static Quiz getInstance(Viewer viewer, int startingLevel){
+		//FOR DEBUG USE:
+		if (startingLevel==12345){
+			return _instance;
+		}
+		//===============
+		
 		if (_instance==null){
 			_instance = new NewQuiz(viewer, startingLevel);
 		}
@@ -71,11 +77,11 @@ public class NewQuiz extends Quiz implements Option{
 	 */
 	@Override
 	protected void endOfQuiz(){
-		_mainViewer.appendText("End of current Quiz at level: " + _currentLevel + ".");
-		_mainViewer.appendText("You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!");
+		_mainViewer.appendText(NL + "End of current Quiz at level: " + _currentLevel + "." + NL);
+		_mainViewer.appendText("You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!" +NL +NL);
 		//Record stats
 		Statistics stats = Statistics.getInstance();
- 
+		stats.recordQuizResults(_wordToTest, _currentLevel);
 		//Video and level up options.
 		if (_numberOfCorrectWords>=9){
 			if(_mainViewer.videoOption()){

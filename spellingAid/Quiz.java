@@ -229,5 +229,12 @@ public abstract class Quiz implements Option{
 		_numberOfTimesSpelt=0;
 		
 	}
+	
+	/**
+	 * This method will show the word in the txtOutput.
+	 */
+	public void cheat (){
+		_mainViewer.appendText("  cheat: " + _currentWord.toString() + " ");
+	}
 
 }

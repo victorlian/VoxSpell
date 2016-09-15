@@ -9,6 +9,8 @@ package spellingAid;
  * 2. Check if the spelling is correct.
  * 3. set the successStatus of a word depending on it's correctness. (using Quiz, Word Class)
  * 4. set quiz to take the next word. (using Quiz Class).
+ * 
+ * Note that any interaction with the GUI is done through the quiz class. 
  * @author victor
  *
  */
@@ -31,7 +33,7 @@ public class Submission implements Option{
 	 */
 	@Override
 	public void execute() {
-		_quiz.display(_spelling);
+		_quiz.display(_spelling + _quiz.NL);
 		_spelling = _spelling.toLowerCase();
 		Word currentWord = _quiz.getCurrentWord();
 		boolean correct = currentWord.isSpeltCorrect(_spelling);
@@ -53,23 +55,23 @@ public class Submission implements Option{
 			switch (numberOfTimesSpelt){
 			case 0: 
 				if (correct){
-					_quiz.sayAndDisplay("Correct!");
+					_quiz.sayAndDisplay("Correct!" + _quiz.NL);
 					currentWord.setMastered();
 				}
 				else {
 					_quiz.incrementSpeltTimes();
-					_quiz.sayAndDisplay("Incorrect, try once more!");
+					_quiz.sayAndDisplay("Incorrect, try once more!" + _quiz.NL);
 					_quiz.execute();
 					return;	
 				}
 				break;
 			case 1:
 				if (correct){
-					_quiz.sayAndDisplay("Correct!");
+					_quiz.sayAndDisplay("Correct!" + _quiz.NL);
 					currentWord.setFaulted();
 				}
 				else {
-					_quiz.sayAndDisplay("Incorrect!");
+					_quiz.sayAndDisplay("Incorrect!"+ _quiz.NL);
 					currentWord.setFailed();
 				}
 				break;
