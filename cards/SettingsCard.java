@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import spellingAid.NewQuiz;
+import spellingAid.Quiz;
 import spellingAid.VideoReward;
 
 /**
@@ -52,6 +54,12 @@ public class SettingsCard extends Card implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//ADD YOUR CODE HERE VICTOR
+				
+				//note:instance should exsist so should have no problem passing null;
+				//Also note that getInstance will initialize quiz back to test 1;
+				Quiz quiz = NewQuiz.getInstance(null, 1);
+				quiz.toNumberX(null, 8, 7);
+				
 			}
 		});
 

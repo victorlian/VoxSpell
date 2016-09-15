@@ -103,14 +103,16 @@ public abstract class Quiz implements Option{
 		if (endOfWord()){
 			return;
 		}
-		_testNumber++;
+
 		if (_testNumber==_numberOfTests-1){
 			endOfQuiz();
+			_testNumber++;
 		}
 		else{
 			if(_currentWord.getSuccessStatus().equals(Word.SuccessStatus.MASTERED)){
 				_numberOfCorrectWords++;
 			}
+			_testNumber++;
 			_currentWord=_wordToTest.get(_testNumber);
 		}
 		_numberOfTimesSpelt=0;
@@ -191,6 +193,35 @@ public abstract class Quiz implements Option{
 	
 	public Word getCurrentWord(){
 		return _currentWord;
+	}
+	
+	//++++++++++++++++++++++++++++++
+	//Debugging methods:
+	/**
+	 * This method will allow us to test word number X straight away.
+	 * A list of words should be passed in as the spelt words. 
+	 * (they need to have successStatus)
+	 * If the reference passed in is not the correct size, then words will be 
+	 * the old one generated and set to success.
+	 */
+	public void toNumberX (List<Word> wordsSpelt, int skipTo, int numberCorrect){
+		if (wordsSpelt != null && wordsSpelt.size()==skipTo-1){
+			for (int i=0; i<wordsSpelt.size();i++){
+				_wordToTest.remove(i);
+				_wordToTest.add(i, wordsSpelt.get(i));
+			}
+		}
+		else {
+			for (int i=0; i<skipTo; i++){
+				Word word = _wordToTest.get(i);
+				word.setMastered();
+			}
+		}
+
+		_testNumber=skipTo;
+		_currentWord=_wordToTest.get(skipTo);
+		_numberOfTimesSpelt=0;
+		
 	}
 
 }
