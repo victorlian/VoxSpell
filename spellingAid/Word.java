@@ -40,6 +40,22 @@ public class Word {
 	}
 	
 	/**
+	 * This method would use festival to spell out the Word Object.
+	 */
+	public void spellWord(){
+		String spelling = "";
+		for (int charIndex=0; charIndex<_word.length(); charIndex++){
+			String singleChar = _word.substring(charIndex, charIndex+1);
+			//a is pronounced wrong. adjust.
+			if (singleChar.equals("a")){
+				singleChar = "ay";
+			}
+			spelling = spelling + singleChar + " . . ";
+		}
+		_speech.say(spelling);
+	}
+	
+	/**
 	 * This method checks if the spelling of a word is correct.
 	 * Note that the input of this method should have lower case letters only.
 	 * @param spelling
@@ -76,7 +92,7 @@ public class Word {
 	}
 	
 	/**
-	 * This method overwrites the object#toString().
+	 * This method overrides the object#toString().
 	 */
 	public String toString(){
 		return _word;

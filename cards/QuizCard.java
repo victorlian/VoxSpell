@@ -16,6 +16,7 @@ import spellingAid.MessageType;
 import spellingAid.NewQuiz;
 import spellingAid.Option;
 import spellingAid.Quiz;
+import spellingAid.ReviewQuiz;
 import spellingAid.Submission;
 import spellingAid.VideoReward;
 import spellingAid.Viewer;
@@ -124,17 +125,18 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				if (quizTypeDialog()) {
 					//Review Quiz
 					level = selectLevelType();
-					//TODO put in Review Quiz
-					//_currentQuiz = ReviewQuiz.getInstance(this, level);
+					_quiz = ReviewQuiz.getInstance(this, level);
+					txtOutput.setText("New Review begins: " + _quiz.NL);
 				} else {
 					//Normal Quiz
 					level = selectLevelType();
 					_quiz = NewQuiz.getInstance(this, level);
+					txtOutput.setText("New Quiz begins: " + _quiz.NL);
 				}
 
 				_option = _quiz;
 				
-				txtOutput.setText("New Quiz begins: " + _quiz.NL);
+
 				break;
 			case SUBMIT:
 				if (_quiz == null) {

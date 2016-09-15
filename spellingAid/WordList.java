@@ -17,7 +17,7 @@ import java.util.List;
  *
  */
 public class WordList {
-	private List<List<String>> _wordList;
+	private List<List<String>> _wordList = new ArrayList<List<String>>();
 	private FileManager _fm = new FileManager();
 	
 	/**
@@ -28,9 +28,15 @@ public class WordList {
 		if (quiz instanceof NewQuiz){
 			_wordList = _fm.readWordList();
 		}
-		//else if (quiz instanceof Review){
-		//
-		//}
+		else if (quiz instanceof ReviewQuiz){
+			Statistics stats = Statistics.getInstance();
+			for (int i=1; i<=11; i++){
+				List<Word> listOfWords = stats.failList(i);
+				List<String> listOfStrings = convertListWordToString(listOfWords);
+				_wordList.add(null);//for position 0;
+				_wordList.add(i,listOfStrings);
+			}
+		}
 		else {
 			throw new RuntimeException("Invalid Quiz type for wordlist constructor.");
 		}
@@ -66,6 +72,25 @@ public class WordList {
 			}
 			return randomWordList;
 		}
+	}
+	
+	/**
+	 * This method is intended for Review class.
+	 * It counts the number of failed words in a given level.
+	 */
+	public int numberOfFailedWords(int level){
+		return _wordList.get(level).size();
+	}
+	
+	/**
+	 * Private helper method that will convert List<Word> to List<String>
+	 */
+	private List<String> convertListWordToString (List <Word> wordList){
+		List<String> stringList = new ArrayList<String>();
+		for (Word word: wordList){
+			stringList.add(word.toString());
+		}
+		return stringList;
 	}
 	
 }

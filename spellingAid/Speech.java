@@ -1,9 +1,5 @@
 package spellingAid;
 
-import java.io.IOException;
-
-import javax.swing.SwingWorker;
-
 /**
  * This is the class representing the speech synthesis.
  * Responsibilities:

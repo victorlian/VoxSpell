@@ -4,10 +4,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import spellingAid.FileManager;
+import spellingAid.NewQuiz;
+import spellingAid.Quiz;
+import spellingAid.ReviewQuiz;
 import spellingAid.Speech;
+import spellingAid.Statistics;
 import spellingAid.Word;
 import spellingAid.WordList;
 
@@ -41,7 +46,7 @@ public class Testing {
 	 */
 	@Test
 	public void testGenerateRandomWords(){
-		WordList list = new WordList(null);
+		WordList list = new WordList(NewQuiz.getInstance(null,1));
 		try {
 			list.generateRandomWords(12, 10);
 		}
@@ -78,6 +83,27 @@ public class Testing {
 		String toSay = "Welcome to Spelling Aid";
 		System.out.println("Should say: " + toSay);
 		speech.say(toSay);
-
+	}
+	
+	/**
+	 * Testing the wordList class's review methods.
+	 */
+	@Test
+	public void testReviewList(){
+		Statistics stats = Statistics.getInstance();
+		//add some failed words:
+		for (int i=1; i<=11; i++){
+			List<Word> failedList = new ArrayList<Word>();
+			for (int fail=0; fail<3; fail++){
+				Word word = new Word ("fail");
+				word.setFailed();
+				failedList.add(word);
+			}
+			stats.recordQuizResults(failedList, i);
+		}
+		
+		Quiz review = ReviewQuiz.getInstance(null, 1);
+		//Debug point above. To observe relative fields. Need to change stats line 89.
+		String s = review.NL;
 	}
 }

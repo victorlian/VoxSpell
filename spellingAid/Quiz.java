@@ -70,6 +70,10 @@ public abstract class Quiz implements Option{
 	 */
 	@Override
 	public final void execute(){
+		if (_numberOfTests == 0){
+			emptyTest();
+		}
+		
 		if (_testNumber<_numberOfTests){
 			spellTest();
 		}
@@ -158,6 +162,11 @@ public abstract class Quiz implements Option{
 	 * As it reinitializes all the fields based on the level.
 	 */
 	protected abstract void initializeQuiz();
+	
+	/**
+	 * This method is going to get called when the number of test to do is 0.
+	 */
+	protected abstract void emptyTest();
 	
 	//++++++++++++++++++++++++++++++++++++++++++++++
 	//Helper methods for other classes to call:

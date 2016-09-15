@@ -1,7 +1,7 @@
 package spellingAid;
 
 /**
- * This is a class represents a new quiz that user started.
+ * This is a class represents a review quiz that user started.
  * (code reused from assignment 2)
  * 
  * 
@@ -12,7 +12,8 @@ package spellingAid;
  * 	1.3	All the words that was spelled or is going to be spelled in this quiz.
  * 	1.4 The list of words to be spelled. (Generated using wordList class)
  * 	1.5 The number of words spelled correctly.
- *  1.6 The number of times the current word has been spelt (to determine successStatus/etc)
+ *  1.6 The number of times the current word has been spelled 
+ *  	(to determine successStatus and if word should be spelled out.)
  * 2. Say instructions (using Speech Class)
  * 3. Append text instructions (using MainViewer Class)
  * 
@@ -21,27 +22,32 @@ package spellingAid;
  * 2. Update the record (all the fields).
  * 3. Set to move on to the next word.
  * 4. Singleton Class, use getInstance for object from this class.
- * 5. Once a quiz has completed, send all the information to stats class.
+ * 5. Once a review quiz has completed, send all the information to stats class.
  * 
  * @author victor
  *
  */
-public class NewQuiz extends Quiz implements Option{
+public class ReviewQuiz extends Quiz implements Option{
 	//singleton.
-	private static NewQuiz _instance = null;
+	private static ReviewQuiz _instance = null;
 	
 	/**
 	 * Use the same constructor as the default abstract one.
 	 * @param viewer
 	 * @param startingLevel
 	 */
-	private NewQuiz (Viewer viewer, int startingLevel){
+	private ReviewQuiz (Viewer viewer, int startingLevel){
 		super(viewer, startingLevel);
-		_numberOfTests = WORDS_PER_LEVEL;
-		_wordToTest=_wordList.generateRandomWords(_currentLevel, _numberOfTests);
-		_currentWord=_wordToTest.get(0);
+		int numberFailed = _wordList.numberOfFailedWords(startingLevel);
+		_numberOfTests = Math.min(numberFailed, WORDS_PER_LEVEL);
+		if (_numberOfTests <=0){
+			return;
+		}
+		else{
+			_wordToTest = _wordList.generateRandomWords(startingLevel, _numberOfTests);
+			_currentWord = _wordToTest.get(0);
+		}
 	}
-	
 	
 	/**
 	 *　The method to call when requiring the quiz object.
@@ -55,73 +61,78 @@ public class NewQuiz extends Quiz implements Option{
 			return _instance;
 		}
 		//===============
-		
 		if (_instance==null){
-			_instance = new NewQuiz(viewer, startingLevel);
+			_instance = new ReviewQuiz(viewer, startingLevel);
 		}
 		else {
-			_instance.initializeQuiz();
+			_instance.initializeQuiz(startingLevel);
 		}
 		return _instance;
 	}
 	
-	
 	/**
 	 * Method that will do the following when all words in a quiz 
 	 * have been spelt.
-	 * 1. Display a summary of the current quiz session.
+	 * 1. Display a summary of the current review session.
 	 * 2. Pass the list of spelt words to Statistics Class.
-	 * 3. Allow the play a video option.
-	 * 4. Ask user if they want to level up or stay at current level.
-	 * 
 	 * Method overriden from abstract class.
 	 */
 	@Override
 	protected void endOfQuiz(){
 		_mainViewer.appendText(NL + "End of current Quiz at level: " + _currentLevel + "." + NL);
 		_mainViewer.appendText("You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!" +NL +NL);
-		//Record stats
-		Statistics stats = Statistics.getInstance();
-		stats.recordQuizResults(_wordToTest, _currentLevel);
-		//Video and level up options.
-		if (_numberOfCorrectWords>=9){
-			if(_mainViewer.videoOption()){
-				_mainViewer.playVideo();
-			}
-			if(_mainViewer.levelUpOption()){
-				nextLevel();
-			}
-		}
-		
 	}
 
-	/**
-     * Unsupported operation in this class.
-     */
 	@Override
 	protected boolean endOfWord() {
-		// Nothing needs to be done.
+		// TODO Auto-generated method stub
 		return false;
 	}
 	
 	/**
-	 * Unsupported operation in this class.
+	 * This method will get called when there is no failed words to be 
+	 * reviewed in a level. Should pop up an information message.
 	 */
 	@Override
 	protected void emptyTest() {
-		//Should never be called.
-		throw new RuntimeException ("Unsupported operation. ");
+		_mainViewer.popMessage("There is no failed words to be reviewed in this level.", MessageType.INFORMATION);
 	}
-
+	
 	/**
-	 * Reinitializes quiz fields to configure for a new starting quiz.
+	 * This method is replaced by initializeQuiz with int.
 	 */
 	@Override
 	protected void initializeQuiz() {
-		_wordToTest=_wordList.generateRandomWords(_currentLevel, _numberOfTests);
-		_currentWord=_wordToTest.get(0);
+		throw new RuntimeException("This Method should never be called.");
+
+	}
+
+	
+	/**
+	 * Reinitializes quiz fields to configure for a new starting quiz.
+	 * (Based on the current level);
+	 */
+	protected void initializeQuiz(int startingLevel) {
+		_currentLevel = startingLevel;
+		_wordList = new WordList(this);
+		int numberFailed = _wordList.numberOfFailedWords(_currentLevel);
+		_numberOfTests = Math.min(numberFailed, WORDS_PER_LEVEL);
 		_testNumber=0;
 		_numberOfCorrectWords=0;
 		_numberOfTimesSpelt=0;
+		
+		if (_numberOfTests<=0){
+			return;
+		}
+		else{
+			_wordToTest = _wordList.generateRandomWords(_currentLevel, _numberOfTests);
+			_currentWord = _wordToTest.get(0);
+		}
+
+
 	}
+
+
+
+
 }
