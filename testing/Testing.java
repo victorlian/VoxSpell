@@ -2,6 +2,8 @@ package testing;
 
 import org.junit.Test;
 
+import speech.Speech;
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -11,7 +13,6 @@ import spellingAid.FileManager;
 import spellingAid.NewQuiz;
 import spellingAid.Quiz;
 import spellingAid.ReviewQuiz;
-import spellingAid.Speech;
 import spellingAid.Statistics;
 import spellingAid.Word;
 import spellingAid.WordList;

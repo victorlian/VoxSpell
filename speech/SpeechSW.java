@@ -1,4 +1,4 @@
-package spellingAid;
+package speech;
 
 import javax.swing.SwingWorker;
 
@@ -9,10 +9,10 @@ import javax.swing.SwingWorker;
  *
  */
 
-public class SpeechSwingWorker extends SwingWorker<Void, Void> {
+public class SpeechSW extends SwingWorker<Void, Void> {
 	private String _cmd;
 	
-	public SpeechSwingWorker(String toSay) {
+	public SpeechSW(String toSay) {
 		_cmd = "echo \"" + toSay + "\" | festival --tts ";
 	}
 	
@@ -23,5 +23,13 @@ public class SpeechSwingWorker extends SwingWorker<Void, Void> {
 		process.waitFor();
 		
 		return null;
+	}
+	
+	/**
+	 * This method tells the Manager that we have finished executing and we can continue
+	 */
+	protected void done() {
+		Speech.getManager().setExecuting(false);
+        Speech.getManager().executeNext();
 	}
 }

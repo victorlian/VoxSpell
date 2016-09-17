@@ -2,6 +2,8 @@ package spellingAid;
 
 import java.util.List;
 
+import speech.Speech;
+
 /**
  * This is an abstract class represents a quiz that user started.
  * The quiz can either be newQuiz or Review Mistakes.
@@ -183,14 +185,6 @@ public abstract class Quiz implements Option{
 	public void sayAndDisplay(String s){
 		_speech.say(s);
 		_mainViewer.appendText(s);
-		
-		//This is the ISSUE, need to find better way to space out
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	/**

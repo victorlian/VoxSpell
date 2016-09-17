@@ -1,4 +1,4 @@
-package spellingAid;
+package speech;
 
 /**
  * This is the class representing the speech synthesis.
@@ -11,6 +11,7 @@ package spellingAid;
  *
  */
 public class Speech {
+	private static SpeechSWManager _manager = new SpeechSWManager();
 	/**
 	 * This method will say whatever the input is.
 	 * @param toSay
@@ -18,7 +19,6 @@ public class Speech {
 	public void say(String toSay){
 		festivalSayIt(toSay);
 	}
-	
 	
 	/**
 	 * This method will set the voice of festival, run this method
@@ -29,18 +29,24 @@ public class Speech {
 		
 	}
 	
+	/**
+	 * Package Visibility so that SpeechSW can get the manager
+	 * @return
+	 */
+	static SpeechSWManager getManager() {
+		return _manager;
+	}
 	
 	/**
 	 * This is a private helper method that will
 	 * allow bash-festival to say the input.
 	 * 
-	 * It calls the SwingWorker class SpeechSwingWorker
+	 * It queues a new SpeechSW. This is to prevent multiple things being read out
 	 * @param toSay
 	 * @return
 	 */
 	private void festivalSayIt (String toSay){
-		SpeechSwingWorker ssw = new SpeechSwingWorker(toSay);
-		ssw.execute();
+		_manager.queueExecution(new SpeechSW(toSay));
 		return;
 	}
 }

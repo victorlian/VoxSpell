@@ -1,5 +1,7 @@
 package spellingAid;
 
+import speech.Speech;
+
 /**
  * This is the class Representing a Word Object.
  * (code reused, modified from assignment 2)
