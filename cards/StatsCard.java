@@ -12,7 +12,6 @@ import javax.swing.JTable;
 
 import spellingAid.Statistics;
 import spellingAid.StatsTableModel;
-import testing.TestingStatistics;
 
 /**
  * This class populates the contents of a Card
@@ -68,9 +67,6 @@ public class StatsCard extends Card implements ActionListener {
         _statsCard.add(levelList, BorderLayout.NORTH);
         _statsCard.add(scrollPane, BorderLayout.CENTER);
         _statsCard.add(_label, BorderLayout.SOUTH);
-        
-        //Testing Input
-        TestingStatistics.testStatisticsDisplay(_statistics);
         
         _label.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
         

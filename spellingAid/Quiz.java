@@ -146,6 +146,8 @@ public abstract class Quiz implements Option{
 		}
 		else {
 			_currentLevel++;
+			//Increment current level in Settings
+			Settings.setlevel(Settings.getLevel()+1);
 		}
 	}
 	
@@ -182,6 +184,7 @@ public abstract class Quiz implements Option{
 		_speech.say(s);
 		_mainViewer.appendText(s);
 		
+		//This is the ISSUE, need to find better way to space out
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {

@@ -2,6 +2,13 @@ package spellingAid;
 
 import javax.swing.SwingWorker;
 
+/**
+ * This class holds the SwingWorker implementation for speaking. It is
+ * called by the Speech class.
+ * @author Daniel
+ *
+ */
+
 public class SpeechSwingWorker extends SwingWorker<Void, Void> {
 	private String _cmd;
 	

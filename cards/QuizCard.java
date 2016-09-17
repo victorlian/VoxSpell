@@ -14,9 +14,10 @@ import javax.swing.border.EmptyBorder;
 
 import spellingAid.MessageType;
 import spellingAid.NewQuiz;
+import spellingAid.ReviewQuiz;
 import spellingAid.Option;
 import spellingAid.Quiz;
-import spellingAid.ReviewQuiz;
+import spellingAid.Settings;
 import spellingAid.Submission;
 import spellingAid.VideoReward;
 import spellingAid.Viewer;
@@ -43,6 +44,10 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	//This should hold a reference to the current quiz at some point
 	private Quiz _quiz;
 	private Option _option;
+	
+	public enum QuizType {
+		NORMAL, REVIEW, CANCEL;
+	}
 	
 	public QuizCard() {}
 	
@@ -89,6 +94,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		_quizCard.add(btnSubmit, constraints);
 		
 		addActionListeners();
+		disableSubmissionButtons();
 		
 		return _quizCard;
 	}
@@ -100,6 +106,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		btnNewQuiz.addActionListener(this);
 		btnSubmit.addActionListener(this);
 		btnSayAgain.addActionListener(this);
+		txtInput.addActionListener(this);
 	}
 	
 	/**
@@ -114,39 +121,73 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 			text = "textField";
 		}
 		
+		int level = -1;
+		
 		//Actions depending on the button
 		switch(text) {
 			case NEWQUIZ:
-				disableStartButton();
 				txtInput.setText("");
 				
-				int level;
+				QuizType quizType = quizTypeDialog();
 				//Give the user dialog options
-				if (quizTypeDialog()) {
+				if (quizType.equals(QuizType.REVIEW)) {
 					//Review Quiz
-					level = selectLevelType();
+					
+					//In the case we haven't done a quiz before, prompt them to select a level
+					if (Settings.isFirstTime()) {
+						level = selectLevelType();
+					} else {
+						level = Settings.getLevel();
+					}
+					
 					_quiz = ReviewQuiz.getInstance(this, level);
-					txtOutput.setText("New Review begins: " + _quiz.NL);
-				} else {
+				} else if (quizType.equals(QuizType.NORMAL)){
 					//Normal Quiz
-					level = selectLevelType();
+					
+					//In the case we haven't done a quiz before, prompt them to select a level
+					if (Settings.isFirstTime()) {
+						level = selectLevelType();
+					} else {
+						level = Settings.getLevel();
+					}
+					
 					_quiz = NewQuiz.getInstance(this, level);
-					txtOutput.setText("New Quiz begins: " + _quiz.NL);
+				} else {	
+					//Cancel Button - QuizType.CANCEl
+					return;
+				}
+				
+				//If cancel was hit in the Level selector
+				if (level == -1) {
+					return;
 				}
 
 				_option = _quiz;
 				
-
+				txtOutput.setText("New Quiz begins: " + _quiz.NL);
+				
+				disableStartButton();
 				break;
+			case "textField":
+				//No break statement as we want to flow through to Submit
 			case SUBMIT:
 				if (_quiz == null) {
 					throw new RuntimeException("Quiz is null");
 				}
 				
-				//TODO modify text to avoid empty input and invalid characters
-				String textInput = txtInput.getText();
+				//Ensure text entry is valid
+				char[] textInput = txtInput.getText().toCharArray();
 				if (textInput == null) {
 					return;
+				} else {
+					for (int i=0; i<textInput.length; i++) {
+						if (!Character.isLetter(textInput[i])) {
+							popMessage("Invalid Characters Entered", MessageType.ERROR);
+							//Repeat the word
+							_quiz.repeatWord();
+							return;
+						}
+					}
 				}
 				
 				Submission submission = new Submission(_quiz, txtInput.getText());
@@ -160,6 +201,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		}
 		
 		if (_option != null) {
+			Settings.setlevel(level);
 			_option.execute();
 		}
 	}
@@ -169,7 +211,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	 * Return false if Normal quiz
 	 * @return
 	 */
-	public boolean quizTypeDialog() {
+	public QuizCard.QuizType quizTypeDialog() {
 		String[] quizOptions = {"New Quiz", "Review Quiz"};
 		String quizType = (String) JOptionPane.showInputDialog(
                 _quizCard,
@@ -180,10 +222,15 @@ public class QuizCard extends Card implements ActionListener, Viewer {
                 quizOptions,
                 "New Quiz");
 		
-		if (quizType.equals(quizOptions[0])) {
-			return false;
+		//Handling Cancel button
+		if ((quizType != null) && (quizType.length() > 0)) {
+			if (quizType.equals(quizOptions[0])) {
+				return QuizType.NORMAL;
+			} else {
+				return QuizType.REVIEW;
+			}
 		} else {
-			return true;
+			return QuizType.CANCEL;
 		}
 	}
 	
@@ -209,7 +256,12 @@ public class QuizCard extends Card implements ActionListener, Viewer {
                 levelOptions,
                 "Level 1");
 		
-		return Integer.valueOf(level.substring(6));
+		//handling Cancel button
+		if ((level != null) && (level.length() > 0)) {
+			return Integer.valueOf(level.substring(6));
+		} else {
+			return -1;
+		}
 	}
 	
 	public void appendText(String text) {

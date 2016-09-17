@@ -11,14 +11,11 @@ package spellingAid;
  *
  */
 public class Speech {
-	private String _toSay = "";
-	
 	/**
 	 * This method will say whatever the input is.
 	 * @param toSay
 	 */
 	public void say(String toSay){
-		_toSay = toSay;
 		festivalSayIt(toSay);
 	}
 	
@@ -42,7 +39,7 @@ public class Speech {
 	 * @return
 	 */
 	private void festivalSayIt (String toSay){
-		SpeechSwingWorker ssw = new SpeechSwingWorker(_toSay);
+		SpeechSwingWorker ssw = new SpeechSwingWorker(toSay);
 		ssw.execute();
 		return;
 	}
