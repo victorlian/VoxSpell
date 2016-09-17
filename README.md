@@ -4,6 +4,6 @@ This is due <b>5pm, Friday, 23rd September</b>
 ##TODO - Daniel
 1. ~~Pushing ENTER will trigger the Submit button in QuizCard~~
 2. Disabling SUBMIT buttons when SwingWorker is reading
-3. List number of failed words when selecting level in Review Quiz
+3. List number of failed words when selecting level in Review Quiz - *May no longer be necessary due to fixing issue 5*
 4. ~~Check input for correct character entry~~
 5. ~~UI freezing when saying "Correct" or "Incorrect~~"
