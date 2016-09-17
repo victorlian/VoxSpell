@@ -97,8 +97,9 @@ public abstract class Quiz implements Option{
 	 */
 	protected void spellTest(){
 		_mainViewer.appendText("Please spell word " + (_testNumber+1) + " of " + _numberOfTests + ": ");
-		String sayWords = "Please Spell ... " + _currentWord.toString() + " ... " + _currentWord.toString();
-		_speech.say(sayWords);
+		_speech.say("Please Spell.");
+		_currentWord.sayWord();
+		_currentWord.sayWord();
 		_mainViewer.enableSubmissionButtons();
 	}
 	

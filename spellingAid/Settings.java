@@ -6,10 +6,9 @@ public class Settings {
 	private static Settings _settings = null;
 	private static int _currentLevel = -1;
 	
-	private static final String DEFVOICE = "(kal_diphone)";
 	private static final String NZLVOICE = "(voice_akl_nz_jdt_diphone)";
 	
-	private static String _currVoice = DEFVOICE;
+	private static String _currVoice = "";
 	
 	private Settings() {}
 	
@@ -39,7 +38,7 @@ public class Settings {
 	
 	public static void setVoice(Voices voice) {
 		if (voice.equals(Voices.DEFAULT)) {
-			_currVoice = DEFVOICE;
+			_currVoice = "";
 		} else if (voice.equals(Voices.NEWZEALAND)) {
 			_currVoice = NZLVOICE;
 		}
