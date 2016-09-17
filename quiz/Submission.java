@@ -1,4 +1,8 @@
-package spellingAid;
+package quiz;
+
+import spellingAid.MessageType;
+import spellingAid.Option;
+import words.Word;
 
 /**
  * This class represents the submission of a spelling

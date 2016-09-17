@@ -2,6 +2,9 @@ package testing;
 
 import org.junit.Test;
 
+import quiz.NewQuiz;
+import quiz.Quiz;
+import quiz.ReviewQuiz;
 import speech.Speech;
 
 import static org.junit.Assert.*;
@@ -10,12 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import spellingAid.FileManager;
-import spellingAid.NewQuiz;
-import spellingAid.Quiz;
-import spellingAid.ReviewQuiz;
 import spellingAid.Statistics;
-import spellingAid.Word;
-import spellingAid.WordList;
+import words.Word;
+import words.WordList;
 
 //gitCheck!
 public class Testing {

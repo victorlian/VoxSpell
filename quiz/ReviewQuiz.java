@@ -1,4 +1,10 @@
-package spellingAid;
+package quiz;
+
+import spellingAid.MessageType;
+import spellingAid.Option;
+import spellingAid.Viewer;
+import words.Word;
+import words.WordList;
 
 /**
  * This is a class represents a review quiz that user started.

@@ -11,11 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import spellingAid.NewQuiz;
-import spellingAid.Quiz;
-import spellingAid.ReviewQuiz;
+import quiz.NewQuiz;
+import quiz.Quiz;
+import quiz.ReviewQuiz;
 import spellingAid.VideoReward;
-import spellingAid.Word;
+import words.Word;
 
 /**
  * This class populates the contents of a Card Mainly to make the MainGUI class

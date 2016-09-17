@@ -1,4 +1,4 @@
-package spellingAid;
+package words;
 
 import speech.Speech;
 

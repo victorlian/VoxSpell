@@ -1,4 +1,4 @@
-package spellingAid;
+package words;
 
 /**
  * This class holds the Word object along with a list of stats

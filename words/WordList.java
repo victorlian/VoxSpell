@@ -1,8 +1,14 @@
-package spellingAid;
+package words;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import quiz.NewQuiz;
+import quiz.Quiz;
+import quiz.ReviewQuiz;
+import spellingAid.FileManager;
+import spellingAid.Statistics;
 
 /**
  * This class stores all the words that is used in 11 different 

@@ -1,4 +1,9 @@
-package spellingAid;
+package quiz;
+
+import spellingAid.MessageType;
+import spellingAid.Option;
+import spellingAid.Statistics;
+import spellingAid.Viewer;
 
 /**
  * This is a class represents a new quiz that user started.

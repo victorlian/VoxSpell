@@ -3,6 +3,9 @@ package spellingAid;
 import java.util.ArrayList;
 import java.util.List;
 
+import words.Word;
+import words.WordStats;
+
 /**
  * This class keeps tracks of all the history of the session. Including all the
  * words that was spelled

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import spellingAid.Statistics;
-import spellingAid.Word;
+import words.Word;
 
 /**
  * Populate the Statistics Table Model

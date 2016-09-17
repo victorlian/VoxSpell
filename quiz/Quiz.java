@@ -1,8 +1,14 @@
-package spellingAid;
+package quiz;
 
 import java.util.List;
 
 import speech.Speech;
+import spellingAid.MessageType;
+import spellingAid.Option;
+import spellingAid.Settings;
+import spellingAid.Viewer;
+import words.Word;
+import words.WordList;
 
 /**
  * This is an abstract class represents a quiz that user started.
