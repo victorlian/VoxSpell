@@ -35,9 +35,8 @@ public class WordList {
 			_wordList = _fm.readWordList();
 		}
 		else if (quiz instanceof ReviewQuiz){
-			Statistics stats = Statistics.getInstance();
 			for (int i=1; i<=11; i++){
-				List<Word> listOfWords = stats.failList(i);
+				List<Word> listOfWords = Statistics.failList(i);
 				List<String> listOfStrings = convertListWordToString(listOfWords);
 				_wordList.add(null);//for position 0;
 				_wordList.add(i,listOfStrings);

@@ -14,7 +14,8 @@ import javax.swing.JRadioButton;
 import quiz.NewQuiz;
 import quiz.Quiz;
 import quiz.ReviewQuiz;
-import spellingAid.VideoReward;
+import speech.Voices;
+import spellingAid.Settings;
 import words.Word;
 
 /**
@@ -109,18 +110,18 @@ public class SettingsCard extends Card implements ActionListener {
 	public JPanel getPanel() {
 		return _settingsCard;
 	}
-
+	
+	/**
+	 * Change Voices
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case DEFBUTTON:
-			System.out.println("Default");
+			Settings.setVoice(Voices.DEFAULT);
 			break;
 		case NZBUTTON:
-			System.out.println("NZ");
-			
-			VideoReward vidReward = new VideoReward();
-			vidReward.createContents();
+			Settings.setVoice(Voices.NEWZEALAND);
 			break;
 		}
 	}

@@ -1,6 +1,11 @@
 package speech;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import javax.swing.SwingWorker;
+
+import spellingAid.Settings;
 
 /**
  * This class holds the SwingWorker implementation for speaking. It is
@@ -10,15 +15,25 @@ import javax.swing.SwingWorker;
  */
 
 public class SpeechSW extends SwingWorker<Void, Void> {
-	private String _cmd;
+	private String _toSay;
 	
-	public SpeechSW(String toSay) {
-		_cmd = "echo \"" + toSay + "\" | festival --tts ";
+	public SpeechSW(String toSay) {	
+		_toSay = toSay;
 	}
 	
 	@Override
-	protected Void doInBackground() throws Exception {
-		ProcessBuilder builder = new ProcessBuilder ("/bin/bash", "-c", _cmd);
+	protected Void doInBackground() throws Exception {	
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(".newSpeech.scm", "UTF-8");
+			writer.println(Settings.getVoice());
+			writer.println("(SayText \"" + _toSay + "\")");
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		ProcessBuilder builder = new ProcessBuilder ("/bin/bash", "-c", "festival -b .newSpeech.scm");
 		Process process = builder.start();
 		process.waitFor();
 		
