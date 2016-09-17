@@ -113,7 +113,7 @@ public class ReviewQuiz extends Quiz implements Option{
 	 */
 	@Override
 	protected void emptyTest() {
-		_mainViewer.popMessage("There is no failed words to be reviewed in this level.", MessageType.INFORMATION);
+		_mainViewer.popMessage("There are no failed words to be reviewed in this level.", MessageType.INFORMATION);
 	}
 	
 	/**

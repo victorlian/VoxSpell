@@ -133,11 +133,11 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				if (quizType.equals(QuizType.REVIEW)) {
 					//Review Quiz
 					
-					//In the case we haven't done a quiz before, prompt them to select a level
-					if (Settings.isFirstTime()) {
-						level = selectLevelType();
-					} else {
-						level = Settings.getLevel();
+					level = new LevelSelector(_quizCard).ReviewQuizSelector();
+					
+					//If cancel was hit in the Level selector
+					if (level == -1) {
+						return;
 					}
 					
 					_quiz = ReviewQuiz.getInstance(this, level);
@@ -146,19 +146,19 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					
 					//In the case we haven't done a quiz before, prompt them to select a level
 					if (Settings.isFirstTime()) {
-						level = selectLevelType();
+						level = new LevelSelector(_quizCard).NewQuizSelector();
 					} else {
 						level = Settings.getLevel();
+					}
+					
+					//If cancel was hit in the Level selector
+					if (level == -1) {
+						return;
 					}
 					
 					_quiz = NewQuiz.getInstance(this, level);
 				} else {	
 					//Cancel Button - QuizType.CANCEl
-					return;
-				}
-				
-				//If cancel was hit in the Level selector
-				if (level == -1) {
 					return;
 				}
 
@@ -231,36 +231,6 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 			}
 		} else {
 			return QuizType.CANCEL;
-		}
-	}
-	
-	public int selectLevelType() {
-		//New Quiz - select starting level
-		String[] levelOptions = {"Level 1", 
-				"Level 2", 
-				"Level 3",
-				"Level 4", 
-				"Level 5",
-				"Level 6",
-				"Level 7",
-				"Level 8",
-				"Level 9",
-				"Level 10",
-				"Level 11" };
-		String level = (String) JOptionPane.showInputDialog(
-                _quizCard,
-                "Please select the starting level: ",
-                "Select a starting level",
-                JOptionPane.PLAIN_MESSAGE,
-                null, //No Icon
-                levelOptions,
-                "Level 1");
-		
-		//handling Cancel button
-		if ((level != null) && (level.length() > 0)) {
-			return Integer.valueOf(level.substring(6));
-		} else {
-			return -1;
 		}
 	}
 	

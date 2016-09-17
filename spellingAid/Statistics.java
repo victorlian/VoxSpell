@@ -22,7 +22,7 @@ import words.WordStats;
 public class Statistics {
 	private static Statistics _statistics = null;
 	private StatsTableModel _statsTableModel;
-	private List<List<WordStats>> _masterList = new ArrayList<>();
+	private static List<List<WordStats>> _masterList = new ArrayList<>();
 	private int _level = 0;
 	private static final String[] columnNames = { "Word", "Success", "Faults", "Fails" };
 
@@ -98,7 +98,7 @@ public class Statistics {
 	 * @param level
 	 * @return failList
 	 */
-	public List<Word> failList(int level) {
+	public static List<Word> failList(int level) {
 		List<Word> failList = new ArrayList<>();
 		List<WordStats> currentLevel = _masterList.get(level - 1);
 		
@@ -109,6 +109,10 @@ public class Statistics {
 		}
 		
 		return failList;
+	}
+	
+	public static int numberOfFailedWords(int level) {
+		return failList(level).size();
 	}
 	
 	/**
