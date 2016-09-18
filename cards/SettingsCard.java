@@ -16,6 +16,7 @@ import quiz.Quiz;
 import quiz.ReviewQuiz;
 import speech.Voices;
 import spellingAid.Settings;
+import spellingAid.VideoReward;
 import words.Word;
 
 /**
@@ -57,7 +58,7 @@ public class SettingsCard extends Card implements ActionListener {
 		
 		//note:instance should exsist so should have no problem passing null;
 		//Also note that getInstance will initialize quiz back to test 1;
-		JPanel debugPanel = new JPanel (new GridLayout(0,3));
+		JPanel debugPanel = new JPanel (new GridLayout(0,4));
 		
 		JButton debugBtn = new JButton("Debug");
 		debugBtn.addActionListener(new ActionListener() {
@@ -87,9 +88,19 @@ public class SettingsCard extends Card implements ActionListener {
 			}
 		});
 		
+		JButton videoBtn = new JButton("Video");
+		videoBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				VideoReward vidReward = new VideoReward();
+				vidReward.createContents();
+			}
+		});
+		
 		debugPanel.add(debugBtn);
 		debugPanel.add(cheatBtn);
 		debugPanel.add(reviewBtn);
+		debugPanel.add(videoBtn);
 		//==============================================
 		//For Debug use UPPPPPPPPP
 

@@ -94,7 +94,6 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		
 		addActionListeners();
 		disableSubmissionButtons();
-		playVideo();
 		
 		return _quizCard;
 	}
@@ -187,7 +186,9 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					return;
 				} else {
 					for (int i=0; i<textInput.length; i++) {
-						if (!Character.isLetter(textInput[i])) {
+						if (textInput[i] == '\'') {
+							
+						} else if (!Character.isLetter(textInput[i])) {
 							popMessage("Invalid Characters Entered", MessageType.ERROR);
 							//Repeat the word
 							_quiz.repeatWord();
