@@ -26,6 +26,7 @@ public class VideoReward {
 	private EmbeddedMediaPlayerComponent _mediaPlayerComponent;
 	private JButton _pauseBtn;
 	private JButton _stopBtn;
+	private FileManager _fm = new FileManager();
 	
 	/**
 	 * Code based from http://capricasoftware.co.uk/#/projects/vlcj/tutorial/my-first-media-player
@@ -84,7 +85,9 @@ public class VideoReward {
         _videoReward.setVisible(true);
         
         String filename = "big_buck_bunny_1_minute.avi";
-        video.playMedia(filename);
+        String path = _fm.getAbsolutePath(filename);
+        
+        video.playMedia(path);
 	}
 	
 	public void exit() {

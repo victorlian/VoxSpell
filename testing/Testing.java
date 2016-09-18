@@ -105,6 +105,7 @@ public class Testing {
 		
 		Quiz review = ReviewQuiz.getInstance(null, 1);
 		//Debug point above. To observe relative fields. Need to change stats line 89.
+		@SuppressWarnings("unused")
 		String s = review.NL;
 	}
 }
