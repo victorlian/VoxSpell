@@ -10,3 +10,4 @@ This is due <b>5pm, Friday, 23rd September</b>
 3. ~~List number of failed words when selecting level in Review Quiz~~
 4. ~~Check input for correct character entry~~
 5. ~~UI freezing when saying "Correct" or "Incorrect~~"
+6. 'I'll' throws an invalid character. Need to fix.
