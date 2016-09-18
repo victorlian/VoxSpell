@@ -94,6 +94,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		
 		addActionListeners();
 		disableSubmissionButtons();
+		playVideo();
 		
 		return _quizCard;
 	}
