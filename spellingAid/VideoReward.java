@@ -13,6 +13,14 @@ import javax.swing.JPanel;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
+/**
+ * This class handles showing the Video Reward.
+ * 
+ * What a mighty nut to crack this was, so many things to import to the buildpath and googling because it
+ * kept throwing errors. But it works now :)
+ * @author Daniel
+ *
+ */
 public class VideoReward {
 	private JFrame _videoReward;
 	private EmbeddedMediaPlayerComponent _mediaPlayerComponent;

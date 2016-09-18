@@ -21,6 +21,17 @@ public class SpeechSW extends SwingWorker<Void, Void> {
 		_toSay = toSay;
 	}
 	
+	/**
+	 * In order to have different voices, we must write to a .scm file. 
+	 * The .scm file includes first, the voice, then the speech to say
+	 * 
+	 * So here we create a new hidden file, overwriting previous ones,
+	 * insert the voice we want (if it is default, we leave it blank),
+	 * then do the (SayText "This is a nightmare to figure out").
+	 * 
+	 * Then we call "festival -b .newSpeech.scm" which seems to work.
+	 * So it's good enough :)
+	 */
 	@Override
 	protected Void doInBackground() throws Exception {	
 		PrintWriter writer;
@@ -41,7 +52,8 @@ public class SpeechSW extends SwingWorker<Void, Void> {
 	}
 	
 	/**
-	 * This method tells the Manager that we have finished executing and we can continue
+	 * This method tells the Manager that we have finished executing and we can continue to the
+	 * next one
 	 */
 	protected void done() {
 		Speech.getManager().setExecuting(false);

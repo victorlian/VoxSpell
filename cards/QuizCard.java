@@ -41,7 +41,6 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static JButton btnNewQuiz = new JButton(NEWQUIZ);
 	private static JTextArea txtOutput = new JTextArea(10, 30);
 	
-	//This should hold a reference to the current quiz at some point
 	private Quiz _quiz;
 	private Option _option;
 	
@@ -110,7 +109,9 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	}
 	
 	/**
-	 * ActionListener class
+	 * ActionListener class.
+	 * 
+	 * Handles all the button presses and the actions that occur.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		String text;
@@ -121,11 +122,14 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 			text = "textField";
 		}
 		
+		//Just for error checking in case a cancel button was pushed
 		int level = -1;
 		
 		//Actions depending on the button
 		switch(text) {
+			//New Quiz button pressed
 			case NEWQUIZ:
+				//Clear the textInput
 				txtInput.setText("");
 				
 				QuizType quizType = quizTypeDialog();
@@ -133,6 +137,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				if (quizType.equals(QuizType.REVIEW)) {
 					//Review Quiz
 					
+					//Get the level of the quiz
 					level = new LevelSelector(_quizCard).ReviewQuizSelector();
 					
 					//If cancel was hit in the Level selector
@@ -140,28 +145,27 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 						return;
 					}
 					
+					//Get the ReviewQuiz with the appropriate levels
 					_quiz = ReviewQuiz.getInstance(this, level);
 				} else if (quizType.equals(QuizType.NORMAL)){
 					//Normal Quiz
 					
-					//In the case we haven't done a quiz before, prompt them to select a level
-					if (Settings.isFirstTime()) {
-						level = new LevelSelector(_quizCard).NewQuizSelector();
-					} else {
-						level = Settings.getLevel();
-					}
+					//Get the level of the quiz
+					level = new LevelSelector(_quizCard).NewQuizSelector();
 					
 					//If cancel was hit in the Level selector
 					if (level == -1) {
 						return;
 					}
 					
+					//Get the NewQuiz with the appropriate levels
 					_quiz = NewQuiz.getInstance(this, level);
 				} else {	
 					//Cancel Button - QuizType.CANCEl
 					return;
 				}
-
+					
+				//_option allows us to then perform polymorphic action.
 				_option = _quiz;
 				
 				txtOutput.setText("New Quiz begins: " + _quiz.NL);
@@ -169,6 +173,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				disableStartButton();
 				break;
 			case "textField":
+				//Pressing Enter to submit
 				//No break statement as we want to flow through to Submit
 			case SUBMIT:
 				if (_quiz == null) {

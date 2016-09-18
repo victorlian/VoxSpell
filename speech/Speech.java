@@ -2,12 +2,17 @@ package speech;
 
 /**
  * This is the class representing the speech synthesis.
- * Responsibilities:
- * 1. Pronounce words
- * 2. Read out instructions (txt to speech)
- * 3. Set the voice of festival.
  * 
- * @author Victor & Daniel
+ * Basically what happens is:
+ * 1. We create a new SpeechSW with the correct words we want to say
+ * 2. We then queue it's execution in SpeechSWManager
+ * 3. Here be dragons (or follow through to SpeechSWManager to see how it works)
+ * 4. Speech occurs one at a time without overlap and without the GUI freezing.
+ * 
+ * Additionally, I solved the pause issues by just creating a new SpeechSW after each pause,
+ * it seems to work well enough since I couldn't find anything in Festival documentation for it
+ * 
+ * @author Daniel
  *
  */
 public class Speech {
@@ -21,17 +26,8 @@ public class Speech {
 	}
 	
 	/**
-	 * This method will set the voice of festival, run this method
-	 * prior to saying anything.
-	 * @param voice
-	 */
-	public void setVoice (String voice){
-		
-	}
-	
-	/**
 	 * Package Visibility so that SpeechSW can get the manager
-	 * @return
+	 * @return NOTHING, cause, like, the JavaDoc commenting put this here, so like, I have to put something right?
 	 */
 	static SpeechSWManager getManager() {
 		return _manager;
@@ -43,7 +39,7 @@ public class Speech {
 	 * 
 	 * It queues a new SpeechSW. This is to prevent multiple things being read out
 	 * @param toSay
-	 * @return
+	 * @return goto line 27
 	 */
 	private void festivalSayIt (String toSay){
 		_manager.queueExecution(new SpeechSW(toSay));

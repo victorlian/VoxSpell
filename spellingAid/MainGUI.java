@@ -101,7 +101,8 @@ public class MainGUI {
 				break;
 			}
 		}
-
+		
+		// BAM! POLYMORPHISM, I think...
 		String name = card.getName();
 		switch (name) {
 			case MENU:

@@ -111,6 +111,11 @@ public class Statistics {
 		return failList;
 	}
 	
+	/**
+	 * Return the number of failed words per level
+	 * @param level
+	 * @return an integer
+	 */
 	public static int numberOfFailedWords(int level) {
 		return failList(level).size();
 	}

@@ -4,9 +4,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Code modified from http://stackoverflow.com/questions/22412544/swingworker-queue-and-single-using
+ * What are we doing here? Good Question.
  * 
- * We are queuing up all the Speaking and executing them one at a time
+ * I think we are putting all the objects into a queue and then executing one by one to avoid
+ * overlap of speaking. Adding 'synchronized' seems to make it work, something to do with Thread
+ * safety or something.
+ * 
+ * Code modified from http://stackoverflow.com/questions/22412544/swingworker-queue-and-single-using
+ *
  * @author daniel
  *
  */
