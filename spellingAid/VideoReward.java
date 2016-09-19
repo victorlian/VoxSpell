@@ -81,7 +81,7 @@ public class VideoReward {
         
         _videoReward.setContentPane(panel);
         _videoReward.setLocation(100, 100);
-        _videoReward.setSize(525, 300);
+        _videoReward.setSize(525, 325);
         _videoReward.setVisible(true);
         
         String filename = "big_buck_bunny_1_minute.avi";

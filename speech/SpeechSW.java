@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import javax.swing.SwingWorker;
 
+import spellingAid.FileManager;
 import spellingAid.Settings;
 
 /**
@@ -16,6 +17,7 @@ import spellingAid.Settings;
 
 public class SpeechSW extends SwingWorker<Void, Void> {
 	private String _toSay;
+	private FileManager _fm = new FileManager();
 	
 	public SpeechSW(String toSay) {	
 		_toSay = toSay;
@@ -36,7 +38,7 @@ public class SpeechSW extends SwingWorker<Void, Void> {
 	protected Void doInBackground() throws Exception {	
 		PrintWriter writer;
 		try {
-			writer = new PrintWriter(".newSpeech.scm", "UTF-8");
+			writer = new PrintWriter(_fm.getAbsolutePath(".newSpeech.scm"), "UTF-8");
 			writer.println(Settings.getVoice());
 			writer.println("(SayText \"" + _toSay + "\")");
 			writer.close();
