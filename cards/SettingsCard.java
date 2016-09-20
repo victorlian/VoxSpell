@@ -113,7 +113,7 @@ public class SettingsCard extends Card implements ActionListener {
 		videoBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VideoReward vidReward = new VideoReward();
+				VideoReward vidReward = VideoReward.getInstance();
 				vidReward.createContents();
 			}
 		});

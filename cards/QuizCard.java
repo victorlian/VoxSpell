@@ -304,7 +304,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	}
 
 	public void playVideo() {
-		VideoReward vidReward = new VideoReward();
+		VideoReward vidReward = VideoReward.getInstance();
 		vidReward.createContents();
 	}
 

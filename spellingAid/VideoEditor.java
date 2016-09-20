@@ -33,5 +33,14 @@ public class VideoEditor extends SwingWorker<Void,Void>{
 		
 		return null;
 	}
+	
+	/**
+	 * This method will be called when the video has finished being created or 
+	 * is already existing.
+	 */
+	@Override
+	protected void done(){
+		VideoReward.getInstance().setEditedVideoAvaliable();
+	}
 
 }

@@ -1,7 +1,5 @@
 package quiz;
 
-import javax.swing.JOptionPane;
-
 import spellingAid.MessageType;
 import spellingAid.Option;
 import spellingAid.Viewer;

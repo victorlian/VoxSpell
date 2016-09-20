@@ -128,6 +128,7 @@ public class MainGUI {
 	private void checkAndGenerateVideo(){
 		FileManager fm = new FileManager();
 		if (fm.checkFileExist(fm.REVERSEVIDEO)){
+			VideoReward.getInstance().setEditedVideoAvaliable();
 			return;
 		}
 		else {
