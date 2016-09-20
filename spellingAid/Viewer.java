@@ -63,4 +63,11 @@ public interface Viewer {
 	 */
 	public boolean levelUpOption();
 	
+	/**
+	 * This method will be called to give the option to spell
+	 * the word in case you fail the word twice in Review Quiz
+	 * @return
+	 */
+	public boolean spellWord();
+	
 }

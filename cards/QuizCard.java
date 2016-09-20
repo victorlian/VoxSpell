@@ -307,4 +307,16 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		VideoReward vidReward = new VideoReward();
 		vidReward.createContents();
 	}
+
+	@Override
+	public boolean spellWord() {
+		int result = JOptionPane.showConfirmDialog(null, "Would you like to hear the spelling of the word?", "Hear Spelling!",
+				JOptionPane.YES_NO_OPTION);
+
+		if (result == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

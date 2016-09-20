@@ -1,5 +1,7 @@
 package quiz;
 
+import javax.swing.JOptionPane;
+
 import spellingAid.MessageType;
 import spellingAid.Option;
 import spellingAid.Viewer;
@@ -96,13 +98,15 @@ public class ReviewQuiz extends Quiz implements Option{
 	 */
 	@Override
 	protected boolean endOfWord() {
-		if (_currentWord.getSuccessStatus().equals(Word.SuccessStatus.FAILED) && _numberOfTimesSpelt==2){
-			_mainViewer.appendText("Follow the spelling and spell this word again: ");
-			String sayWords = _currentWord.toString() + " ... " + "is spelled as ... " + _currentWord.StringToSpellWord();
-			sayWords += "Now, please spell: " + _currentWord.toString() + " ... again"; 
-			_speech.say(sayWords);
-			_mainViewer.enableSubmissionButtons();
-			return true;
+		if (_currentWord.getSuccessStatus().equals(Word.SuccessStatus.FAILED) && _numberOfTimesSpelt==2) {
+			if (_mainViewer.spellWord()) {
+				_mainViewer.appendText("Follow the spelling and spell this word again: ");
+				String sayWords = _currentWord.toString() + " ... " + "is spelled as ... " + _currentWord.StringToSpellWord();
+				sayWords += "Now, please spell: " + _currentWord.toString() + " ... again"; 
+				_speech.say(sayWords);
+				_mainViewer.enableSubmissionButtons();
+				return true;
+			}
 		}
 		return false;
 	}
