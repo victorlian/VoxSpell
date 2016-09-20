@@ -86,6 +86,8 @@ public class MainGUI {
 		_frame.pack();
 		_frame.setLocationRelativeTo(null);
 		_frame.setVisible(true);
+		
+		checkAndGenerateVideo();
 	}
 
 	/**
@@ -117,4 +119,20 @@ public class MainGUI {
 				return null;
 		}
 	}
+	
+	/**
+	 * This method will immediately start after the GUI has been created.
+	 * Used for generating the edited video in background.
+	 * @author victor
+	 */
+	private void checkAndGenerateVideo(){
+		if (new FileManager().checkFileExist("edited.avi")){
+			return;
+		}
+		else {
+			new VideoEditor().execute();
+		}
+	}
+	
+	
 }

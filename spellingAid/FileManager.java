@@ -24,6 +24,7 @@ import java.util.List;
  */
 public class FileManager {
 	public final String WORDLIST = "NZCER-spelling-lists.txt";
+	public final String VIDEO = "big_buck_bunny_1_minute.avi";
 	
 	/**
 	 * This method would return the currentDirectory of the jar file/class files.
@@ -103,11 +104,24 @@ public class FileManager {
 		catch(FileNotFoundException ex){
 			//all files are checked so cannot happen.
 			System.out.println("No" + WORDLIST + "i file found" );
+			throw new RuntimeException ("File Not Found: wordlist");
 		}
 		catch(IOException ex){
 			ex.printStackTrace();
 		}
 		
 		return allLevels;
-	}	
+	}
+	
+	public boolean checkFileExist(String fileName){
+		String path = getAbsolutePath(fileName);
+		File f = new File (path);
+		
+		if (f.exists() && !f.isDirectory()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

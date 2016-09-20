@@ -18,7 +18,9 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
  * 
  * What a mighty nut to crack this was, so many things to import to the buildpath and googling because it
  * kept throwing errors. But it works now :)
- * @author Daniel
+ * @author Daniel 
+ * 
+ * 
  *
  */
 public class VideoReward {
@@ -94,4 +96,7 @@ public class VideoReward {
 		//Clean up the video player
 		_mediaPlayerComponent.release();
 	}
+	
+	//===FFMEPG part below
+	
 }
