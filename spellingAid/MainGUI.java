@@ -126,7 +126,8 @@ public class MainGUI {
 	 * @author victor
 	 */
 	private void checkAndGenerateVideo(){
-		if (new FileManager().checkFileExist("edited.avi")){
+		FileManager fm = new FileManager();
+		if (fm.checkFileExist(fm.REVERSEVIDEO)){
 			return;
 		}
 		else {

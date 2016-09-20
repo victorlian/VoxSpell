@@ -25,6 +25,7 @@ import java.util.List;
 public class FileManager {
 	public final String WORDLIST = "NZCER-spelling-lists.txt";
 	public final String VIDEO = "big_buck_bunny_1_minute.avi";
+	public final String REVERSEVIDEO = "reversed.avi";
 	
 	/**
 	 * This method would return the currentDirectory of the jar file/class files.
