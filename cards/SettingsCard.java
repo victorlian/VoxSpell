@@ -17,6 +17,7 @@ import quiz.ReviewQuiz;
 import speech.Voices;
 import spellingAid.Settings;
 import spellingAid.VideoReward;
+import spellingAid.VideoToPlay;
 import words.Word;
 
 /**
@@ -30,6 +31,8 @@ public class SettingsCard extends Card implements ActionListener {
 	private JPanel _settingsCard;
 	private static final String DEFBUTTON = "English - Default";
 	private static final String NZBUTTON = "English - NZ";
+	private static final String DEFVIDEO = "Default Video";
+	private static final String ALTVIDEO = "Special Video";
 
 	public SettingsCard() {
 	}
@@ -37,7 +40,8 @@ public class SettingsCard extends Card implements ActionListener {
 	public JPanel createContents() {
 		_settingsCard = new JPanel();
 		_settingsCard.setLayout(new BorderLayout());
-
+		
+		//This is the voice options
 		JRadioButton defVoiceBtn = new JRadioButton(DEFBUTTON);
 		defVoiceBtn.setSelected(true);
 		defVoiceBtn.setActionCommand(DEFBUTTON);
@@ -49,9 +53,26 @@ public class SettingsCard extends Card implements ActionListener {
 		group.add(defVoiceBtn);
 		group.add(nzVoiceBtn);
 
-		JPanel radioPanel = new JPanel(new GridLayout(0, 1));
-		radioPanel.add(defVoiceBtn);
-		radioPanel.add(nzVoiceBtn);
+		//Below is the video options
+		JRadioButton defVideo = new JRadioButton(DEFVIDEO);
+		defVideo.setSelected(true);
+		defVideo.setActionCommand(DEFVIDEO);
+
+		JRadioButton altVideo = new JRadioButton(ALTVIDEO);
+		altVideo.setActionCommand(ALTVIDEO);
+
+		ButtonGroup videoGroup = new ButtonGroup();
+		videoGroup.add(defVideo);
+		videoGroup.add(altVideo);
+
+		//This is the panel holding the radio buttons
+		JPanel buttonPanel = new JPanel(new GridLayout(0, 1));
+		buttonPanel.add(new JLabel("Speech Voice"));
+		buttonPanel.add(defVoiceBtn);
+		buttonPanel.add(nzVoiceBtn);
+		buttonPanel.add(new JLabel("Video Type"));
+		buttonPanel.add(defVideo);
+		buttonPanel.add(altVideo);
 		
 		//==============================================
 		//For Debug use BELOWWWWWWW
@@ -104,15 +125,16 @@ public class SettingsCard extends Card implements ActionListener {
 		//==============================================
 		//For Debug use UPPPPPPPPP
 
-		_settingsCard.add(new JLabel("Speech Voice"), BorderLayout.NORTH);
-		_settingsCard.add(radioPanel, BorderLayout.LINE_START);
-		
+		_settingsCard.add(buttonPanel, BorderLayout.LINE_START);
+
 		//FORDEBUG================
 		_settingsCard.add(debugPanel, BorderLayout.SOUTH);
 		//FORDEBUG================
 
 		defVoiceBtn.addActionListener(this);
 		nzVoiceBtn.addActionListener(this);
+		defVideo.addActionListener(this);
+		altVideo.addActionListener(this);
 
 		return _settingsCard;
 	}
@@ -133,6 +155,12 @@ public class SettingsCard extends Card implements ActionListener {
 			break;
 		case NZBUTTON:
 			Settings.setVoice(Voices.NEWZEALAND);
+			break;
+		case DEFVIDEO:
+			Settings.setVideoType(VideoToPlay.ORIGINAL);
+			break;
+		case ALTVIDEO:
+			Settings.setVideoType(VideoToPlay.REVERSED);
 			break;
 		}
 	}
