@@ -15,8 +15,5 @@ This is due <b>5pm, Friday, 23rd September</b>
 7. ~~Stats class accuracy not updating~~
 8. After correct spelling of a word in Review Quiz, doesnt remove from the list. 
 
-##TODO - Testing and error checking
-1. Check all files exist and warn user if any missing
-
 ##TODO - in read me:
 1. State about FFMPEG
