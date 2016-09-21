@@ -42,6 +42,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	
 	private Quiz _quiz;
 	private Option _option;
+	private boolean finished;
 	
 	public enum QuizType {
 		NORMAL, REVIEW, CANCEL;
@@ -147,6 +148,8 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					//Get the ReviewQuiz with the appropriate levels
 					_quiz = ReviewQuiz.getInstance(this, level);
 					txtOutput.setText("New Review begins at level: " + _quiz.getCurrentLevel() + _quiz.NL);
+					
+					finished = false;
 				} else if (quizType.equals(QuizType.NORMAL)){
 					//Normal Quiz
 					
@@ -161,6 +164,8 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					//Get the NewQuiz with the appropriate levels
 					_quiz = NewQuiz.getInstance(this, level);
 					txtOutput.setText("New Quiz begins at level: " + _quiz.getCurrentLevel() + _quiz.NL);
+					
+					finished = false;
 				} else {	
 					//Cancel Button - QuizType.CANCEl
 					return;
@@ -176,6 +181,9 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 			case "textField":
 				//Pressing Enter to submit
 				//No break statement as we want to flow through to Submit
+				if (finished) {
+					return;
+				}
 			case SUBMIT:
 				if (_quiz == null) {
 					throw new RuntimeException("Quiz is null");
@@ -256,6 +264,8 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	public void disableSubmissionButtons() {
 		btnSayAgain.setEnabled(false);
 		btnSubmit.setEnabled(false);
+		
+		finished = true;
 	}
 
 	public void displayMainMenu() {

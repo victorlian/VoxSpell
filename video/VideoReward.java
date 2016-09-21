@@ -94,9 +94,12 @@ public class VideoReward {
 				if (_stopBtn.getText().equals("Stop")) {
 					_stopBtn.setText("Play");
 					_mediaPlayerComponent.getMediaPlayer().stop();
+					_pauseBtn.setEnabled(false);
+					_pauseBtn.setText("Pause");
 				} else {
 					_stopBtn.setText("Stop");
 					_mediaPlayerComponent.getMediaPlayer().play();
+					_pauseBtn.setEnabled(true);
 				}
 			}
         });
@@ -110,6 +113,10 @@ public class VideoReward {
 				reverseVideoType();
 				String path = getCurrentVideoFileName();
 				_mediaPlayerComponent.getMediaPlayer().playMedia(path);
+				_stopBtn.setText("Stop");
+				_pauseBtn.setText("Pause");
+				_stopBtn.setEnabled(true);
+				_pauseBtn.setEnabled(true);
 			}
         });
 
@@ -130,19 +137,16 @@ public class VideoReward {
       //=== added for FFMEPG part to know which video to play
         String fileName;
         VideoType videoType = Settings.getVideoType();
-        if (_videoType == null){
-        	if (videoType.equals(VideoType.ORIGINAL) || _editAvaliable == false){
-            	fileName = _fm.VIDEO;
-            	_videoType = videoType;
-            }
-            else {
-            	fileName = _fm.REVERSEVIDEO;
-            	_videoType = videoType;
-            }
+
+        if (videoType.equals(VideoType.ORIGINAL) || _editAvaliable == false){
+            fileName = _fm.VIDEO;
+            _videoType = videoType;
         }
         else {
-        	throw new RuntimeException ("video type should not exist.");
+           	fileName = _fm.REVERSEVIDEO;
+           	_videoType = videoType;
         }
+
         
         String path = _fm.getAbsolutePath(fileName);
         video.playMedia(path);
