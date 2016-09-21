@@ -42,20 +42,17 @@ public class Word {
 	}
 	
 	/**
-	 * This method returns the string that should be passed to festival
-	 * to spell the word out.
+	 * This method will use festival to spell out the word.
 	 */
-	public String StringToSpellWord(){
-		String spelling = "";
+	public void spellWord(){
 		for (int charIndex=0; charIndex<_word.length(); charIndex++){
 			String singleChar = _word.substring(charIndex, charIndex+1);
 			//a is pronounced wrong. adjust.
 			if (singleChar.equals("a")){
 				singleChar = "ay";
 			}
-			spelling = spelling + singleChar + " ... ";
+			_speech.say(singleChar);
 		}
-		return spelling;
 	}
 	
 	/**

@@ -18,7 +18,6 @@ import quiz.ReviewQuiz;
 import quiz.Submission;
 import spellingAid.MessageType;
 import spellingAid.Option;
-import spellingAid.Settings;
 import spellingAid.Viewer;
 import video.VideoReward;
 

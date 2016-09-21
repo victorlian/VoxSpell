@@ -223,6 +223,13 @@ public abstract class Quiz implements Option{
 		return _currentWord;
 	}
 	
+	/**
+	 * This method will return the current level.
+	 */
+	public int getCurrentLevel(){
+		return _currentLevel;
+	}
+	
 	//++++++++++++++++++++++++++++++
 	//Debugging methods:
 	/**

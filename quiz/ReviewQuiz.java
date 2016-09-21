@@ -100,9 +100,11 @@ public class ReviewQuiz extends Quiz implements Option{
 		if (_currentWord.getSuccessStatus().equals(Word.SuccessStatus.FAILED) && _numberOfTimesSpelt==2) {
 			if (_mainViewer.spellWord()) {
 				_mainViewer.appendText("Follow the spelling and spell this word again: ");
-				String sayWords = _currentWord.toString() + " ... " + "is spelled as ... " + _currentWord.StringToSpellWord();
-				sayWords += "Now, please spell: " + _currentWord.toString() + " ... again"; 
-				_speech.say(sayWords);
+				String instruction = _currentWord.toString() + " ... " + "is spelled as ... ";
+				_speech.say(instruction);
+				_currentWord.spellWord();
+				String instruction2 = "Now, please spell: " + _currentWord.toString() + " ... again"; 
+				_speech.say(instruction2);
 				_mainViewer.enableSubmissionButtons();
 				return true;
 			}
