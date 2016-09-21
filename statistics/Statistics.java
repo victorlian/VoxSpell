@@ -103,7 +103,7 @@ public class Statistics {
 		List<WordStats> currentLevel = _masterList.get(level - 1);
 		
 		for (WordStats currentWordStat : currentLevel) {
-			if (currentWordStat.getWord().equals(newWord)) {
+			if (currentWordStat.getWord().toString().equals(newWord.toString())) {
 				//Word currently exists
 				currentWordStat.changeStat(newWord.getSuccessStatus().ordinal());
 				currentWordStat.setRecentSuccess(newWord.getSuccessStatus());
