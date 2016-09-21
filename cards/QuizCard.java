@@ -147,6 +147,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					
 					//Get the ReviewQuiz with the appropriate levels
 					_quiz = ReviewQuiz.getInstance(this, level);
+					txtOutput.setText("New Review begins at level: " + _quiz.getCurrentLevel() + _quiz.NL);
 				} else if (quizType.equals(QuizType.NORMAL)){
 					//Normal Quiz
 					
@@ -160,6 +161,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					
 					//Get the NewQuiz with the appropriate levels
 					_quiz = NewQuiz.getInstance(this, level);
+					txtOutput.setText("New Quiz begins at level: " + _quiz.getCurrentLevel() + _quiz.NL);
 				} else {	
 					//Cancel Button - QuizType.CANCEl
 					return;
@@ -168,7 +170,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				//_option allows us to then perform polymorphic action.
 				_option = _quiz;
 				
-				txtOutput.setText("New Quiz begins: " + _quiz.NL);
+				
 				
 				disableStartButton();
 				break;
@@ -179,10 +181,10 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				if (_quiz == null) {
 					throw new RuntimeException("Quiz is null");
 				}
-				
 				//Ensure text entry is valid
 				char[] textInput = txtInput.getText().toCharArray();
 				if (textInput.length==0) {
+					popMessage("Please enter something in the text field!", MessageType.ERROR);
 					return;
 				} else {
 					for (int i=0; i<textInput.length; i++) {
