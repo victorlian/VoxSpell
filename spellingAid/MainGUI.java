@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import cards.Card;
+import cards.DebugCard;
 import cards.MenuCard;
 import cards.QuizCard;
 import cards.SettingsCard;
@@ -67,12 +68,18 @@ public class MainGUI {
 		// Create Settings card
 		JPanel settingsCard = _settingsCard.createContents();
 		settingsCard.setName(SETTINGS);
+		
+		//DEBUG
+		JPanel debugCard = new DebugCard().createContents();
+		debugCard.setName("Debug");
 
 		// Add all the cards to the tabbedPane layout
 		_tabbedPane.addTab(MENU, menuCard);
 		_tabbedPane.addTab(QUIZ, quizCard);
 		_tabbedPane.addTab(STATS, statsCard);
 		_tabbedPane.addTab(SETTINGS, settingsCard);
+		
+		_tabbedPane.addTab("Debug", debugCard);
 
 		pane.add(_tabbedPane, BorderLayout.CENTER);
 	}
@@ -88,6 +95,9 @@ public class MainGUI {
 		_frame.pack();
 		_frame.setLocationRelativeTo(null);
 		_frame.setVisible(true);
+		_frame.setResizable(false);
+		
+		_frame.setSize(600,350);
 		
 		checkAndGenerateVideo();
 	}

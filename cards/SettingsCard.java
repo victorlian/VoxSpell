@@ -1,24 +1,18 @@
 package cards;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.border.EmptyBorder;
 
-import quiz.NewQuiz;
-import quiz.Quiz;
-import quiz.ReviewQuiz;
 import speech.Voices;
 import spellingAid.Settings;
-import video.VideoReward;
 import video.VideoType;
-import words.Word;
 
 /**
  * This class populates the contents of a Card Mainly to make the MainGUI class
@@ -39,7 +33,7 @@ public class SettingsCard extends Card implements ActionListener {
 
 	public JPanel createContents() {
 		_settingsCard = new JPanel();
-		_settingsCard.setLayout(new BorderLayout());
+		_settingsCard.setLayout(new GridLayout(0,1));
 		
 		//This is the voice options
 		JRadioButton defVoiceBtn = new JRadioButton(DEFBUTTON);
@@ -52,6 +46,13 @@ public class SettingsCard extends Card implements ActionListener {
 		ButtonGroup group = new ButtonGroup();
 		group.add(defVoiceBtn);
 		group.add(nzVoiceBtn);
+		
+		//This is the panel holding the voice radio buttons
+		JPanel voicePanel = new JPanel();
+		voicePanel.setLayout(new GridLayout(0,1));
+		voicePanel.add(new JLabel("Speech Voice"));
+		voicePanel.add(defVoiceBtn);
+		voicePanel.add(nzVoiceBtn);
 
 		//Below is the video options
 		JRadioButton defVideo = new JRadioButton(DEFVIDEO);
@@ -65,71 +66,19 @@ public class SettingsCard extends Card implements ActionListener {
 		videoGroup.add(defVideo);
 		videoGroup.add(altVideo);
 
-		//This is the panel holding the radio buttons
-		JPanel buttonPanel = new JPanel(new GridLayout(0, 1));
-		buttonPanel.add(new JLabel("Speech Voice"));
-		buttonPanel.add(defVoiceBtn);
-		buttonPanel.add(nzVoiceBtn);
-		buttonPanel.add(new JLabel("Video Type"));
-		buttonPanel.add(defVideo);
-		buttonPanel.add(altVideo);
+		//This is the panel holding the video radio buttons
+		JPanel videoPanel = new JPanel(new GridLayout(0, 1));
+		videoPanel.add(new JLabel("Video Type"));
+		videoPanel.add(defVideo);
+		videoPanel.add(altVideo);
 		
-		//==============================================
-		//For Debug use BELOWWWWWWW
+		//Add the two panels to the Card
+		_settingsCard.add(voicePanel);
+		_settingsCard.add(videoPanel);
+		_settingsCard.add(new JPanel());
 		
-		//note:instance should exsist so should have no problem passing null;
-		//Also note that getInstance will initialize quiz back to test 1;
-		JPanel debugPanel = new JPanel (new GridLayout(0,4));
-		
-		JButton debugBtn = new JButton("Debug");
-		debugBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				Quiz quiz = NewQuiz.getInstance(null, 12345);
-				quiz.toNumberX(null, 9, 9, Word.SuccessStatus.FAILED);
-				
-			}
-		});
-		
-		JButton cheatBtn = new JButton("Cheat");
-		cheatBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				Quiz quiz = NewQuiz.getInstance(null, 12345);
-				quiz.cheat();
-			}
-		});
-		
-		JButton reviewBtn = new JButton("ReviewDebug");
-		reviewBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				Quiz quiz = ReviewQuiz.getInstance(null, 12345);
-				quiz.toNumberX(null, 8, 8, Word.SuccessStatus.MASTERED);
-			}
-		});
-		
-		JButton videoBtn = new JButton("Video");
-		videoBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				VideoReward vidReward = VideoReward.getInstance();
-				vidReward.createContents();
-			}
-		});
-		
-		debugPanel.add(debugBtn);
-		debugPanel.add(cheatBtn);
-		debugPanel.add(reviewBtn);
-		debugPanel.add(videoBtn);
-		//==============================================
-		//For Debug use UPPPPPPPPP
-
-		_settingsCard.add(buttonPanel, BorderLayout.LINE_START);
-
-		//FORDEBUG================
-		_settingsCard.add(debugPanel, BorderLayout.SOUTH);
-		//FORDEBUG================
+		//Padding inside JPanel
+		_settingsCard.setBorder(new EmptyBorder(10,10,10,10));
 
 		defVoiceBtn.addActionListener(this);
 		nzVoiceBtn.addActionListener(this);

@@ -47,7 +47,7 @@ public class StatsCard extends Card implements ActionListener {
 		_statsTableModel.addTableModelListener(new TableModelListener() {
 			@Override
 			public void tableChanged(TableModelEvent arg0) {
-				 update();
+				 updateAccuracy();
 			}
 		});
 	}
@@ -87,10 +87,6 @@ public class StatsCard extends Card implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		update();
-	}
-	
-	public void update() {
 		String levelString = (String) _levelList.getSelectedItem();
 		
 		levelString = levelString.substring(levelString.length() - 2);
@@ -98,6 +94,16 @@ public class StatsCard extends Card implements ActionListener {
         int level = Integer.valueOf(levelString);
         
 		_statistics.setLevel(level);
+		_label.setText("Spelling Accuracy: " + _statistics.getAccuracy(level) + "%");
+	}
+	
+	public void updateAccuracy() {
+		String levelString = (String) _levelList.getSelectedItem();
+		
+		levelString = levelString.substring(levelString.length() - 2);
+        levelString = levelString.trim();
+        int level = Integer.valueOf(levelString);
+        
 		_label.setText("Spelling Accuracy: " + _statistics.getAccuracy(level) + "%");
 	}
 

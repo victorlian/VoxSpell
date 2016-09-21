@@ -1,12 +1,10 @@
 package cards;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -40,8 +38,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static JButton btnSubmit = new JButton(SUBMIT);
 	private static JButton btnSayAgain = new JButton(SAYAGAIN);
 	private static JButton btnNewQuiz = new JButton(NEWQUIZ);
-	private static JTextArea txtOutput = new JTextArea(8, 30);
-	private static JLabel _levelIndicator = new JLabel("Select the New Quiz button to begin");
+	private static JTextArea txtOutput = new JTextArea(10, 30);
 	
 	private Quiz _quiz;
 	private Option _option;
@@ -58,39 +55,42 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	 */
 	public JPanel createContents() {
 		_quizCard = new JPanel();
-		Font bigFont = txtInput.getFont().deriveFont(Font.PLAIN, 15f);
 		
-		_quizCard.setLayout(new BorderLayout());
+		_quizCard.setLayout(new GridBagLayout());
+		_quizCard.setBorder(new EmptyBorder(5,5,5,5));
+
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 		
-		JScrollPane textBox = new JScrollPane(txtOutput);
-		txtOutput.setFont(bigFont);
+		JScrollPane scroll = new JScrollPane(txtOutput);
 		txtOutput.setEditable(false);
+		constraints.gridwidth = 4;
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		_quizCard.add(scroll, constraints);
 		
-        txtInput.setFont(bigFont);
-        txtInput.requestFocus();
-        
-        JPanel inputPanel = new JPanel();
-		inputPanel.setLayout(new BorderLayout());
-		inputPanel.add(new JLabel("Enter your spelling below:"), BorderLayout.NORTH);
-		inputPanel.add(txtInput, BorderLayout.CENTER);
+		constraints.gridwidth = 4;
+		constraints.gridx = 0;
+		constraints.gridy = 1;
+		_quizCard.add(txtInput, constraints);
 		
-		btnNewQuiz.setPreferredSize(new Dimension(150,30));
-		btnSayAgain.setPreferredSize(new Dimension(200,30));
-		btnSubmit.setPreferredSize(new Dimension(200,30));
+		constraints.weightx = 0.3;
+		constraints.gridwidth = 1;
+		constraints.gridx = 0;
+		constraints.gridy = 2;
+		_quizCard.add(btnNewQuiz, constraints);
 		
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.add(btnNewQuiz);
-		buttonPanel.add(btnSayAgain);
-		buttonPanel.add(btnSubmit);
+		constraints.weightx = 0.3;
+		constraints.gridwidth = 1;
+		constraints.gridx = 1;
+		constraints.gridy = 2;
+		_quizCard.add(btnSayAgain, constraints);
 		
-		inputPanel.add(buttonPanel, BorderLayout.SOUTH);
-		
-		_quizCard.add(_levelIndicator, BorderLayout.NORTH);
-		_quizCard.add(textBox, BorderLayout.CENTER);
-		_quizCard.add(inputPanel, BorderLayout.SOUTH);
-		
-		//Padding inside JPanel
-		_quizCard.setBorder(new EmptyBorder(5,10,0,10));
+		constraints.weightx = 0.4;
+		constraints.gridwidth = 1;
+		constraints.gridx = 3;
+		constraints.gridy = 2;
+		_quizCard.add(btnSubmit, constraints);
 		
 		addActionListeners();
 		disableSubmissionButtons();
@@ -147,7 +147,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					
 					//Get the ReviewQuiz with the appropriate levels
 					_quiz = ReviewQuiz.getInstance(this, level);
-					_levelIndicator.setText("Review Quiz - Level: " + _quiz.getCurrentLevel());
+					txtOutput.setText("New Review begins at level: " + _quiz.getCurrentLevel() + _quiz.NL);
 					
 					finished = false;
 				} else if (quizType.equals(QuizType.NORMAL)){
@@ -163,7 +163,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					
 					//Get the NewQuiz with the appropriate levels
 					_quiz = NewQuiz.getInstance(this, level);
-					_levelIndicator.setText("New Quiz - Level: " + _quiz.getCurrentLevel());
+					txtOutput.setText("New Quiz begins at level: " + _quiz.getCurrentLevel() + _quiz.NL);
 					
 					finished = false;
 				} else {	

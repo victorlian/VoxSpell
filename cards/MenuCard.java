@@ -1,5 +1,6 @@
 package cards;
 import java.awt.BorderLayout;
+import java.awt.Font;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,9 +19,9 @@ public class MenuCard extends Card {
 			+ " SpellingAid  -  Daniel and Victor\n"
 			+ "===============================================\n"
 			+ "\n Welcome to the SpellingAid program, to begin, select one of the tabs above\n"
-			+ "\n Quiz - Start a quiz"
+			+ "\n Quiz - Start a new quiz or a review quiz"
 			+ "\n Statistics - See statistics from this session"
-			+ "\n Settings - Change your preferences";
+			+ "\n Settings - Change the voice type or the video reward";
 	
 	private JPanel _menuCard;
 	
@@ -29,6 +30,9 @@ public class MenuCard extends Card {
 	public JPanel createContents() {
 		_menuCard = new JPanel();
 		_menuCard.setLayout(new BorderLayout());
+		
+		Font bigFont = txtOutput.getFont().deriveFont(Font.PLAIN, 15f);
+		txtOutput.setFont(bigFont);
 
 		JScrollPane scroll = new JScrollPane(txtOutput);
 		txtOutput.setEditable(false);
