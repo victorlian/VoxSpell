@@ -40,13 +40,14 @@ public class StatsCard extends Card implements ActionListener {
 	private static StatsTableModel _statsTableModel = new StatsTableModel();
 	private static JTable _table;
 	private static JLabel _label = new JLabel();
+	private static JComboBox<String> _levelList;
 	
 	public StatsCard() {
 		_statistics = Statistics.getInstance();
 		_statsTableModel.addTableModelListener(new TableModelListener() {
 			@Override
 			public void tableChanged(TableModelEvent arg0) {
-				 _label.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
+				 update();
 			}
 		});
 	}
@@ -58,8 +59,8 @@ public class StatsCard extends Card implements ActionListener {
 		_statsCard = new JPanel();
 		_statsCard.setLayout(new BorderLayout());
 		
-		JComboBox<String> levelList = new JComboBox<String>(levelStrings);
-		levelList.addActionListener(this);
+		_levelList = new JComboBox<String>(levelStrings);
+		_levelList.addActionListener(this);
 		
 		//Create the JTable and use the StatsTableModel
         _table = new JTable(_statsTableModel);
@@ -72,7 +73,7 @@ public class StatsCard extends Card implements ActionListener {
         JScrollPane scrollPane = new JScrollPane(_table);
 
         //Add the scroll pane to this panel.
-        _statsCard.add(levelList, BorderLayout.NORTH);
+        _statsCard.add(_levelList, BorderLayout.NORTH);
         _statsCard.add(scrollPane, BorderLayout.CENTER);
         _statsCard.add(_label, BorderLayout.SOUTH);
         
@@ -86,11 +87,13 @@ public class StatsCard extends Card implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		@SuppressWarnings("unchecked")
-		JComboBox<String> cb = (JComboBox<String>) ae.getSource();
-        String levelString = (String) cb.getSelectedItem();
-        
-        levelString = levelString.substring(levelString.length() - 2);
+		update();
+	}
+	
+	public void update() {
+		String levelString = (String) _levelList.getSelectedItem();
+		
+		levelString = levelString.substring(levelString.length() - 2);
         levelString = levelString.trim();
         int level = Integer.valueOf(levelString);
         
