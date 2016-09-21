@@ -37,8 +37,9 @@ public class SpeechSW extends SwingWorker<Void, Void> {
 	@Override
 	protected Void doInBackground() throws Exception {	
 		PrintWriter writer;
+		String filePath = _fm.getAbsolutePath(".newSpeech.scm");
 		try {
-			writer = new PrintWriter(_fm.getAbsolutePath(".newSpeech.scm"), "UTF-8");
+			writer = new PrintWriter(filePath, "UTF-8");
 			writer.println(Settings.getVoice());
 			writer.println("(SayText \"" + _toSay + "\")");
 			writer.close();
@@ -46,7 +47,7 @@ public class SpeechSW extends SwingWorker<Void, Void> {
 			e.printStackTrace();
 		}
 		
-		ProcessBuilder builder = new ProcessBuilder ("/bin/bash", "-c", "festival -b .newSpeech.scm");
+		ProcessBuilder builder = new ProcessBuilder ("/bin/bash", "-c", "festival -b " + filePath);
 		Process process = builder.start();
 		process.waitFor();
 		

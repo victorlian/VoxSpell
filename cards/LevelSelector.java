@@ -52,7 +52,10 @@ public class LevelSelector implements ActionListener {
 
 			// Handling Cancel button
 			if ((level != null) && (level.length() > 0)) {
-				return Integer.valueOf(level.substring(6));
+				int iLevel = Integer.valueOf(level.substring(6));
+				Settings.setlevel(iLevel);
+				
+				return iLevel;
 			} else {
 				return -1;
 			}

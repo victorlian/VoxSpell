@@ -17,7 +17,7 @@ import quiz.ReviewQuiz;
 import speech.Voices;
 import spellingAid.Settings;
 import spellingAid.VideoReward;
-import spellingAid.VideoToPlay;
+import spellingAid.VideoType;
 import words.Word;
 
 /**
@@ -157,10 +157,10 @@ public class SettingsCard extends Card implements ActionListener {
 			Settings.setVoice(Voices.NEWZEALAND);
 			break;
 		case DEFVIDEO:
-			Settings.setVideoType(VideoToPlay.ORIGINAL);
+			Settings.setVideoType(VideoType.ORIGINAL);
 			break;
 		case ALTVIDEO:
-			Settings.setVideoType(VideoToPlay.REVERSED);
+			Settings.setVideoType(VideoType.REVERSED);
 			break;
 		}
 	}

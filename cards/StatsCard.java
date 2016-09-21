@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -20,7 +22,7 @@ import spellingAid.StatsTableModel;
  * @author Daniel
  *
  */
-public class StatsCard extends Card implements ActionListener {
+public class StatsCard extends Card implements ActionListener, FocusListener {
 	private JPanel _statsCard;
 	private static final String[] levelStrings = { "Level 1", 
 			"Level 2", 
@@ -70,6 +72,8 @@ public class StatsCard extends Card implements ActionListener {
         
         _label.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
         
+        _statsCard.addFocusListener(this);
+        
 		return _statsCard;
 	}
 	
@@ -94,5 +98,15 @@ public class StatsCard extends Card implements ActionListener {
 	@Override
 	public JPanel getPanel() {
 		return _statsCard;
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		_label.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+
 	}
 }

@@ -16,7 +16,7 @@ public class Settings {
 	private static final String NZLVOICE = "(voice_akl_nz_jdt_diphone)";
 	
 	private static String _currVoice = "";
-	private static VideoToPlay _currVideo = VideoToPlay.ORIGINAL;
+	private static VideoType _currVideo = VideoType.ORIGINAL;
 	
 	private Settings() {}
 	
@@ -84,7 +84,7 @@ public class Settings {
 	 * Get the video type we want to use
 	 * @return
 	 */
-	public static VideoToPlay getVideoType() {
+	public static VideoType getVideoType() {
 		return _currVideo;
 	}
 	
@@ -92,7 +92,7 @@ public class Settings {
 	 * Set the video type we want to use
 	 * @param videoType
 	 */
-	public static void setVideoType(VideoToPlay videoType) {
+	public static void setVideoType(VideoType videoType) {
 		_currVideo = videoType;
 	}
 	

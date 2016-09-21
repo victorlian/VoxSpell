@@ -36,7 +36,7 @@ public class VideoReward {
 	
 	private boolean _editAvaliable = false; 
 	private static VideoReward _instance = null;
-	private VideoToPlay _videoType = null;
+	private VideoType _videoType = null;
 	
 	/**
 	 * Code based from http://capricasoftware.co.uk/#/projects/vlcj/tutorial/my-first-media-player
@@ -127,9 +127,9 @@ public class VideoReward {
         
       //=== added for FFMEPG part to know which video to play
         String fileName;
-        VideoToPlay videoType = Settings.getVideoType();
+        VideoType videoType = Settings.getVideoType();
         if (_videoType == null){
-        	if (videoType.equals(VideoToPlay.ORIGINAL) || _editAvaliable == false){
+        	if (videoType.equals(VideoType.ORIGINAL) || _editAvaliable == false){
             	fileName = _fm.VIDEO;
             	_videoType = videoType;
             }
@@ -163,11 +163,11 @@ public class VideoReward {
 	 * This method will reverse the video type.
 	 */
 	public void reverseVideoType(){
-		if (_videoType.equals(VideoToPlay.ORIGINAL)){
-			_videoType = VideoToPlay.REVERSED;
+		if (_videoType.equals(VideoType.ORIGINAL)){
+			_videoType = VideoType.REVERSED;
 		}
 		else {
-			_videoType = VideoToPlay.ORIGINAL;
+			_videoType = VideoType.ORIGINAL;
 		}
 	}
 	
@@ -176,7 +176,7 @@ public class VideoReward {
 	 * type of video
 	 */
 	public String getCurrentVideoFileName (){
-		if (_videoType.equals(VideoToPlay.ORIGINAL) || _editAvaliable == false){
+		if (_videoType.equals(VideoType.ORIGINAL) || _editAvaliable == false){
 			return _fm.getAbsolutePath(_fm.VIDEO);
 		}
 		else {
