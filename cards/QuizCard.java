@@ -208,7 +208,6 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		}
 		
 		if (_option != null) {
-			Settings.setlevel(level);
 			_option.execute();
 		}
 	}
