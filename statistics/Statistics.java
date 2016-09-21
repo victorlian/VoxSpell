@@ -29,7 +29,7 @@ public class Statistics {
 	 * masterlist to prevent errors
 	 */
 	private Statistics() {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 11; i++) {
 			_masterList.add(new ArrayList<WordStats>());
 		}
 	}

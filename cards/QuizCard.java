@@ -182,7 +182,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				
 				//Ensure text entry is valid
 				char[] textInput = txtInput.getText().toCharArray();
-				if (textInput == null) {
+				if (textInput.length==0) {
 					return;
 				} else {
 					for (int i=0; i<textInput.length; i++) {

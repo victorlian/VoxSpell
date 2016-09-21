@@ -3,7 +3,6 @@ package quiz;
 import spellingAid.MessageType;
 import spellingAid.Option;
 import spellingAid.Viewer;
-import statistics.Statistics;
 import words.Word;
 import words.WordList;
 
@@ -90,9 +89,6 @@ public class ReviewQuiz extends Quiz implements Option{
 		msg += "You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!";
 		_mainViewer.popMessage(msg, MessageType.INFORMATION);
 		
-		//Record stats
-		Statistics stats = Statistics.getInstance();
-		stats.recordQuizResults(_wordToTest, _currentLevel);
 	}
 	
 	/**

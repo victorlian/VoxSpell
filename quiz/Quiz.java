@@ -7,6 +7,7 @@ import spellingAid.MessageType;
 import spellingAid.Option;
 import spellingAid.Settings;
 import spellingAid.Viewer;
+import statistics.Statistics;
 import words.Word;
 import words.WordList;
 
@@ -119,6 +120,8 @@ public abstract class Quiz implements Option{
 		if (endOfWord()){
 			return false;
 		}
+		
+		Statistics.getInstance().recordWordResult(_currentWord, _currentLevel);
 		if(_currentWord.getSuccessStatus().equals(Word.SuccessStatus.MASTERED)){
 			_numberOfCorrectWords++;
 		}

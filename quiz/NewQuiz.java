@@ -3,7 +3,6 @@ package quiz;
 import spellingAid.MessageType;
 import spellingAid.Option;
 import spellingAid.Viewer;
-import statistics.Statistics;
 
 /**
  * This is a class represents a new quiz that user started.
@@ -87,9 +86,6 @@ public class NewQuiz extends Quiz implements Option{
 		msg += "You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!";
 		_mainViewer.popMessage(msg, MessageType.INFORMATION);
 		
-		//Record stats
-		Statistics stats = Statistics.getInstance();
-		stats.recordQuizResults(_wordToTest, _currentLevel);
 		//Video and level up options.
 		if (_numberOfCorrectWords>=9){
 			if(_mainViewer.videoOption()){
