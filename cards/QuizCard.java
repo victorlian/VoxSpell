@@ -148,6 +148,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					//Get the ReviewQuiz with the appropriate levels
 					_quiz = ReviewQuiz.getInstance(this, level);
 					_levelIndicator.setText("Review Quiz - Level: " + _quiz.getCurrentLevel());
+					txtOutput.setText("");
 					
 					finished = false;
 				} else if (quizType.equals(QuizType.NORMAL)){
@@ -164,6 +165,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					//Get the NewQuiz with the appropriate levels
 					_quiz = NewQuiz.getInstance(this, level);
 					_levelIndicator.setText("New Quiz - Level: " + _quiz.getCurrentLevel());
+					txtOutput.setText("");
 					
 					finished = false;
 				} else {	
