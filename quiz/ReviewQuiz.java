@@ -3,6 +3,7 @@ package quiz;
 import spellingAid.MessageType;
 import spellingAid.Option;
 import spellingAid.Viewer;
+import statistics.Statistics;
 import words.Word;
 import words.WordList;
 
@@ -88,6 +89,10 @@ public class ReviewQuiz extends Quiz implements Option{
 		String msg = "End of review at level: " + _currentLevel + ".";
 		msg += "You scored: " + _numberOfCorrectWords + " out of " + _numberOfTests + "!";
 		_mainViewer.popMessage(msg, MessageType.INFORMATION);
+		
+		//Record stats
+		Statistics stats = Statistics.getInstance();
+		stats.recordQuizResults(_wordToTest, _currentLevel);
 	}
 	
 	/**
@@ -148,11 +153,5 @@ public class ReviewQuiz extends Quiz implements Option{
 			_wordToTest = _wordList.generateRandomWords(_currentLevel, _numberOfTests);
 			_currentWord = _wordToTest.get(0);
 		}
-
-
 	}
-
-
-
-
 }

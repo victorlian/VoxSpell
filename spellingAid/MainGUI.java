@@ -13,6 +13,8 @@ import cards.MenuCard;
 import cards.QuizCard;
 import cards.SettingsCard;
 import cards.StatsCard;
+import video.VideoEditor;
+import video.VideoReward;
 
 /**
  * This class handles the GUI of the program. It creates a tabbed pane structure.

@@ -1,4 +1,4 @@
-package spellingAid;
+package statistics;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -42,5 +42,9 @@ public class StatsTableModel extends AbstractTableModel {
 	 */
 	public String getColumnName(int col) {
 		return _statistics.getColumnHeadings(col);
+	}
+	
+	public void update() {
+		fireTableDataChanged();
 	}
 }

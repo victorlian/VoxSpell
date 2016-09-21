@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import spellingAid.Settings;
-import spellingAid.Statistics;
+import statistics.Statistics;
 
 /**
  * This class handles the Level Selection for New Quiz and Review Quiz.

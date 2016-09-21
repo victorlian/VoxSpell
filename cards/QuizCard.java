@@ -19,8 +19,8 @@ import quiz.Submission;
 import spellingAid.MessageType;
 import spellingAid.Option;
 import spellingAid.Settings;
-import spellingAid.VideoReward;
 import spellingAid.Viewer;
+import video.VideoReward;
 
 /**
  * This class populates the contents of a Card

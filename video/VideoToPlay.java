@@ -1,4 +1,4 @@
-package spellingAid;
+package video;
 
 /**
  * This enum class represent the two video types that are supported 
@@ -6,6 +6,6 @@ package spellingAid;
  * @author victor
  *
  */
-public enum VideoType {
+public enum VideoToPlay {
 	ORIGINAL, REVERSED;
 }

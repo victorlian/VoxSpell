@@ -16,8 +16,8 @@ import quiz.Quiz;
 import quiz.ReviewQuiz;
 import speech.Voices;
 import spellingAid.Settings;
-import spellingAid.VideoReward;
-import spellingAid.VideoType;
+import video.VideoReward;
+import video.VideoType;
 import words.Word;
 
 /**

@@ -3,17 +3,17 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
-import spellingAid.Statistics;
-import spellingAid.StatsTableModel;
+import statistics.Statistics;
+import statistics.StatsTableModel;
 
 /**
  * This class populates the contents of a Card
@@ -22,7 +22,7 @@ import spellingAid.StatsTableModel;
  * @author Daniel
  *
  */
-public class StatsCard extends Card implements ActionListener, FocusListener {
+public class StatsCard extends Card implements ActionListener {
 	private JPanel _statsCard;
 	private static final String[] levelStrings = { "Level 1", 
 			"Level 2", 
@@ -43,6 +43,12 @@ public class StatsCard extends Card implements ActionListener, FocusListener {
 	
 	public StatsCard() {
 		_statistics = Statistics.getInstance();
+		_statsTableModel.addTableModelListener(new TableModelListener() {
+			@Override
+			public void tableChanged(TableModelEvent arg0) {
+				 _label.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
+			}
+		});
 	}
 	
 	/**
@@ -72,14 +78,11 @@ public class StatsCard extends Card implements ActionListener, FocusListener {
         
         _label.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
         
-        _statsCard.addFocusListener(this);
-        
 		return _statsCard;
 	}
 	
 	/**
 	 * Updates the current level selected.
-	 * Fires an update to the table.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
@@ -98,15 +101,5 @@ public class StatsCard extends Card implements ActionListener, FocusListener {
 	@Override
 	public JPanel getPanel() {
 		return _statsCard;
-	}
-
-	@Override
-	public void focusGained(FocusEvent e) {
-		_label.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-
 	}
 }

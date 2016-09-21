@@ -1,6 +1,7 @@
 package spellingAid;
 
 import speech.Voices;
+import video.VideoType;
 
 /**
  * This class is singelton and holds fields of settings. Classes store

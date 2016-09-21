@@ -2,8 +2,8 @@ package quiz;
 
 import spellingAid.MessageType;
 import spellingAid.Option;
-import spellingAid.Statistics;
 import spellingAid.Viewer;
+import statistics.Statistics;
 
 /**
  * This is a class represents a new quiz that user started.

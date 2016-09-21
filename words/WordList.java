@@ -8,7 +8,7 @@ import quiz.NewQuiz;
 import quiz.Quiz;
 import quiz.ReviewQuiz;
 import spellingAid.FileManager;
-import spellingAid.Statistics;
+import statistics.Statistics;
 
 /**
  * This class stores all the words that is used in 11 different 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import spellingAid.FileManager;
-import spellingAid.Statistics;
+import statistics.Statistics;
 import words.Word;
 import words.WordList;
 

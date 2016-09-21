@@ -1,6 +1,8 @@
-package spellingAid;
+package video;
 
 import javax.swing.SwingWorker;
+
+import spellingAid.FileManager;
 
 /**
  * FFMPEG code is added, this class would create an FFMPEG video if video does not already exist.

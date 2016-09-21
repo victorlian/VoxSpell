@@ -1,4 +1,6 @@
-package words;
+package statistics;
+
+import words.Word;
 
 /**
  * This class holds the Word object along with a list of stats
