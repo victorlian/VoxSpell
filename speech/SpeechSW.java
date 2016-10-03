@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import javax.swing.SwingWorker;
 
-import spellingAid.FileManager;
+import fileIO.FileManager;
 import spellingAid.Settings;
 
 /**

@@ -2,6 +2,7 @@ package testing;
 
 import org.junit.Test;
 
+import fileIO.FileManager;
 import quiz.NewQuiz;
 import quiz.Quiz;
 import quiz.ReviewQuiz;
@@ -12,7 +13,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import spellingAid.FileManager;
 import statistics.Statistics;
 import words.Word;
 import words.WordList;

@@ -14,6 +14,8 @@ import cards.MenuCard;
 import cards.QuizCard;
 import cards.SettingsCard;
 import cards.StatsCard;
+import fileIO.FileManager;
+import fileIO.Images;
 import video.VideoEditor;
 import video.VideoReward;
 
@@ -39,6 +41,7 @@ public class MainGUI {
 
 	private JFrame _frame = new JFrame("SpellingAid");
 	private static JTabbedPane _tabbedPane;
+	private Images _images = Images.getInstance();
 
 	private MenuCard _menuCard = new MenuCard();
 	private QuizCard _quizCard = new QuizCard();
@@ -75,7 +78,7 @@ public class MainGUI {
 
 		// Add all the cards to the tabbedPane layout
 		_tabbedPane.addTab(MENU, menuCard);
-		_tabbedPane.addTab(QUIZ, quizCard);
+		_tabbedPane.addTab(QUIZ, _images.getQuestionIcon(), quizCard);
 		_tabbedPane.addTab(STATS, statsCard);
 		_tabbedPane.addTab(SETTINGS, settingsCard);
 		
@@ -85,6 +88,7 @@ public class MainGUI {
 	}
 
 	public void createAndShowGUI() {
+		preLaunchChecks();
 		// Create and set up the window.
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -99,7 +103,6 @@ public class MainGUI {
 		
 		_frame.setSize(600,350);
 		
-		checkAndGenerateVideo();
 	}
 
 	/**
@@ -148,5 +151,22 @@ public class MainGUI {
 		}
 	}
 	
+	/**
+	 * This method will immediately start after the GUI has been created.
+	 * Used for generating the images/icons used in the GUI.
+	 * @author victor
+	 */
+	private void loadImages(){
+		Images.getInstance();
+	}
+	
+	/**
+	 * This method will load the dependency files to make sure the GUI 
+	 * components are loaded properly.
+	 */
+	private void preLaunchChecks(){
+		checkAndGenerateVideo();
+		loadImages();
+	}
 	
 }
