@@ -12,8 +12,15 @@ import javax.swing.ImageIcon;
  */
 public class Images {
 	private static Images _images = null;
-	public final static String questionMark = "questionMark.png";
-	private Icon questionIcon;
+	public final static String quizFile = "quiz.png";
+	private Icon quizIcon;
+	public final static String hiFile = "hi.png";
+	private Icon hiIcon;
+	public final static String statsFile = "stats.png";
+	private Icon statsIcon;
+	public final static String settingsFile = "settings.png";
+	private Icon settingsIcon;
+
 	
 	private FileManager _fm = new FileManager();
 	
@@ -38,12 +45,27 @@ public class Images {
 	}
 	
 	public void createIcons(){
-		BufferedImage image = _fm.readInImage(questionMark);
-		questionIcon = new ImageIcon(image);
+		BufferedImage image = _fm.readInImage(quizFile);
+		quizIcon = new ImageIcon(image);
+		BufferedImage image2 = _fm.readInImage(hiFile);
+		hiIcon = new ImageIcon(image2);
+		BufferedImage image3 = _fm.readInImage(statsFile);
+		statsIcon = new ImageIcon(image3);
+		BufferedImage image4 = _fm.readInImage(settingsFile);
+		settingsIcon = new ImageIcon(image4);
 	}
 	
-	public Icon getQuestionIcon(){
-		return questionIcon;
+	public Icon getQuizIcon(){
+		return quizIcon;
+	}
+	public Icon getHiIcon(){
+		return hiIcon;
+	}
+	public Icon getStatsIcon(){
+		return statsIcon;
+	}
+	public Icon getSettingsIcon(){
+		return settingsIcon;
 	}
 
 }
