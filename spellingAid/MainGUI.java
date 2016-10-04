@@ -99,11 +99,11 @@ public class MainGUI {
 
 		// Display the window.
 		_frame.pack();
-		_frame.setLocationRelativeTo(null);
 		_frame.setVisible(true);
 		_frame.setResizable(false);
 		
 		_frame.setSize(800,550);
+		_frame.setLocationRelativeTo(null);
 		
 	}
 
