@@ -1,5 +1,6 @@
 package cards;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import fileIO.Images;
 import quiz.NewQuiz;
 import quiz.Quiz;
 import quiz.ReviewQuiz;
@@ -28,6 +30,12 @@ import video.VideoReward;
  * Mainly to make the MainGUI class less cluttered and make it
  * easier to modify the card UI
  * @author Daniel
+ * 
+ * UI updates include: 
+ * Changed the colour of the instruction set.
+ * Layout the buttons longer to fit the screen.
+ * Addition of yesNoIcon 
+ * @author Victor
  *
  */
 public class QuizCard extends Card implements ActionListener, Viewer {
@@ -40,8 +48,8 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static JButton btnSubmit = new JButton(SUBMIT);
 	private static JButton btnSayAgain = new JButton(SAYAGAIN);
 	private static JButton btnNewQuiz = new JButton(NEWQUIZ);
-	private static JTextArea txtOutput = new JTextArea(8, 30);
-	private static JLabel _levelIndicator = new JLabel("Select the New Quiz button to begin");
+	private static JTextArea txtOutput = new JTextArea(6, 20);
+	private static JLabel _levelIndicator = new JLabel("");
 	
 	private Quiz _quiz;
 	private Option _option;
@@ -58,36 +66,58 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	 */
 	public JPanel createContents() {
 		_quizCard = new JPanel();
-		Font bigFont = txtInput.getFont().deriveFont(Font.PLAIN, 15f);
+		Font inputFont = txtInput.getFont().deriveFont(Font.PLAIN, 35f);
+		Font outputFont = txtOutput.getFont().deriveFont(Font.PLAIN, 20f);
+		Font instructionFont = txtInput.getFont().deriveFont(Font.BOLD, 16f);
+		Color instructionColor = new Color(50, 0, 240);
+		
 		
 		_quizCard.setLayout(new BorderLayout());
 		
+		_levelIndicator.setFont(instructionFont);
+		_levelIndicator.setForeground(instructionColor);
+		
 		JScrollPane textBox = new JScrollPane(txtOutput);
-		txtOutput.setFont(bigFont);
+		txtOutput.setFont(outputFont);
 		txtOutput.setEditable(false);
 		
-        txtInput.setFont(bigFont);
+        txtInput.setFont(inputFont);
         txtInput.requestFocus();
-        
-        JPanel inputPanel = new JPanel();
+        txtInput.setPreferredSize(new Dimension(700,50));
+		//Now insert a panel for the textInput textField, so a JLabel could be used along side it.
+		JPanel inputPanel = new JPanel();
 		inputPanel.setLayout(new BorderLayout());
-		inputPanel.add(new JLabel("Enter your spelling below:"), BorderLayout.NORTH);
-		inputPanel.add(txtInput, BorderLayout.CENTER);
 		
-		btnNewQuiz.setPreferredSize(new Dimension(150,30));
-		btnSayAgain.setPreferredSize(new Dimension(200,30));
-		btnSubmit.setPreferredSize(new Dimension(200,30));
+		JLabel yesNoIcon = new JLabel(Images.getInstance().getBlankIcon()); //need the empty screen here as place holder.
+		
+		inputPanel.add(txtInput, BorderLayout.WEST);
+		inputPanel.add(yesNoIcon, BorderLayout.CENTER);
+        
+        JPanel bottomPanel = new JPanel();
+		bottomPanel.setLayout(new BorderLayout());
+		
+		JLabel label = new JLabel("Enter your spelling below:");
+		label.setFont(instructionFont);
+		label.setForeground(instructionColor);
+		bottomPanel.add(label, BorderLayout.NORTH);
+		bottomPanel.add(inputPanel, BorderLayout.CENTER);
+		
+		btnNewQuiz.setPreferredSize(new Dimension(220,40));
+		btnSayAgain.setPreferredSize(new Dimension(220,40));
+		btnSubmit.setPreferredSize(new Dimension(220,40));
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(btnNewQuiz);
 		buttonPanel.add(btnSayAgain);
 		buttonPanel.add(btnSubmit);
 		
-		inputPanel.add(buttonPanel, BorderLayout.SOUTH);
+		bottomPanel.add(buttonPanel, BorderLayout.SOUTH);
+		
+
 		
 		_quizCard.add(_levelIndicator, BorderLayout.NORTH);
 		_quizCard.add(textBox, BorderLayout.CENTER);
-		_quizCard.add(inputPanel, BorderLayout.SOUTH);
+		_quizCard.add(bottomPanel, BorderLayout.SOUTH);
 		
 		//Padding inside JPanel
 		_quizCard.setBorder(new EmptyBorder(5,10,0,10));
