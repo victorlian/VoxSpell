@@ -70,4 +70,5 @@ public interface Viewer {
 	 */
 	public boolean spellWord();
 	
+		
 }

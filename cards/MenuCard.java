@@ -16,6 +16,12 @@ import fileIO.Images;
  * Mainly to make the MainGUI class less cluttered and make it
  * easier to modify the card UI
  * @author Daniel
+ * 
+ * UI updates include:
+ * added icons for tabbed pane
+ * added new labels as instructions.
+ * added the welcome diagram.
+ * @author Victor
  *
  */
 public class MenuCard extends Card {

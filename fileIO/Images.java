@@ -22,6 +22,12 @@ public class Images {
 	private Icon settingsIcon;
 	public final static String welcomeFile = "welcome.jpg";
 	private Icon welcomeIcon;
+	public final static String yesFile = "yes.png";
+	private Icon yesIcon;
+	public final static String noFile = "no.png";
+	private Icon noIcon;
+	public final static String blankFile = "blank.png";
+	private Icon blankIcon;
 
 	
 	private FileManager _fm = new FileManager();
@@ -57,6 +63,12 @@ public class Images {
 		settingsIcon = new ImageIcon(image4);
 		BufferedImage image5 = _fm.readInImage(welcomeFile);
 		welcomeIcon = new ImageIcon(image5);
+		BufferedImage image6 = _fm.readInImage(yesFile);
+		yesIcon = new ImageIcon(image6);
+		BufferedImage image7 = _fm.readInImage(noFile);
+		noIcon = new ImageIcon(image7);
+		BufferedImage image8 = _fm.readInImage(blankFile);
+		blankIcon = new ImageIcon(image8);
 	}
 	
 	public Icon getQuizIcon(){
@@ -73,6 +85,15 @@ public class Images {
 	}
 	public Icon getWelcomeIcon(){
 		return welcomeIcon;
+	}
+	public Icon getNoIcon(){
+		return noIcon;
+	}
+	public Icon getYesIcon(){
+		return yesIcon;
+	}
+	public Icon getBlankIcon(){
+		return blankIcon;
 	}
 
 }
