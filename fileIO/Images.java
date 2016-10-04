@@ -20,6 +20,8 @@ public class Images {
 	private Icon statsIcon;
 	public final static String settingsFile = "settings.png";
 	private Icon settingsIcon;
+	public final static String welcomeFile = "welcome.jpg";
+	private Icon welcomeIcon;
 
 	
 	private FileManager _fm = new FileManager();
@@ -53,6 +55,8 @@ public class Images {
 		statsIcon = new ImageIcon(image3);
 		BufferedImage image4 = _fm.readInImage(settingsFile);
 		settingsIcon = new ImageIcon(image4);
+		BufferedImage image5 = _fm.readInImage(welcomeFile);
+		welcomeIcon = new ImageIcon(image5);
 	}
 	
 	public Icon getQuizIcon(){
@@ -66,6 +70,9 @@ public class Images {
 	}
 	public Icon getSettingsIcon(){
 		return settingsIcon;
+	}
+	public Icon getWelcomeIcon(){
+		return welcomeIcon;
 	}
 
 }
