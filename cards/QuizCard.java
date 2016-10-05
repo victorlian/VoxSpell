@@ -74,6 +74,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	protected static final Font instructionFont = txtInput.getFont().deriveFont(Font.BOLD, 16f);
 	protected static final Color instructionColor = new Color(50, 0, 240);
 	protected static final Color negativeScoreColor = new Color (240, 10, 10);
+	protected static final Color defaultBlackColor = new Color (0, 0, 0);
 	
 	
 	private Quiz _quiz;
@@ -465,6 +466,9 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	public void setScore(int score) {
 		if(score < 0){
 			scoreLabel.setForeground(negativeScoreColor);;
+		}
+		else {
+			scoreLabel.setForeground(defaultBlackColor);
 		}
 		
 		scoreLabel.setText("Score: " + score);
