@@ -6,11 +6,11 @@
 3. Sound Effect
 4. Fonts and colour
 5. Select wordlist JFileChooser
-6. Scoring System.
+~~6. Scoring System.~~
 7. Clear stats and history files.
 ~~8. Add ticks and cross to quiz~~
 9. Make text field larger in quiz.
-10. Progress Bar for quiz.
+~~10. Progress Bar for quiz.~~
 11. Text spaces.
 
 
@@ -20,3 +20,5 @@
 3. use of enter button
 4. Use of icons in tabbed pane. 
 5. Handling errors when it comes to non-alphabetical.
+6. Use of tick cross with colours.
+7. Progress bar as user feedback.
