@@ -2,6 +2,7 @@ package quiz;
 
 import spellingAid.MessageType;
 import spellingAid.Option;
+import spellingAid.Viewer;
 import words.Word;
 
 /**
@@ -21,10 +22,12 @@ import words.Word;
 public class Submission implements Option{
 	private Quiz _quiz;
 	private String _spelling;
+	private Viewer _viewer;
 	
-	public Submission (Quiz quiz, String spelling){
+	public Submission (Quiz quiz, String spelling, Viewer viewer){
 		_quiz = quiz;
 		_spelling = spelling;
+		_viewer = viewer;
 	}
 	
 	/**
@@ -51,10 +54,12 @@ public class Submission implements Option{
 				_quiz.incrementSpeltTimes();
 				if (correct){
 					_quiz.sayAndDisplay("Correct!" + _quiz.NL);
+					_viewer.displayTick();					
 				}
 				else {
 					_quiz.sayAndDisplay("Incorrect!" + _quiz.NL);
 					_quiz._mainViewer.popMessage("Correct spelling is: " + currentWord.toString(), MessageType.INFORMATION);
+					_viewer.displayCross();
 				}
 			}
 			else {
@@ -68,10 +73,12 @@ public class Submission implements Option{
 				if (correct){
 					_quiz.sayAndDisplay("Correct!" + _quiz.NL);
 					currentWord.setMastered();
+					_viewer.displayTick();	
 				}
 				else {
 					_quiz.incrementSpeltTimes();
 					_quiz.sayAndDisplay("Incorrect, try once more!" + _quiz.NL);
+					_viewer.displayCross();	
 					_quiz.execute();
 					return;	
 				}
@@ -80,11 +87,13 @@ public class Submission implements Option{
 				if (correct){
 					_quiz.sayAndDisplay("Correct!" + _quiz.NL);
 					currentWord.setFaulted();
+					_viewer.displayTick();
 				}
 				else {
 					_quiz.incrementSpeltTimes();
 					_quiz.sayAndDisplay("Incorrect!"+ _quiz.NL);
 					currentWord.setFailed();
+					_viewer.displayCross();
 				}
 				break;
 			default:

@@ -70,5 +70,18 @@ public interface Viewer {
 	 */
 	public boolean spellWord();
 	
-		
+	/**
+	 * This method will display the green tick when word is spelled correctly.
+	 */
+	public void displayTick();
+	
+	/**
+	 * This method will display the red cross when the word is spelled wrong.
+	 */
+	public void displayCross();
+	
+	/**
+	 * This method will hide the tick or cross
+	 */
+	public void hideYesNo();
 }

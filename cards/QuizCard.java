@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import fileIO.Images;
@@ -34,7 +35,8 @@ import video.VideoReward;
  * UI updates include: 
  * Changed the colour of the instruction set.
  * Layout the buttons longer to fit the screen.
- * Addition of yesNoIcon 
+ * Addition of yesNoIcon (with auto hiding) 
+ * Hiding code adapted from http://stackoverflow.com/questions/18397282/make-jdialog-disappear-after-a-few-seconds;
  * @author Victor
  *
  */
@@ -50,6 +52,14 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static JButton btnNewQuiz = new JButton(NEWQUIZ);
 	private static JTextArea txtOutput = new JTextArea(6, 20);
 	private static JLabel _levelIndicator = new JLabel("");
+	 //need the empty screen here as place holder.
+	private static JLabel yesNoIcon = new JLabel(Images.getInstance().getBlankIcon());
+	private Timer autoHideTimer = new Timer(1500, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            hideYesNo();
+        }
+    });
 	
 	private Quiz _quiz;
 	private Option _option;
@@ -88,7 +98,6 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		JPanel inputPanel = new JPanel();
 		inputPanel.setLayout(new BorderLayout());
 		
-		JLabel yesNoIcon = new JLabel(Images.getInstance().getBlankIcon()); //need the empty screen here as place holder.
 		
 		inputPanel.add(txtInput, BorderLayout.WEST);
 		inputPanel.add(yesNoIcon, BorderLayout.CENTER);
@@ -239,7 +248,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					}
 				}
 				
-				Submission submission = new Submission(_quiz, txtInput.getText());
+				Submission submission = new Submission(_quiz, txtInput.getText(), this);
 				_option = submission;
 				
 				txtInput.setText("");
@@ -361,5 +370,25 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public void displayTick() {
+		yesNoIcon.setIcon(Images.getInstance().getYesIcon());
+		autoHideTimer.restart();
+		
+	}
+
+	@Override
+	public void displayCross() {
+		yesNoIcon.setIcon(Images.getInstance().getNoIcon());
+		autoHideTimer.restart();
+		
+	}
+
+	@Override
+	public void hideYesNo() {
+		yesNoIcon.setIcon(Images.getInstance().getBlankIcon());
+		autoHideTimer.stop();
 	}
 }
