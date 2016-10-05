@@ -19,6 +19,8 @@ public class Settings {
 	private static String _currVoice = "";
 	private static VideoType _currVideo = VideoType.ORIGINAL;
 	
+	private static String _wordlist = new FileManager().getAbsolutePath(new FileManager().WORDLIST);
+	
 	private Settings() {}
 	
 	/**
@@ -95,6 +97,22 @@ public class Settings {
 	 */
 	public static void setVideoType(VideoType videoType) {
 		_currVideo = videoType;
+	}
+	
+	/**
+	 * Get the wordlist file
+	 * @return
+	 */
+	public static String getWordlist(){
+		return _wordlist;
+	}
+	
+	/**
+	 * Set the wordlist file path
+	 * @return
+	 */
+	public static void setWordlist(String wordlist){
+		_wordlist=wordlist;
 	}
 	
 }

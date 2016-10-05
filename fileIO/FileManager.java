@@ -90,8 +90,7 @@ public class FileManager {
 	 * @param fileName
 	 * @return
 	 */
-	public List<List<String>> readWordList(){
-		String path = getAbsolutePath(WORDLIST);
+	public List<List<String>> readWordList(String path){
 		String line = null;
 		List<List<String>> allLevels = new ArrayList<List<String>>();
 		List<String> singleLevel = new ArrayList<String>();

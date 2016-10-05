@@ -56,7 +56,7 @@ public class ReviewQuiz extends Quiz implements Option{
 	}
 	
 	/**
-	 *　The method to call when requiring the quiz object.
+	 * The method to call when requiring the quiz object.
 	 * @param viewer
 	 * @param startingLevel
 	 * @return

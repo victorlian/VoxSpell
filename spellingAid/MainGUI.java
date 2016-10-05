@@ -45,7 +45,7 @@ public class MainGUI {
 	private Images _images = Images.getInstance();
 
 	private MenuCard _menuCard = new MenuCard();
-	private QuizCard _quizCard = new QuizCard();
+	private QuizCard _quizCard = QuizCard.getInstance();
 	private StatsCard _statsCard = new StatsCard();
 	private SettingsCard _settingsCard = new SettingsCard();
 

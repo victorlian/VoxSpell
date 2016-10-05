@@ -44,6 +44,8 @@ import video.VideoReward;
  *
  */
 public class QuizCard extends Card implements ActionListener, Viewer {
+	private static QuizCard  _thisCard = null;
+	
 	private static final String SUBMIT = "Submit";
 	private static final String SAYAGAIN = "Repeat Word";
 	private static final String NEWQUIZ = "New Quiz";
@@ -66,12 +68,12 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private JProgressBar progressBar = new JProgressBar();
 	private JLabel scoreLabel = new JLabel("Score: 0");
 	
-	//Colour and Font fields.
-	private Font inputFont = txtInput.getFont().deriveFont(Font.PLAIN, 35f);
-	private Font outputFont = txtOutput.getFont().deriveFont(Font.PLAIN, 20f);
-	private Font instructionFont = txtInput.getFont().deriveFont(Font.BOLD, 16f);
-	private Color instructionColor = new Color(50, 0, 240);
-	private Color negativeScoreColor = new Color (240, 10, 10);
+	//Colour and Font fields. (public to other classes in this package)
+	protected static final Font inputFont = txtInput.getFont().deriveFont(Font.PLAIN, 35f);
+	protected static final Font outputFont = txtOutput.getFont().deriveFont(Font.PLAIN, 20f);
+	protected static final Font instructionFont = txtInput.getFont().deriveFont(Font.BOLD, 16f);
+	protected static final Color instructionColor = new Color(50, 0, 240);
+	protected static final Color negativeScoreColor = new Color (240, 10, 10);
 	
 	
 	private Quiz _quiz;
@@ -82,7 +84,20 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		NORMAL, REVIEW, CANCEL;
 	}
 	
-	public QuizCard() {}
+	private QuizCard() {}
+	
+	/**
+	 * Since this is singleton, get instance of a Quiz card
+	 * @return
+	 */
+	public static QuizCard getInstance() {
+		if (_thisCard == null) {
+			_thisCard = new QuizCard();
+		}
+		
+		return _thisCard;
+	}
+	
 	
 	/**
 	 * Populates the Quiz Card UI
@@ -453,5 +468,22 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		}
 		
 		scoreLabel.setText("Score: " + score);
+	}
+	
+	/**
+	 * This method will terminate the current quiz, ready for
+	 * another quiz to begin.
+	 * 
+	 * To acheive this, need to:
+	 * 1. Reinitialize quiz object. (automatically done when clicking on new quiz)
+	 * 2. Clear all the text field and text inputs.
+	 * 3. Reset all the buttons. 
+	 */
+	public void terminateCurrentQuiz(){
+		progressBar.setValue(0);
+		txtInput.setText("");
+		txtOutput.setText("");
+		enableStartButton();
+		disableSubmissionButtons();
 	}
 }

@@ -8,6 +8,7 @@ import fileIO.FileManager;
 import quiz.NewQuiz;
 import quiz.Quiz;
 import quiz.ReviewQuiz;
+import spellingAid.Settings;
 import statistics.Statistics;
 
 /**
@@ -16,7 +17,7 @@ import statistics.Statistics;
  * (code reused from assignment2, modified)
  * 
  * Responsibility: 
- * 1. Read in the wordlist　(using FileManger class);
+ * 1. Read in the wordlist (using FileManger class);
  * 2. Generate the 10 words required for each quiz.
  * 
  * @author victor
@@ -32,7 +33,7 @@ public class WordList {
 	 */
 	public WordList (Quiz quiz){
 		if (quiz instanceof NewQuiz){
-			_wordList = _fm.readWordList();
+			_wordList = _fm.readWordList(Settings.getWordlist());
 		}
 		else if (quiz instanceof ReviewQuiz){
 			for (int i=1; i<=11; i++){

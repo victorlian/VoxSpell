@@ -3,6 +3,7 @@ package quiz;
 import spellingAid.MessageType;
 import spellingAid.Option;
 import spellingAid.Viewer;
+import words.WordList;
 
 /**
  * This is a class represents a new quiz that user started.
@@ -48,7 +49,7 @@ public class NewQuiz extends Quiz implements Option{
 	
 	
 	/**
-	 *　The method to call when requiring the quiz object.
+	 * The method to call when requiring the quiz object.
 	 * @param viewer
 	 * @param startingLevel
 	 * @return
@@ -121,6 +122,7 @@ public class NewQuiz extends Quiz implements Option{
 	 */
 	@Override
 	protected void initializeQuiz() {
+		_wordList = new WordList(this);
 		_wordToTest=_wordList.generateRandomWords(_currentLevel, _numberOfTests);
 		_currentWord=_wordToTest.get(0);
 		_testNumber=0;

@@ -25,7 +25,7 @@ public class Testing {
 	@Test
 	public void testwordList(){
 		FileManager fm = new FileManager();
-		List<List<String>> allList = fm.readWordList();
+		List<List<String>> allList = fm.readWordList(fm.WORDLIST);
 		assertEquals(allList.size(), 12);
 
 
