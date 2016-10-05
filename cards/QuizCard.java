@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -37,6 +39,7 @@ import video.VideoReward;
  * Layout the buttons longer to fit the screen.
  * Addition of yesNoIcon (with auto hiding) 
  * Hiding code adapted from http://stackoverflow.com/questions/18397282/make-jdialog-disappear-after-a-few-seconds;
+ * Add progress bar, add scoring.
  * @author Victor
  *
  */
@@ -51,7 +54,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static JButton btnSayAgain = new JButton(SAYAGAIN);
 	private static JButton btnNewQuiz = new JButton(NEWQUIZ);
 	private static JTextArea txtOutput = new JTextArea(6, 20);
-	private static JLabel _levelIndicator = new JLabel("");
+	private static JLabel levelIndicator = new JLabel("");
 	 //need the empty screen here as place holder.
 	private static JLabel yesNoIcon = new JLabel(Images.getInstance().getBlankIcon());
 	private Timer autoHideTimer = new Timer(1500, new ActionListener() {
@@ -60,6 +63,16 @@ public class QuizCard extends Card implements ActionListener, Viewer {
             hideYesNo();
         }
     });
+	private JProgressBar progressBar = new JProgressBar();
+	private JLabel scoreLabel = new JLabel("Score: 0");
+	
+	//Colour and Font fields.
+	private Font inputFont = txtInput.getFont().deriveFont(Font.PLAIN, 35f);
+	private Font outputFont = txtOutput.getFont().deriveFont(Font.PLAIN, 20f);
+	private Font instructionFont = txtInput.getFont().deriveFont(Font.BOLD, 16f);
+	private Color instructionColor = new Color(50, 0, 240);
+	private Color negativeScoreColor = new Color (240, 10, 10);
+	
 	
 	private Quiz _quiz;
 	private Option _option;
@@ -75,36 +88,77 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	 * Populates the Quiz Card UI
 	 */
 	public JPanel createContents() {
-		_quizCard = new JPanel();
-		Font inputFont = txtInput.getFont().deriveFont(Font.PLAIN, 35f);
-		Font outputFont = txtOutput.getFont().deriveFont(Font.PLAIN, 20f);
-		Font instructionFont = txtInput.getFont().deriveFont(Font.BOLD, 16f);
-		Color instructionColor = new Color(50, 0, 240);
-		
+		_quizCard = new JPanel();		
 		
 		_quizCard.setLayout(new BorderLayout());
 		
-		_levelIndicator.setFont(instructionFont);
-		_levelIndicator.setForeground(instructionColor);
+		//The top panel. (contains labels and progress bar)
+		JPanel topPanel = setupTopPanel();
 		
+		//The middle panel. (a scroll)
 		JScrollPane textBox = new JScrollPane(txtOutput);
 		txtOutput.setFont(outputFont);
 		txtOutput.setEditable(false);
 		
-        txtInput.setFont(inputFont);
-        txtInput.requestFocus();
-        txtInput.setPreferredSize(new Dimension(700,50));
+		//The bottom panel. (contains: label, inputtext, yesNoIconLabel, buttons)
+		JPanel bottomPanel = setupBottomPanel();
+       
+		_quizCard.add(topPanel, BorderLayout.NORTH);
+		_quizCard.add(textBox, BorderLayout.CENTER);
+		_quizCard.add(bottomPanel, BorderLayout.SOUTH);
+		
+		//Padding inside JPanel
+		_quizCard.setBorder(new EmptyBorder(5,10,0,10));
+		
+		addActionListeners();
+		disableSubmissionButtons();
+		
+		return _quizCard;
+	}
+	
+	/**
+	 * This method will set up the top panel properly and return it.
+	 * (Private helper method for creating contents.)
+	 * @return
+	 */
+	private JPanel setupTopPanel(){
+		//The top of text field contains a panel with a progress bar, a total score(Label), 
+		//and a level indicator(Label).
+		JPanel topPanel = new JPanel();
+		topPanel.setLayout(new GridLayout(1,0, 120, 0));
+
+		levelIndicator.setFont(instructionFont);
+		levelIndicator.setForeground(instructionColor);
+		topPanel.add(levelIndicator);
+
+		progressBar.setStringPainted(true);
+		topPanel.add(progressBar);
+
+		scoreLabel.setFont(outputFont);
+		topPanel.add(scoreLabel);
+		return topPanel;	
+	}
+	
+	/**
+	 * This method will set up the bottom panel properly and return it.
+	 * (Private helper method for creating contents.)
+	 * @return
+	 */
+	private JPanel setupBottomPanel(){
+		txtInput.setFont(inputFont);
+		txtInput.requestFocus();
+		txtInput.setPreferredSize(new Dimension(700,50));
 		//Now insert a panel for the textInput textField, so a JLabel could be used along side it.
 		JPanel inputPanel = new JPanel();
 		inputPanel.setLayout(new BorderLayout());
-		
-		
+
+
 		inputPanel.add(txtInput, BorderLayout.WEST);
 		inputPanel.add(yesNoIcon, BorderLayout.CENTER);
-        
-        JPanel bottomPanel = new JPanel();
+
+		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new BorderLayout());
-		
+
 		JLabel label = new JLabel("Enter your spelling below:");
 		label.setFont(instructionFont);
 		label.setForeground(instructionColor);
@@ -121,20 +175,8 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		buttonPanel.add(btnSubmit);
 		
 		bottomPanel.add(buttonPanel, BorderLayout.SOUTH);
-		
 
-		
-		_quizCard.add(_levelIndicator, BorderLayout.NORTH);
-		_quizCard.add(textBox, BorderLayout.CENTER);
-		_quizCard.add(bottomPanel, BorderLayout.SOUTH);
-		
-		//Padding inside JPanel
-		_quizCard.setBorder(new EmptyBorder(5,10,0,10));
-		
-		addActionListeners();
-		disableSubmissionButtons();
-		
-		return _quizCard;
+		return bottomPanel;
 	}
 	
 	/**
@@ -168,8 +210,9 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		switch(text) {
 			//New Quiz button pressed
 			case NEWQUIZ:
-				//Clear the textInput
+				//Clear the textInput, and reset progress bar.
 				txtInput.setText("");
+				progressBar.setValue(0);
 				
 				QuizType quizType = quizTypeDialog();
 				//Give the user dialog options
@@ -186,7 +229,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					
 					//Get the ReviewQuiz with the appropriate levels
 					_quiz = ReviewQuiz.getInstance(this, level);
-					_levelIndicator.setText("Review Quiz - Level: " + _quiz.getCurrentLevel());
+					levelIndicator.setText("Review Quiz - Level: " + _quiz.getCurrentLevel());
 					txtOutput.setText("");
 					
 					finished = false;
@@ -203,7 +246,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					
 					//Get the NewQuiz with the appropriate levels
 					_quiz = NewQuiz.getInstance(this, level);
-					_levelIndicator.setText("New Quiz - Level: " + _quiz.getCurrentLevel());
+					levelIndicator.setText("New Quiz - Level: " + _quiz.getCurrentLevel());
 					txtOutput.setText("");
 					
 					finished = false;
@@ -390,5 +433,25 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	public void hideYesNo() {
 		yesNoIcon.setIcon(Images.getInstance().getBlankIcon());
 		autoHideTimer.stop();
+	}
+
+	@Override
+	public void setProgess(int percentage) {
+		progressBar.setValue(percentage);
+		
+	}
+	
+	/**
+	 * This method will update the score.
+	 * The score will be shown red if negative.
+	 * @param score
+	 */
+	@Override
+	public void setScore(int score) {
+		if(score < 0){
+			scoreLabel.setForeground(negativeScoreColor);;
+		}
+		
+		scoreLabel.setText("Score: " + score);
 	}
 }

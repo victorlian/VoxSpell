@@ -50,6 +50,7 @@ public abstract class Quiz implements Option{
 	protected Word _currentWord;
 	protected int _numberOfCorrectWords;
 	protected int _numberOfTimesSpelt;
+	protected int _score;
 	
 	/**
 	 * Protected constructor for child class only.
@@ -63,6 +64,7 @@ public abstract class Quiz implements Option{
 		_currentLevel = level;
 		_numberOfCorrectWords=0;
 		_testNumber=0;
+		_score=0;
 		
 		//Fields to be initialized in child class:
 		//_numberOfTests
@@ -106,7 +108,7 @@ public abstract class Quiz implements Option{
 	
 	/**
 	 * This method will be called to configure quiz to take the next word.
-	 * If the currentWord is the last word, then launch end of quiz.
+	 * If the currentWord is the last word, then call end of quiz.
 	 * 
 	 * Return type is false when this method does not initialize the next word
 	 * successfully, and so quiz.execute should not be called again.
@@ -122,9 +124,25 @@ public abstract class Quiz implements Option{
 		}
 		
 		Statistics.getInstance().recordWordResult(_currentWord, _currentLevel);
-		if(_currentWord.getSuccessStatus().equals(Word.SuccessStatus.MASTERED)){
+		Word.SuccessStatus currentSuccessStatus = _currentWord.getSuccessStatus();
+		
+		if(currentSuccessStatus.equals(Word.SuccessStatus.MASTERED)){
 			_numberOfCorrectWords++;
+			_score += 100;
 		}
+		else if (currentSuccessStatus.equals(Word.SuccessStatus.FAULTED)){
+			_score += 20;
+		}
+		else if (currentSuccessStatus.equals(Word.SuccessStatus.FAILED)){
+			_score -= 50;
+		}
+		else {
+			throw new RuntimeException ("Should not be configuring for next word.");
+		}
+		
+		_mainViewer.setScore(_score);
+		_mainViewer.setProgess((_testNumber+1) * 100 / _numberOfTests );
+		
 
 		if (_testNumber==_numberOfTests-1){
 			_testNumber++;

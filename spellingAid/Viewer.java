@@ -84,4 +84,16 @@ public interface Viewer {
 	 * This method will hide the tick or cross
 	 */
 	public void hideYesNo();
+	
+	/**
+	 * This method will set the progress bar to a certain percentage level.
+	 * @param percentage
+	 */
+	public void setProgess(int percentage);
+	
+	/**
+	 * This method will update the score on the quiz card.
+	 * @param score
+	 */
+	public void setScore(int score);
 }
