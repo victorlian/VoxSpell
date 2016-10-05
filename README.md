@@ -8,7 +8,7 @@
 5. Select wordlist JFileChooser
 6. Scoring System.
 7. Clear stats and history files.
-8. Add ticks and cross to quiz
+~~8. Add ticks and cross to quiz~~
 9. Make text field larger in quiz.
 10. Progress Bar for quiz.
 11. Text spaces.
