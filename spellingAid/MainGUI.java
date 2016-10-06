@@ -11,7 +11,7 @@ import javax.swing.JTabbedPane;
 
 import cards.Card;
 import cards.DebugCard;
-import cards.MenuCard;
+import cards.WelcomeCard;
 import cards.QuizCard;
 import cards.SettingsCard;
 import cards.StatsCard;
@@ -44,7 +44,7 @@ public class MainGUI {
 	private static JTabbedPane _tabbedPane;
 	private Images _images = Images.getInstance();
 
-	private MenuCard _menuCard = new MenuCard();
+	private WelcomeCard _menuCard = new WelcomeCard();
 	private QuizCard _quizCard = QuizCard.getInstance();
 	private StatsCard _statsCard = new StatsCard();
 	private SettingsCard _settingsCard = new SettingsCard();
