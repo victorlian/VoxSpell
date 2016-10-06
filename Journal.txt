@@ -1,0 +1,56 @@
+7th.Sept Starting
+
+1. Understanding the requirements.
+2. Design how the user interface look like.
+3. Implement the main interface so that it looks as expected. (Daniel)
+4. Determine the class hierachy. (Victor)
+
+8th.Sept Implementing
+1. Furthur develop the GUI and its components. (Daniel)
+2. Create the viewer interface, a list of methods that the GUI class must implement (Victor)
+	**This is using the programming to interface concept.
+3. Implement classes: Word, Wordlist, FileManager, Speech (Victor)
+4. Implement classes: Stats, WordStats and linking it with JTable (Daniel)
+5. Start using the smartGit to make commits and pushes to github.(Victor)
+
+12th.Sept Furthur developing quiz logic
+1. Change of requirements: need to fit review in.
+   Plans: 
+	1.1 Make Quiz abstract
+	1.2 NewQuiz, Review implements quiz.
+	1.3 Use abstract methods and template method pattern to control the two different quiz.
+	1.4 Shifting some initialisation of fields. (to sub-classes)
+2. Implmented more logic on abstract Quiz and NewQuiz.
+3. wordlist now have to take a quiz object as an argument when constructing.
+
+13th.Sept More quiz logic
+1. Finishing off newQuiz class.
+2. Finishing submission class.
+3. modify quiz classes to allow for video.
+4. modify abstract quiz and new quiz to record number of attempts.
+
+14th.Sept putting modules togehter
+1. Fixed some bugs (null pointers, error with logic)
+
+15th.Sept Fixing bugs
+1. Need to pass new line characters to GUI.
+2. Debugging quiz logic.
+3. Added debugging methods
+4. Starting on review logic. 
+PROBLEM: co-operational, convert List Word to List String.
+5. Changed Quiz class again to handle when no failed words needs to be tested.
+6. Changed Quiz class to make popUp message for end of quiz summary.
+7. Fixed the level bug for Daneil.
+8. Added more debug buttons to help debugging/testing.
+9. Finished review logic.
+
+20th.Sept FFMPEG work
+1. Added the code to generate the edited ffmpeg video.
+2. Modified video logic to be able to play the ffmpeg video. (Reverse)
+
+21th.Sept Bug fixes, testing
+1. Fixed bugs related to: videoReward (video buttons), finished quiz, stats accuracy rates
+
+23th.Sept Submission day
+1. Checked all the files once again, did some final testing, submit.
+

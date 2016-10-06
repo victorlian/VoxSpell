@@ -3,7 +3,6 @@ package spellingAid;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,10 +10,10 @@ import javax.swing.JTabbedPane;
 
 import cards.Card;
 import cards.DebugCard;
-import cards.WelcomeCard;
 import cards.QuizCard;
 import cards.SettingsCard;
 import cards.StatsCard;
+import cards.WelcomeCard;
 import fileIO.FileManager;
 import fileIO.Images;
 import video.VideoEditor;
@@ -79,7 +78,7 @@ public class MainGUI {
 		debugCard.setName("Debug");
 
 		// Add all the cards to the tabbedPane layout
-		_tabbedPane.setFont(new Font("Arial", Font.BOLD, 24));
+		_tabbedPane.setFont(Card.bold20);
 		_tabbedPane.addTab(MENU, _images.getHiIcon(), menuCard);
 		_tabbedPane.addTab(QUIZ, _images.getQuizIcon(), quizCard);
 		_tabbedPane.addTab(STATS, _images.getStatsIcon(), statsCard);
