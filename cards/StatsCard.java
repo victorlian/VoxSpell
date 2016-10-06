@@ -93,7 +93,7 @@ public class StatsCard extends Card implements ActionListener {
 
         //Add the scroll pane to this panel.
         _statsCard.add(levelPanel, BorderLayout.NORTH);
-        _statsCard.add(scrollPane, BorderLayout.CENTER);
+        _statsCard.add(new AccuracyChart(2,3,4), BorderLayout.CENTER);
         _statsCard.add(_accuracylabel, BorderLayout.SOUTH);
         
         
