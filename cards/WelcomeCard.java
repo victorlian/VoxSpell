@@ -41,7 +41,7 @@ public class WelcomeCard extends Card {
 		_menuCard = new JPanel();
 		_menuCard.setLayout(new BorderLayout());
 		
-		_txtOutput.setFont(welcomeFont);
+		_txtOutput.setFont(plain16);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -56,12 +56,13 @@ public class WelcomeCard extends Card {
 		JLabel label4 = new JLabel("Settings: make your changes to VoxSpell!");
 		JLabel label5 = new JLabel("Refer to the user manual for more information.");
 		
-		label0.setFont(welcomeFont);
-		label1.setFont(welcomeFont);
-		label2.setFont(welcomeFont);
-		label3.setFont(welcomeFont);
-		label4.setFont(welcomeFont);
-		label5.setFont(welcomeFont);
+		label0.setFont(plain16);
+		label1.setFont(bold20);
+		label1.setForeground(blueInstructionColor);
+		label2.setFont(plain16);
+		label3.setFont(plain16);
+		label4.setFont(plain16);
+		label5.setFont(plain16);
 		label5.setForeground(new Color(50, 0, 240)); //dark blue colour
 		
 		labelPanel.add(label0);

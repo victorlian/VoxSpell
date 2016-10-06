@@ -39,7 +39,9 @@ public class StatsCard extends Card implements ActionListener {
 	private static Statistics _statistics = null;
 	private static StatsTableModel _statsTableModel = new StatsTableModel();
 	private static JTable _table;
-	private static JLabel _label = new JLabel();
+	
+    private static JLabel _accuracylabel = new JLabel();
+	
 	private static JComboBox<String> _levelList;
 	
 	public StatsCard() {
@@ -59,25 +61,42 @@ public class StatsCard extends Card implements ActionListener {
 		_statsCard = new JPanel();
 		_statsCard.setLayout(new BorderLayout());
 		
+		
+		//Create the panel that holds the level comboBox.
 		_levelList = new JComboBox<String>(levelStrings);
 		_levelList.addActionListener(this);
+		_levelList.setFont(plain20);
+		JPanel levelPanel = new JPanel();
+		JLabel levelLabel = new JLabel("Select the level to view: ");
+		levelLabel.setFont(bold20);
+		levelLabel.setForeground(blueInstructionColor);
+		levelPanel.add(levelLabel);
+		levelPanel.add(_levelList);
 		
 		//Create the JTable and use the StatsTableModel
         _table = new JTable(_statsTableModel);
         _table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         _table.setFillsViewportHeight(true);
+        _table.setFont(plain14);
+        _table.getTableHeader().setFont(bold14);
         
         _statistics.passModel(_statsTableModel);
-
+        
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(_table);
+        
+        //Create the panel for showing accuracy
+        JPanel accuracyPanel = new JPanel();
+        _accuracylabel.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
+
+
 
         //Add the scroll pane to this panel.
-        _statsCard.add(_levelList, BorderLayout.NORTH);
+        _statsCard.add(levelPanel, BorderLayout.NORTH);
         _statsCard.add(scrollPane, BorderLayout.CENTER);
-        _statsCard.add(_label, BorderLayout.SOUTH);
+        _statsCard.add(_accuracylabel, BorderLayout.SOUTH);
         
-        _label.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
+        
         
 		return _statsCard;
 	}
@@ -94,7 +113,7 @@ public class StatsCard extends Card implements ActionListener {
         int level = Integer.valueOf(levelString);
         
 		_statistics.setLevel(level);
-		_label.setText("Spelling Accuracy: " + _statistics.getAccuracy(level) + "%");
+		_accuracylabel.setText("Spelling Accuracy: " + _statistics.getAccuracy(level) + "%");
 	}
 	
 	public void updateAccuracy() {
@@ -104,7 +123,7 @@ public class StatsCard extends Card implements ActionListener {
         levelString = levelString.trim();
         int level = Integer.valueOf(levelString);
         
-		_label.setText("Spelling Accuracy: " + _statistics.getAccuracy(level) + "%");
+		_accuracylabel.setText("Spelling Accuracy: " + _statistics.getAccuracy(level) + "%");
 	}
 
 	@Override

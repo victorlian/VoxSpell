@@ -12,6 +12,7 @@ import javax.swing.JPanel;
  * 
  * UI updates:
  * added colours and fonts.
+ * @author Victor
  *
  */
 public abstract class Card {
@@ -21,10 +22,20 @@ public abstract class Card {
 	protected static final Color blackColour = new Color (0, 0, 0);
 	protected static final Color redColor = new Color (240, 10, 10);
 	protected static final Color blueInstructionColor = new Color(50, 0, 240);
-	protected static final Font instructionFont = new Font(fontName, Font.BOLD, 16);
-	protected static final Font outputFont = new Font(fontName, Font.PLAIN, 20);
-	protected static final Font inputFont = new Font(fontName, Font.PLAIN, 35);
-	protected static final Font welcomeFont = new Font(fontName, Font.PLAIN, 16);
+	//Bold 16, 20 used for instructions
+	protected static final Font bold16 = new Font(fontName, Font.BOLD, 16);
+	protected static final Font bold20 = new Font (fontName, Font.BOLD, 20);
+	//Plain 16 used for JLabels in welcome
+	protected static final Font plain16 = new Font(fontName, Font.PLAIN, 16);
+	//Plain 20 used for text output in text field
+	protected static final Font plain20 = new Font(fontName, Font.PLAIN, 20);
+	//Plain 35 used in Text input.
+	protected static final Font plain35 = new Font(fontName, Font.PLAIN, 35);
+	
+	//Used in Jtrees
+	protected static final Font plain14 = new Font(fontName, Font.PLAIN, 14);
+	protected static final Font bold14 = new Font(fontName, Font.BOLD, 14);
+
 
 	public abstract JPanel createContents();
 

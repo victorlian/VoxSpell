@@ -102,7 +102,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		
 		//The middle panel. (a scroll)
 		JScrollPane textBox = new JScrollPane(txtOutput);
-		txtOutput.setFont(Card.outputFont);
+		txtOutput.setFont(Card.plain20);
 		txtOutput.setEditable(false);
 		
 		//The bottom panel. (contains: label, inputtext, yesNoIconLabel, buttons)
@@ -132,14 +132,14 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new GridLayout(1,0, 120, 0));
 
-		levelIndicator.setFont(Card.instructionFont);
+		levelIndicator.setFont(Card.bold16);
 		levelIndicator.setForeground(Card.blueInstructionColor);
 		topPanel.add(levelIndicator);
 
 		progressBar.setStringPainted(true);
 		topPanel.add(progressBar);
 
-		scoreLabel.setFont(Card.outputFont);
+		scoreLabel.setFont(Card.plain20);
 		topPanel.add(scoreLabel);
 		return topPanel;	
 	}
@@ -150,7 +150,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	 * @return
 	 */
 	private JPanel setupBottomPanel(){
-		txtInput.setFont(Card.inputFont);
+		txtInput.setFont(Card.plain35);
 		txtInput.requestFocus();
 		txtInput.setPreferredSize(new Dimension(700,50));
 		//Now insert a panel for the textInput textField, so a JLabel could be used along side it.
@@ -165,7 +165,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		bottomPanel.setLayout(new BorderLayout());
 
 		JLabel label = new JLabel("Enter your spelling below:");
-		label.setFont(Card.instructionFont);
+		label.setFont(Card.bold16);
 		label.setForeground(Card.blueInstructionColor);
 		bottomPanel.add(label, BorderLayout.NORTH);
 		bottomPanel.add(inputPanel, BorderLayout.CENTER);
