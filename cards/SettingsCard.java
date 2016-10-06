@@ -101,8 +101,8 @@ public class SettingsCard extends Card implements ActionListener {
 		belowLabelPanel.add(fileText);
 		
 		JLabel warning = new JLabel ("Warning! By choosing a new wordlist, the current quiz will be stopped.");
-		warning.setFont(QuizCard.instructionFont);
-		warning.setForeground(QuizCard.instructionColor);
+		warning.setFont(Card.instructionFont);
+		warning.setForeground(Card.blueInstructionColor);
 		
 		fileChooserPanel.add(warning,BorderLayout.NORTH);
 		fileChooserPanel.add(belowLabelPanel, BorderLayout.CENTER);

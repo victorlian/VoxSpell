@@ -1,8 +1,6 @@
 package cards;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,15 +66,6 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private JProgressBar progressBar = new JProgressBar();
 	private JLabel scoreLabel = new JLabel("Score: 0");
 	
-	//Colour and Font fields. (public to other classes in this package)
-	protected static final Font inputFont = txtInput.getFont().deriveFont(Font.PLAIN, 35f);
-	protected static final Font outputFont = txtOutput.getFont().deriveFont(Font.PLAIN, 20f);
-	protected static final Font instructionFont = txtInput.getFont().deriveFont(Font.BOLD, 16f);
-	protected static final Color instructionColor = new Color(50, 0, 240);
-	protected static final Color negativeScoreColor = new Color (240, 10, 10);
-	protected static final Color defaultBlackColor = new Color (0, 0, 0);
-	
-	
 	private Quiz _quiz;
 	private Option _option;
 	private boolean finished;
@@ -113,7 +102,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		
 		//The middle panel. (a scroll)
 		JScrollPane textBox = new JScrollPane(txtOutput);
-		txtOutput.setFont(outputFont);
+		txtOutput.setFont(Card.outputFont);
 		txtOutput.setEditable(false);
 		
 		//The bottom panel. (contains: label, inputtext, yesNoIconLabel, buttons)
@@ -143,14 +132,14 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new GridLayout(1,0, 120, 0));
 
-		levelIndicator.setFont(instructionFont);
-		levelIndicator.setForeground(instructionColor);
+		levelIndicator.setFont(Card.instructionFont);
+		levelIndicator.setForeground(Card.blueInstructionColor);
 		topPanel.add(levelIndicator);
 
 		progressBar.setStringPainted(true);
 		topPanel.add(progressBar);
 
-		scoreLabel.setFont(outputFont);
+		scoreLabel.setFont(Card.outputFont);
 		topPanel.add(scoreLabel);
 		return topPanel;	
 	}
@@ -161,7 +150,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	 * @return
 	 */
 	private JPanel setupBottomPanel(){
-		txtInput.setFont(inputFont);
+		txtInput.setFont(Card.inputFont);
 		txtInput.requestFocus();
 		txtInput.setPreferredSize(new Dimension(700,50));
 		//Now insert a panel for the textInput textField, so a JLabel could be used along side it.
@@ -176,8 +165,8 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		bottomPanel.setLayout(new BorderLayout());
 
 		JLabel label = new JLabel("Enter your spelling below:");
-		label.setFont(instructionFont);
-		label.setForeground(instructionColor);
+		label.setFont(Card.instructionFont);
+		label.setForeground(Card.blueInstructionColor);
 		bottomPanel.add(label, BorderLayout.NORTH);
 		bottomPanel.add(inputPanel, BorderLayout.CENTER);
 		
@@ -465,10 +454,10 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	@Override
 	public void setScore(int score) {
 		if(score < 0){
-			scoreLabel.setForeground(negativeScoreColor);;
+			scoreLabel.setForeground(Card.redColor);;
 		}
 		else {
-			scoreLabel.setForeground(defaultBlackColor);
+			scoreLabel.setForeground(Card.blackColour);
 		}
 		
 		scoreLabel.setText("Score: " + score);
