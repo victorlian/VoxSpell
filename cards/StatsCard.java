@@ -44,6 +44,8 @@ public class StatsCard extends Card implements ActionListener {
 	
 	private static JComboBox<String> _levelList;
 	
+	private static AccuracyChart _chart = new AccuracyChart(0,0,0);
+	
 	public StatsCard() {
 		_statistics = Statistics.getInstance();
 		_statsTableModel.addTableModelListener(new TableModelListener() {
@@ -87,16 +89,21 @@ public class StatsCard extends Card implements ActionListener {
         
         //Create the panel for showing accuracy
         JPanel accuracyPanel = new JPanel();
-        _accuracylabel.setText("Spelling Accuracy: " + _statistics.getAccuracy(1) + "%");
-
-
-
+        accuracyPanel.setPreferredSize(new Dimension(710, 110));
+        accuracyPanel.add(_chart);
+        
+        
+        int[] numbers = getAllThreeNumbers(1);
+        
+        _accuracylabel.setText("Spelling Accuracy: " + numbers[0] + "%");
+        _chart.redrawAccuracyChart(numbers[0], numbers[1], numbers[2]);
+        
         //Add the scroll pane to this panel.
         _statsCard.add(levelPanel, BorderLayout.NORTH);
-        _statsCard.add(new AccuracyChart(2,3,4), BorderLayout.CENTER);
-        _statsCard.add(_accuracylabel, BorderLayout.SOUTH);
+        _statsCard.add(scrollPane, BorderLayout.CENTER);
+        _statsCard.add(accuracyPanel, BorderLayout.SOUTH);
         
-        
+        accuracyPanel.repaint(); 
         
 		return _statsCard;
 	}
@@ -113,7 +120,12 @@ public class StatsCard extends Card implements ActionListener {
         int level = Integer.valueOf(levelString);
         
 		_statistics.setLevel(level);
-		_accuracylabel.setText("Spelling Accuracy: " + _statistics.getAccuracy(level) + "%");
+       
+		int[] numbers = getAllThreeNumbers(level);
+        _accuracylabel.setText("Spelling Accuracy: " + numbers[0] + "%");
+        _chart.redrawAccuracyChart(numbers[0], numbers[1], numbers[2]);
+		
+		
 	}
 	
 	public void updateAccuracy() {
@@ -123,11 +135,27 @@ public class StatsCard extends Card implements ActionListener {
         levelString = levelString.trim();
         int level = Integer.valueOf(levelString);
         
-		_accuracylabel.setText("Spelling Accuracy: " + _statistics.getAccuracy(level) + "%");
+        int[] numbers = getAllThreeNumbers(level);
+        _accuracylabel.setText("Spelling Accuracy: " + numbers[0] + "%");
+        _chart.redrawAccuracyChart(numbers[0], numbers[1], numbers[2]);
 	}
 
 	@Override
 	public JPanel getPanel() {
 		return _statsCard;
+	}
+	
+	/**
+	 * This method will return the mastered, faulted and failed 
+	 * numbers of the words.
+	 * @return
+	 */
+	public int[] getAllThreeNumbers(int level){
+		int[] array = new int[3];
+		array[0] = _statistics.getMasteredNumber(level);
+		array[1] = _statistics.getFaultedNumber(level);
+		array[2] = _statistics.getFailedNumber(level);
+		
+		return array;
 	}
 }

@@ -158,12 +158,12 @@ public class Statistics {
 	/**
 	 * This function calculates the success rate of spelling. It divides the
 	 * number of total successes for the level by the number of attempts for the
-	 * level. Faults will count for 0.5 a success.
+	 * level. 
 	 * 
 	 * @param level
 	 * @return percentage of success
 	 */
-	public int getAccuracy(int level) {
+	public int getMasteredNumber(int level) {
 		List<WordStats> wordStats = _masterList.get(level - 1);
 
 		double attempts = 0;
@@ -171,11 +171,54 @@ public class Statistics {
 
 		for (WordStats currWord : wordStats) {
 			attempts += currWord.getNumberofAttempts();
-			successes += ((double) currWord.getFault()) / 2; // Half a success
 			successes += currWord.getSuccess();
 		}
 
 		return (int) ((successes / attempts) * 100);
+	}
+	
+	/**
+	 * This function calculates the faulted rate of spelling. It divides the
+	 * number of total successes for the level by the number of attempts for the
+	 * level. 
+	 * 
+	 * @param level
+	 * @return percentage of faulted
+	 */
+	public int getFaultedNumber(int level) {
+		List<WordStats> wordStats = _masterList.get(level - 1);
+
+		double attempts = 0;
+		double faulted = 0;
+
+		for (WordStats currWord : wordStats) {
+			attempts += currWord.getNumberofAttempts();
+			faulted += currWord.getFault();
+		}
+
+		return (int) ((faulted / attempts) * 100);
+	}
+	
+	/**
+	 * This function calculates the faulted rate of spelling. It divides the
+	 * number of total successes for the level by the number of attempts for the
+	 * level. 
+	 * 
+	 * @param level
+	 * @return percentage of failed
+	 */
+	public int getFailedNumber(int level) {
+		List<WordStats> wordStats = _masterList.get(level - 1);
+
+		double attempts = 0;
+		double failed = 0;
+
+		for (WordStats currWord : wordStats) {
+			attempts += currWord.getNumberofAttempts();
+			failed += currWord.getFail();
+		}
+
+		return (int) ((failed / attempts) * 100);
 	}
 
 	/**

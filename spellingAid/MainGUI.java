@@ -48,8 +48,9 @@ public class MainGUI {
 	private QuizCard _quizCard = QuizCard.getInstance();
 	private StatsCard _statsCard = new StatsCard();
 	private SettingsCard _settingsCard = new SettingsCard();
-
-	final static int extraWindowWidth = 100;
+	
+	public final static int FRAME_WIDTH=800;
+	public final static int FRAME_HEIGHT=550;
 
 	public MainGUI() {
 	}
@@ -102,7 +103,7 @@ public class MainGUI {
 		_frame.setVisible(true);
 		_frame.setResizable(false);
 		
-		_frame.setSize(800,550);
+		_frame.setSize(FRAME_WIDTH,FRAME_HEIGHT);
 		_frame.setLocationRelativeTo(null);
 		
 	}
