@@ -1,17 +1,35 @@
 #SOFTENG 206 - Assignment 4
 
 ##TODO - Victor
-1. Visual of Graph 
-2. Shift JTree choose label
-3. Sound Effect
-4. Fonts and colour
+~~1. Visual of Graph ~~
+~~2. Shift JTree choose label~~
+~~4. Fonts and colour~~
 ~~5. Select wordlist JFileChooser~~
 ~~6. Scoring System.~~
-7. Clear stats and history files.
 ~~8. Add ticks and cross to quiz~~
 ~~9. Make text field larger in quiz.~~
 ~~10. Progress Bar for quiz.~~
+
+12. JLabel for charts.
+3. Sound REWARDS! (TRY different punctuations.)
+7. Clear stats and history files.
 11. Text spaces.
+13. Potential redo wordlist?
+
+
+User feedback: (urgent)
+1. make starting quiz button more obvious (text/larger button)
+2. Can not find quiz tab (state explictly?)
+3. New vs. Review choice not obvious.
+4. Rename all the mastered/things as more readable things.
+5. Disclaimer for CopyRight
+
+
+#TODO - readMe
+1. Include a readMe for bugs/extra features.
+2. Include a UPI
+3. Disclaimer for CopyRight
+4. Warning for wordlist. (at least 10 words each level, should be levels 11) FORMATTING-
 
 
 #TODO - report
@@ -23,3 +41,4 @@
 6. Use of tick cross with colours.
 7. Progress bar as user feedback.
 8. Allowing the user to select files (but restrict them)
+9. Accuracy chart

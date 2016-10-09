@@ -20,6 +20,10 @@ import statistics.StatsTableModel;
  * Mainly to make the MainGUI class less cluttered and make it
  * easier to modify the card UI
  * @author Daniel
+ * 
+ * Updates on UI: 
+ * JLabels for selecting the level to view.
+ * Accuracy Chart.
  *
  */
 public class StatsCard extends Card implements ActionListener {

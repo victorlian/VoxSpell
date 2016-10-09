@@ -54,3 +54,24 @@ PROBLEM: co-operational, convert List Word to List String.
 23th.Sept Submission day
 1. Checked all the files once again, did some final testing, submit.
 
+PROTOTYPE SUBMISSION.
+----------------------------------------
+3rd.Oct Start assignment4 starts
+1. refactored fileIO to take images.
+
+4th.Oct Starting to add icons
+1. Load icons, add icons to tabbed pane.
+2. Reorganize the library package
+3. update read me file with list of things to do.
+4. New welcome page with images, text fields and labels re-ordered
+
+5th.Oct Quiz UI, File chooser
+1. Added yes/no icon to quiz, make it auto hide.
+2. Progress bar and scoring systems.
+3. Implemented the file choose.
+
+6th.Oct stats UI, fonts, check on linux
+1. Changed fonts to collect them together in one class.
+2. Level header now more obvious to choose.
+3. New accuracy chart implemented.
+4. User test added more things to do.
