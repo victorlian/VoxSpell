@@ -75,3 +75,14 @@ PROTOTYPE SUBMISSION.
 2. Level header now more obvious to choose.
 3. New accuracy chart implemented.
 4. User test added more things to do.
+
+10th.Oct BETA, statsUI, newQuizUI
+1. UI updates on stats, now included JLabel to show the total amount of words spelt.
+2. UI updates on newQuiz, now uses JRadioButtons to allow uswer to select the type of quiz.
+3. UI updates on new line chracters. Now after each word is finished spelling, an extra new
+line chracter will be printed.
+4. choice of words updated, now Mastered/Faulted/Failed will read as Good/Fair/Poor.
+5. Written a ReadME file for Beta.
+
+BETA SUBMISSION.
+----------------------------------------
