@@ -28,9 +28,9 @@ public class WelcomeCard extends Card {
 	private static JLabel _welcomeImage;
 	
 	private static final String MENUTEXT = ""
-			+ "==========================\n"
+			+ "========================\n"
 			+ "           Welcome to VoxSpell ! \n"
-			+ "==========================\n"
+			+ "========================\n"
 			+ "\nClick on the Quiz tab to get started!"
 			+ "\n(Tabs are on the top of the screen)";
 	

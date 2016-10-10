@@ -5,11 +5,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -38,6 +41,7 @@ import video.VideoReward;
  * Addition of yesNoIcon (with auto hiding) 
  * Hiding code adapted from http://stackoverflow.com/questions/18397282/make-jdialog-disappear-after-a-few-seconds;
  * Add progress bar, add scoring.
+ * The new Quiz option is made easier. 
  * @author Victor
  *
  */
@@ -48,6 +52,10 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static final String SAYAGAIN = "Repeat Word";
 	private static final String NEWQUIZ = "New Quiz";
 	private static final String ClickNewQuiz = "Click on the New Quiz button below to get started!";
+	
+	private static QuizType _quizType = QuizType.CANCEL;
+	private static JFrame optionFrame = new JFrame();
+	final ButtonGroup group = new ButtonGroup();
 	
 	private JPanel _quizCard;
 	private static JTextField txtInput = new JTextField("Spell your words here!");
@@ -226,8 +234,63 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				//Clear the textInput, and reset progress bar.
 				txtInput.setText("");
 				progressBar.setValue(0);
+				createSimpleDialogBox();
+				_option = null;
+				break;
+			case "textField":
+				//Pressing Enter to submit
+				//No break statement as we want to flow through to Submit
+				if (finished) {
+					return;
+				}
+			case SUBMIT:
+				if (_quiz == null) {
+					throw new RuntimeException("Quiz is null");
+				}
+				//Ensure text entry is valid by first trimming the spaces in the string
+				//Then convert to a char array to check each character
+				char[] textInput = txtInput.getText().trim().toCharArray();
+				if (textInput.length==0) {
+					popMessage("Please enter something in the text field!", MessageType.ERROR);
+					return;
+				} else {
+					for (int i=0; i<textInput.length; i++) {
+						if (textInput[i] == '\'') {
+							
+						} else if (!Character.isLetter(textInput[i])) {
+							popMessage("Invalid Characters Entered", MessageType.ERROR);
+							//Repeat the word
+							_quiz.repeatWord();
+							return;
+						}
+					}
+				}
+				
+				Submission submission = new Submission(_quiz, txtInput.getText(), this);
+				_option = submission;
+				
+				txtInput.setText("");
+				break;
+			case SAYAGAIN:
+				_quiz.repeatWord();
+				return;
+			
+			case "Confirm":
+				String command = group.getSelection().getActionCommand();
+				//Different options for setting the new Quiz.
+				if (command.equals("new")){
+					_quizType = QuizType.NORMAL;
+				}
+				else if (command.equals("review")){
+					_quizType = QuizType.REVIEW;
+				}
+				else{
+					_quizType = QuizType.CANCEL;
+				}
+				optionFrame.setVisible(false);
 				
 				QuizType quizType = quizTypeDialog();
+				
 				//Give the user dialog options
 				if (quizType.equals(QuizType.REVIEW)) {
 					//Review Quiz
@@ -270,48 +333,11 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 					
 				//_option allows us to then perform polymorphic action.
 				_option = _quiz;
-				
-				
+							
 				
 				disableStartButton();
-				break;
-			case "textField":
-				//Pressing Enter to submit
-				//No break statement as we want to flow through to Submit
-				if (finished) {
-					return;
-				}
-			case SUBMIT:
-				if (_quiz == null) {
-					throw new RuntimeException("Quiz is null");
-				}
-				//Ensure text entry is valid by first trimming the spaces in the string
-				//Then convert to a char array to check each character
-				char[] textInput = txtInput.getText().trim().toCharArray();
-				if (textInput.length==0) {
-					popMessage("Please enter something in the text field!", MessageType.ERROR);
-					return;
-				} else {
-					for (int i=0; i<textInput.length; i++) {
-						if (textInput[i] == '\'') {
-							
-						} else if (!Character.isLetter(textInput[i])) {
-							popMessage("Invalid Characters Entered", MessageType.ERROR);
-							//Repeat the word
-							_quiz.repeatWord();
-							return;
-						}
-					}
-				}
 				
-				Submission submission = new Submission(_quiz, txtInput.getText(), this);
-				_option = submission;
-				
-				txtInput.setText("");
-				break;
-			case SAYAGAIN:
-				_quiz.repeatWord();
-				return;
+
 		}
 		
 		if (_option != null) {
@@ -320,31 +346,78 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	}
 	
 	/**
-	 * Return true if Review quiz
-	 * Return false if Normal quiz
+	 * This method will show a frame that allows the user to select the different types of quiz.
+	 */
+    private void createSimpleDialogBox() {
+        final int numButtons = 3;
+        JRadioButton[] radioButtons = new JRadioButton[numButtons];
+        
+
+        JButton confirmButton = null;
+
+        final String newCommand = "new";
+        final String reviewCommand = "review";
+        final String cancelCommand = "cancel";
+
+        radioButtons[0] = new JRadioButton("New Quiz - \nstart a new quiz of 10 words.");
+        radioButtons[0].setActionCommand(newCommand);
+
+        radioButtons[1] = new JRadioButton("Review Quiz - \nstart a review quiz to go over your mistakes.");
+        radioButtons[1].setActionCommand(reviewCommand);
+
+        radioButtons[2] = new JRadioButton("Cancel");
+        radioButtons[2].setActionCommand(cancelCommand);
+
+
+        for (int i = 0; i < numButtons; i++) {
+            radioButtons[i].setFont(plain14);
+        	group.add(radioButtons[i]);
+        }
+        radioButtons[0].setSelected(true);
+
+        confirmButton = new JButton("Confirm");
+        confirmButton.addActionListener(this);
+
+        
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Select the type of quiz to start: ");
+        label.setFont(bold20);
+
+        panel.setLayout(new GridLayout(0,1,0,30));
+        panel.add(label);
+
+        for (int i = 0; i < numButtons; i++) {
+            panel.add(radioButtons[i]);
+        }
+
+        JPanel pane = new JPanel(new BorderLayout());
+        pane.add(panel, BorderLayout.PAGE_START);
+        pane.add(confirmButton, BorderLayout.PAGE_END);
+        
+		optionFrame.getContentPane().add(pane);
+		optionFrame.setVisible(true);
+
+		// Display the window.
+		optionFrame.pack();
+		optionFrame.setVisible(true);
+		optionFrame.setResizable(false);
+		
+		optionFrame.setTitle("Type Of Quiz");
+		optionFrame.setSize(500,300);
+		optionFrame.setLocationRelativeTo(_quizCard);
+		
+    }
+
+	
+	/**
+	 * Is always called after the option frame shows up.
+	 * Will return they type of quiz selected in the frame.
 	 * @return
 	 */
 	public QuizCard.QuizType quizTypeDialog() {
-		String[] quizOptions = {"New Quiz", "Review Quiz"};
-		String quizType = (String) JOptionPane.showInputDialog(
-                _quizCard,
-                "Please select a type of Quiz: ",
-                "Select a Quiz Type",
-                JOptionPane.PLAIN_MESSAGE,
-                null, //No Icon
-                quizOptions,
-                "New Quiz");
-		
-		//Handling Cancel button
-		if ((quizType != null) && (quizType.length() > 0)) {
-			if (quizType.equals(quizOptions[0])) {
-				return QuizType.NORMAL;
-			} else {
-				return QuizType.REVIEW;
-			}
-		} else {
-			return QuizType.CANCEL;
-		}
+		QuizType localQuizType = _quizType;
+		_quizType = QuizType.CANCEL; //Reset the quiz type in case it does not work next time.
+		return localQuizType;
 	}
 	
 	public void appendText(String text) {

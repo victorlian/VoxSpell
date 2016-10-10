@@ -14,13 +14,12 @@
 3. Sound REWARDS! (TRY different punctuations.)
 7. Clear stats and history files.
 11. Text spaces.
-13. Potential redo wordlist?
 
 
 User feedback: (urgent)
 ~~1. make starting quiz button more obvious (text/larger button)~~
 ~~2. Can not find quiz tab (state explictly?)~~
-3. New vs. Review choice not obvious.
+~~3. New vs. Review choice not obvious.~~
 ~~4. Rename all the mastered/things as more readable things.~~
 ~~5. JLabel for charts.~~
 
@@ -30,6 +29,7 @@ User feedback: (urgent)
 2. Include a UPI
 3. Disclaimer for CopyRight
 4. Warning for wordlist. (at least 10 words each level, should be levels 11) FORMATTING-
+5. Debug panel.
 
 
 #TODO - report
