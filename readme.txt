@@ -1,18 +1,31 @@
 README
-SOFTENG 206 - Assignment 3
-dwon184, vlia679
+SOFTENG 206 - Assignment 4
+vlia679
 
 To run, simply double click on the SpellingAid.jar file.
 
-Please place the following in the same directory as the SpellingAid.jar file
+Please make sure the following things are in the same directory as the jar file.
+(don't move, rename or delete these files!)
 - NZCER-spelling-lists.txt
 - big_buck_bunny_1_minute.avi
 - reversed.avi
+- image (folder)
 
-The NZ voice from Festival has been assumed to have been installed following
-the instructions on Canvas.
+Features to be implemented:
+1. Sound rewards. (festival will only say correct at the moment)
+2. Clearing stats/storing stats files.
+3. Settings panel will receive some UI updates on fonts/layout
+4. Some new line charcters may have been printed incorrectly or missing.
 
-Please note: reversed.avi has been generated using FFMPEG beforehand. Usually, if
-the file has been deleted, we use SwingWorker and FFMPEG to generate in the
-background, however, the reverse filter does not seem to present in lab computers
-so we have supplied the reversed.avi file pre-generated.
+Warnings:
+1. The program does allow you to change a wordlist, but the wordlist MUST: 
+	- have the same format as NZCER
+	- have 11 levels, namely 1-11
+	- have at least 10 words for each level.
+   Otherwise, might result in unexpected behaviour/exceptions being thrown.
+2. The debug panel is included for developers only. It will be removed once 
+   deployed. (The cheat button may be helpful when doing a new quiz, it tells
+   you the current word being spelt)
+
+Disclaimer:
+All the icons/images/videos being used are open sourced.
