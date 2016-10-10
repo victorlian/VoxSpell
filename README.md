@@ -13,7 +13,7 @@
 
 3. Sound REWARDS! (TRY different punctuations.)
 7. Clear stats and history files.
-11. Text spaces.
+~~11. Text spaces.~~
 
 
 User feedback: (urgent)

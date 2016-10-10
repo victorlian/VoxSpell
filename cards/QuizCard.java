@@ -351,7 +351,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
     private void createSimpleDialogBox() {
         final int numButtons = 3;
         JRadioButton[] radioButtons = new JRadioButton[numButtons];
-        
+                
 
         JButton confirmButton = null;
 
@@ -373,6 +373,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
             radioButtons[i].setFont(plain14);
         	group.add(radioButtons[i]);
         }
+        
         radioButtons[0].setSelected(true);
 
         confirmButton = new JButton("Confirm");
@@ -440,7 +441,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	}
 
 	public void displayMainMenu() {
-		txtOutput.append("\n\nQuiz Completed\nPlease Select 'New Quiz' to start another quiz.");
+		txtOutput.append("\n\n------Quiz Completed------\nPlease Select 'New Quiz' to start another quiz.");
 	}
 
 	public JPanel getPanel() {

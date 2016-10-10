@@ -53,7 +53,7 @@ public class Submission implements Option{
 			if(currentWordSS.equals(Word.SuccessStatus.FAILED)){
 				_quiz.incrementSpeltTimes();
 				if (correct){
-					_quiz.sayAndDisplay("Correct!" + _quiz.NL);
+					_quiz.sayAndDisplay("Correct!" + _quiz.NL + _quiz.NL);
 					_viewer.displayTick();					
 				}
 				else {
@@ -71,7 +71,7 @@ public class Submission implements Option{
 			switch (numberOfTimesSpelt){
 			case 0: 
 				if (correct){
-					_quiz.sayAndDisplay("Correct!" + _quiz.NL);
+					_quiz.sayAndDisplay("Correct!" + _quiz.NL + _quiz.NL);
 					currentWord.setMastered();
 					_viewer.displayTick();	
 				}
@@ -85,13 +85,13 @@ public class Submission implements Option{
 				break;
 			case 1:
 				if (correct){
-					_quiz.sayAndDisplay("Correct!" + _quiz.NL);
+					_quiz.sayAndDisplay("Correct!" + _quiz.NL + _quiz.NL);
 					currentWord.setFaulted();
 					_viewer.displayTick();
 				}
 				else {
 					_quiz.incrementSpeltTimes();
-					_quiz.sayAndDisplay("Incorrect!"+ _quiz.NL);
+					_quiz.sayAndDisplay("Incorrect!"+ _quiz.NL + _quiz.NL);
 					currentWord.setFailed();
 					_viewer.displayCross();
 				}
