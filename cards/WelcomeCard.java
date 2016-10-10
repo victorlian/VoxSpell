@@ -31,7 +31,8 @@ public class WelcomeCard extends Card {
 			+ "==========================\n"
 			+ "           Welcome to VoxSpell ! \n"
 			+ "==========================\n"
-			+ "\n\nClick on the Quiz tab to get started!";
+			+ "\nClick on the Quiz tab to get started!"
+			+ "\n(Tabs are on the top of the screen)";
 	
 	private JPanel _menuCard;
 	

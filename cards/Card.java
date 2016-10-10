@@ -35,6 +35,12 @@ public abstract class Card {
 	//Used in Jtrees
 	public static final Font plain14 = new Font(fontName, Font.PLAIN, 14);
 	public static final Font bold14 = new Font(fontName, Font.BOLD, 14);
+	
+	
+	//Strings used in GUI dipslays
+	public static final String masteredString = "Good";
+	public static final String faultedString = "Fair";
+	public static final String failedString = "Poor";
 
 
 	public abstract JPanel createContents();

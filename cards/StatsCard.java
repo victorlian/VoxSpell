@@ -1,6 +1,7 @@
 package cards;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,7 +45,9 @@ public class StatsCard extends Card implements ActionListener {
 	private static StatsTableModel _statsTableModel = new StatsTableModel();
 	private static JTable _table;
 	
-    private static JLabel _accuracylabel = new JLabel();
+    JLabel masteredLabel = new JLabel(masteredString + ": 0 words");
+    JLabel faultedLabel = new JLabel(faultedString+ ": 0 words");
+    JLabel failedLabel = new JLabel(failedString+ ": 0 words");
 	
 	private static JComboBox<String> _levelList;
 	
@@ -96,10 +99,20 @@ public class StatsCard extends Card implements ActionListener {
         accuracyPanel.setPreferredSize(new Dimension(710, 110));
         accuracyPanel.add(_chart);
         
+
+        JPanel labelPanel = new JPanel(new GridLayout(1,0,150,0));
+        
+        masteredLabel.setFont(plain16);
+        faultedLabel.setFont(plain16);
+        failedLabel.setFont(plain16);
+        
+        labelPanel.add(masteredLabel);
+        labelPanel.add(faultedLabel);
+        labelPanel.add(failedLabel);
+        
+        accuracyPanel.add(labelPanel);
         
         int[] numbers = getAllThreeNumbers(1);
-        
-        _accuracylabel.setText("Spelling Accuracy: " + numbers[0] + "%");
         _chart.redrawAccuracyChart(numbers[0], numbers[1], numbers[2]);
         
         //Add the scroll pane to this panel.
@@ -126,7 +139,7 @@ public class StatsCard extends Card implements ActionListener {
 		_statistics.setLevel(level);
        
 		int[] numbers = getAllThreeNumbers(level);
-        _accuracylabel.setText("Spelling Accuracy: " + numbers[0] + "%");
+        updateAccuracyLabels(numbers);
         _chart.redrawAccuracyChart(numbers[0], numbers[1], numbers[2]);
 		
 		
@@ -140,7 +153,7 @@ public class StatsCard extends Card implements ActionListener {
         int level = Integer.valueOf(levelString);
         
         int[] numbers = getAllThreeNumbers(level);
-        _accuracylabel.setText("Spelling Accuracy: " + numbers[0] + "%");
+        updateAccuracyLabels(numbers);
         _chart.redrawAccuracyChart(numbers[0], numbers[1], numbers[2]);
 	}
 
@@ -161,5 +174,11 @@ public class StatsCard extends Card implements ActionListener {
 		array[2] = _statistics.getFailedNumber(level);
 		
 		return array;
+	}
+	
+	private void updateAccuracyLabels(int[] numbers){
+		masteredLabel.setText(masteredString + ": " + numbers[0] + " words");
+		faultedLabel.setText(faultedString + ": " + numbers[1] + " words");
+		failedLabel.setText(failedString + ": " + numbers[2] + " words");
 	}
 }

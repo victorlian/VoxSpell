@@ -47,6 +47,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	private static final String SUBMIT = "Submit";
 	private static final String SAYAGAIN = "Repeat Word";
 	private static final String NEWQUIZ = "New Quiz";
+	private static final String ClickNewQuiz = "Click on the New Quiz button below to get started!";
 	
 	private JPanel _quizCard;
 	private static JTextField txtInput = new JTextField("Spell your words here!");
@@ -74,7 +75,9 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		NORMAL, REVIEW, CANCEL;
 	}
 	
-	private QuizCard() {}
+	private QuizCard() {
+		txtOutput.setText(ClickNewQuiz);
+	}
 	
 	/**
 	 * Since this is singleton, get instance of a Quiz card
@@ -117,6 +120,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		
 		addActionListeners();
 		disableSubmissionButtons();
+		
 		
 		return _quizCard;
 	}
@@ -173,6 +177,10 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		btnNewQuiz.setPreferredSize(new Dimension(220,40));
 		btnSayAgain.setPreferredSize(new Dimension(220,40));
 		btnSubmit.setPreferredSize(new Dimension(220,40));
+		
+		btnNewQuiz.setFont(plain16);
+		btnSayAgain.setFont(plain16);
+		btnSubmit.setFont(plain16);
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(btnNewQuiz);
@@ -359,7 +367,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 	}
 
 	public void displayMainMenu() {
-		txtOutput.append("Quiz Completed\nPlease Select 'New Quiz' to start another quiz.");
+		txtOutput.append("\n\nQuiz Completed\nPlease Select 'New Quiz' to start another quiz.");
 	}
 
 	public JPanel getPanel() {

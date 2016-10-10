@@ -10,7 +10,7 @@
 ~~9. Make text field larger in quiz.~~
 ~~10. Progress Bar for quiz.~~
 
-12. JLabel for charts.
+
 3. Sound REWARDS! (TRY different punctuations.)
 7. Clear stats and history files.
 11. Text spaces.
@@ -18,11 +18,11 @@
 
 
 User feedback: (urgent)
-1. make starting quiz button more obvious (text/larger button)
-2. Can not find quiz tab (state explictly?)
+~~1. make starting quiz button more obvious (text/larger button)~~
+~~2. Can not find quiz tab (state explictly?)~~
 3. New vs. Review choice not obvious.
-4. Rename all the mastered/things as more readable things.
-5. Disclaimer for CopyRight
+~~4. Rename all the mastered/things as more readable things.~~
+~~5. JLabel for charts.~~
 
 
 #TODO - readMe
@@ -42,3 +42,4 @@ User feedback: (urgent)
 7. Progress bar as user feedback.
 8. Allowing the user to select files (but restrict them)
 9. Accuracy chart
+10. naming of Good Fair Poor.
