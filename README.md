@@ -30,7 +30,7 @@ User feedback: (urgent)
 3. Disclaimer for CopyRight
 4. Warning for wordlist. (at least 10 words each level, should be levels 11) FORMATTING-
 5. Debug panel.
-
+6. Issue about new line characters.
 
 #TODO - report
 1. Addressing the welcome page

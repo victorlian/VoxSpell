@@ -53,11 +53,11 @@ public class Submission implements Option{
 			if(currentWordSS.equals(Word.SuccessStatus.FAILED)){
 				_quiz.incrementSpeltTimes();
 				if (correct){
-					_quiz.sayAndDisplay("Correct!" + _quiz.NL + _quiz.NL);
+					_quiz.sayAndDisplay("Correct!" + _quiz.NL + _quiz.NL + _quiz.NL);
 					_viewer.displayTick();					
 				}
 				else {
-					_quiz.sayAndDisplay("Incorrect!" + _quiz.NL);
+					_quiz.sayAndDisplay("Incorrect!" + _quiz.NL + _quiz.NL + _quiz.NL);
 					_quiz._mainViewer.popMessage("Correct spelling is: " + currentWord.toString(), MessageType.INFORMATION);
 					_viewer.displayCross();
 				}
