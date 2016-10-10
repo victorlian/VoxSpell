@@ -144,7 +144,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new GridLayout(1,0, 120, 0));
 
-		levelIndicator.setFont(Card.bold16);
+		levelIndicator.setFont(Card.bold14);
 		levelIndicator.setForeground(Card.blueInstructionColor);
 		topPanel.add(levelIndicator);
 

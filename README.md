@@ -14,7 +14,7 @@
 3. Sound REWARDS! (TRY different punctuations.)
 7. Clear stats and history files.
 ~~11. Text spaces.~~
-
+12. Settings panel UI updates.
 
 User feedback: (urgent)
 ~~1. make starting quiz button more obvious (text/larger button)~~
