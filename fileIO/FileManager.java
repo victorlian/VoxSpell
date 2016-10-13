@@ -70,7 +70,7 @@ public class FileManager {
 	}
 	
 	/**
-	 * This method checks if the wordlist file exist. 	
+	 * This method checks if the default wordlist file exist. 	
 	 * @return
 	 */
 	public boolean checkWordList(){
@@ -127,6 +127,29 @@ public class FileManager {
 		}
 		
 		return allLevels;
+	}
+	
+	/**
+	 * This method is intended to be called to verify the new input file
+	 * meets all the requirements.
+	 * 
+	 * The wordlist must have at least 10 words in each level, 
+	 * and exactly 11 levels. (due to the way it is stored, 
+	 * it will have 12 elements, the first one being blank)
+	 * @return
+	 */
+	public boolean validateWordlist(List<List<String>> wordlist){
+		if (wordlist.size()!=12){
+			return false;
+		}
+		else {
+			for (List<String> individualLevel: wordlist){
+				if (individualLevel.size()<10 && wordlist.indexOf(individualLevel)!=0){
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	public boolean checkFileExist(String fileName){

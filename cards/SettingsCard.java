@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -18,8 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import fileIO.FileManager;
 import speech.Voices;
-import spellingAid.FileManager;
 import spellingAid.Settings;
 import statistics.Statistics;
 import video.VideoType;
@@ -204,15 +205,22 @@ public class SettingsCard extends Card implements ActionListener {
 				if (path == null){
 					JOptionPane.showMessageDialog(this.getPanel(), "you must choose a .txt file as your wordlist", 
 							"Error when choosing wordlist", JOptionPane.ERROR_MESSAGE);
-				}
+				}				
 			};
 			if (path.isEmpty()){
 				return;
 			}
-			else{
-				fileText.setText(path);
-				Settings.setWordlist(path);
+
+			List<List<String>> potentialWordList = _fm.readWordList(path);
+			if(!_fm.validateWordlist(potentialWordList)){
+				JOptionPane.showMessageDialog(this.getPanel(), "The wordlist you've chosen does not meet format requirements.\n "
+						+ "It must have exactly 11 levels, and at least 10 words in each level.", 
+						"Error when processing wordlist", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
+			
+			fileText.setText(path);
+			Settings.setWordlist(path);
 			QuizCard.getInstance().terminateCurrentQuiz();
 			break;
 		case STATSBTN:

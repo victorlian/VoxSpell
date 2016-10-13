@@ -1,5 +1,6 @@
 package spellingAid;
 
+import fileIO.FileManager;
 import speech.Voices;
 import video.VideoType;
 

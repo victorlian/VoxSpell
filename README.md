@@ -19,8 +19,8 @@
 #TODO - from peer evaluation:
 1. Check source code.
 2. Review the help text in UG4!!!
-3. Stop the user from adding invalid txt. 
-4. Good features: big icons/ big buttons / big fonts/ clear logical flow.
+~~3. Stop the user from adding invalid txt. ~~
+~~4. Good features: big icons/ big buttons / big fonts/ clear logical flow.~~
 
 User feedback: (urgent)
 ~~1. make starting quiz button more obvious (text/larger button)~~
@@ -49,3 +49,5 @@ User feedback: (urgent)
 8. Allowing the user to select files (but restrict them)
 9. Accuracy chart
 10. naming of Good Fair Poor.
+11. Design decision of only be able to select level at the start.1
+12. Prevention of adding not formatted list.
