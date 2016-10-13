@@ -21,6 +21,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import speech.Voices;
 import spellingAid.FileManager;
 import spellingAid.Settings;
+import statistics.Statistics;
 import video.VideoType;
 
 /**
@@ -29,7 +30,7 @@ import video.VideoType;
  * 
  * @author Daniel
  *
- *added Functionality: file chooser.
+ *added Functionality: file chooser, clear statistics.
  *@author Victor
  *
  */
@@ -40,6 +41,7 @@ public class SettingsCard extends Card implements ActionListener {
 	private static final String DEFVIDEO = "Default Video";
 	private static final String ALTVIDEO = "Special Video";
 	private static final String FILEBTN = "Choose a new wordlist";
+	private static final String STATSBTN = "Clear all statistics";
 	
 	private FileManager _fm = new FileManager();
 	
@@ -47,6 +49,7 @@ public class SettingsCard extends Card implements ActionListener {
 	JLabel fileLabel = new JLabel ("     Current wordlist is: ");
 	JTextField fileText = new JTextField (_fm.getAbsolutePath(_fm.WORDLIST));
 	
+	JButton clearStatsBtn = new JButton (STATSBTN);
 
 	public SettingsCard() {
 	}
@@ -67,7 +70,7 @@ public class SettingsCard extends Card implements ActionListener {
 		group.add(defVoiceBtn);
 		group.add(nzVoiceBtn);
 		
-		//This is the panel holding the voice radio buttons
+		//Panel 1: voice selection panel.
 		JPanel voicePanel = new JPanel();
 		voicePanel.setLayout(new GridLayout(0,1));
 		voicePanel.add(new JLabel("Speech Voice"));
@@ -86,13 +89,27 @@ public class SettingsCard extends Card implements ActionListener {
 		videoGroup.add(defVideo);
 		videoGroup.add(altVideo);
 
-		//This is the panel holding the video radio buttons
+		//Panel 2: video selection panel.
 		JPanel videoPanel = new JPanel(new GridLayout(0, 1));
 		videoPanel.add(new JLabel("Video Type"));
 		videoPanel.add(defVideo);
 		videoPanel.add(altVideo);
 		
-		//This panel will hold the file chooser buttons and JLabel and JTextField
+		//Panel 3: clear stats panel.
+		JPanel clearStatsPanel = new JPanel(null);
+		JLabel clearStatsWarning = new JLabel ("Warning! This option will clear all the statistics, including history files.");
+		clearStatsWarning.setFont(Card.bold16);
+		clearStatsWarning.setForeground(Card.blueInstructionColor);
+		
+		clearStatsPanel.add(clearStatsWarning);
+		clearStatsPanel.add(clearStatsBtn);
+		clearStatsWarning.setBounds(0,20,700,30);
+		clearStatsBtn.setBounds(30, 60, 200, 30);
+		
+		
+		
+		
+		//Panel 4: file chooser panel.
 		JPanel fileChooserPanel = new JPanel(new BorderLayout());
 
 		JPanel belowLabelPanel = new JPanel();
@@ -112,19 +129,22 @@ public class SettingsCard extends Card implements ActionListener {
 		fileLabel.setPreferredSize(new Dimension(150,30));
 		fileText.setPreferredSize(new Dimension(350,30));
 		fileText.setEditable(false);
-		//Add the two panels to the Card
+		
+		//Add the four panels to the Card
 		_settingsCard.add(voicePanel);
 		_settingsCard.add(videoPanel);
-		_settingsCard.add(new JPanel());
+		_settingsCard.add(clearStatsPanel);
 		_settingsCard.add(fileChooserPanel);
 		
 		//Padding inside JPanel
 		_settingsCard.setBorder(new EmptyBorder(10,10,10,10));
 
+		//Set the action listeners for all buttons.
 		defVoiceBtn.addActionListener(this);
 		nzVoiceBtn.addActionListener(this);
 		defVideo.addActionListener(this);
 		altVideo.addActionListener(this);
+		clearStatsBtn.addActionListener(this);
 		fileChooserBtn.addActionListener(this);
 
 		return _settingsCard;
@@ -160,7 +180,7 @@ public class SettingsCard extends Card implements ActionListener {
 	}
 	
 	/**
-	 * Change Voices
+	 * Actions to do when buttons are pressed.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -194,6 +214,16 @@ public class SettingsCard extends Card implements ActionListener {
 				Settings.setWordlist(path);
 			}
 			QuizCard.getInstance().terminateCurrentQuiz();
+			break;
+		case STATSBTN:
+			int result = JOptionPane.showConfirmDialog(this.getPanel(), 
+					"Are you sure you want to clear all statistics, including history files?", 
+					"Confirm Deleting history" , 
+					JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION){
+				Statistics.getInstance().clearStats();
+			}
+			break;
 		}
 	}
 }

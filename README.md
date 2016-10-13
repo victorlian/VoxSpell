@@ -16,6 +16,12 @@
 ~~11. Text spaces.~~
 12. Settings panel UI updates.
 
+#TODO - from peer evaluation:
+1. Check source code.
+2. Review the help text in UG4!!!
+3. Stop the user from adding invalid txt. 
+4. Good features: big icons/ big buttons / big fonts/ clear logical flow.
+
 User feedback: (urgent)
 ~~1. make starting quiz button more obvious (text/larger button)~~
 ~~2. Can not find quiz tab (state explictly?)~~

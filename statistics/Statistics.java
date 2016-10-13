@@ -21,7 +21,7 @@ import words.Word;
 public class Statistics {
 	private static Statistics _statistics = null;
 	private StatsTableModel _statsTableModel;
-	private static List<List<WordStats>> _masterList = new ArrayList<>();
+	private static List<List<WordStats>> _statsList = new ArrayList<>();
 	private int _level = 0;
 	private static final String[] columnNames = { "Word", Card.masteredString, Card.faultedString, Card.failedString };
 
@@ -31,7 +31,7 @@ public class Statistics {
 	 */
 	private Statistics() {
 		for (int i = 0; i < 11; i++) {
-			_masterList.add(new ArrayList<WordStats>());
+			_statsList.add(new ArrayList<WordStats>());
 		}
 	}
 
@@ -64,7 +64,7 @@ public class Statistics {
 	 * @param level
 	 */
 	public void recordQuizResults(List<Word> newWords, int level) {
-		List<WordStats> currentLevel = _masterList.get(level - 1);
+		List<WordStats> currentLevel = _statsList.get(level - 1);
 
 		// Loop through the wordlist and see if duplicates exist
 		for (Word currentWord : newWords) {
@@ -101,7 +101,7 @@ public class Statistics {
 	 */
 	public void recordWordResult(Word newWord, int level) {
 		boolean found = false;
-		List<WordStats> currentLevel = _masterList.get(level - 1);
+		List<WordStats> currentLevel = _statsList.get(level - 1);
 		
 		for (WordStats currentWordStat : currentLevel) {
 			if (currentWordStat.getWord().toString().equals(newWord.toString())) {
@@ -135,7 +135,7 @@ public class Statistics {
 	 */
 	public static List<Word> failList(int level) {
 		List<Word> failList = new ArrayList<>();
-		List<WordStats> currentLevel = _masterList.get(level - 1);
+		List<WordStats> currentLevel = _statsList.get(level - 1);
 
 		for (WordStats currWordStats : currentLevel) {
 			if (currWordStats.getRecentSuccess().equals(Word.SuccessStatus.FAILED)) {
@@ -162,7 +162,7 @@ public class Statistics {
 	 * @param level
 	 */
 	public int getMasteredNumber(int level) {
-		List<WordStats> wordStats = _masterList.get(level - 1);
+		List<WordStats> wordStats = _statsList.get(level - 1);
 
 		int successes = 0;
 
@@ -179,7 +179,7 @@ public class Statistics {
 	 * @param level
 	 */
 	public int getFaultedNumber(int level) {
-		List<WordStats> wordStats = _masterList.get(level - 1);
+		List<WordStats> wordStats = _statsList.get(level - 1);
 
 		int faulted = 0;
 
@@ -196,7 +196,7 @@ public class Statistics {
 	 * @param level
 	 */
 	public int getFailedNumber(int level) {
-		List<WordStats> wordStats = _masterList.get(level - 1);
+		List<WordStats> wordStats = _statsList.get(level - 1);
 
 		int failed = 0;
 
@@ -235,7 +235,7 @@ public class Statistics {
 	public int getRowCount() {
 		int count = 0;
 
-		for (List<WordStats> currentList : _masterList) {
+		for (List<WordStats> currentList : _statsList) {
 			count += currentList.size();
 		}
 
@@ -252,7 +252,7 @@ public class Statistics {
 	 */
 	public Object getValueAt(int rows, int columns) {
 		int count = 0;
-		List<WordStats> currentList = _masterList.get(_level);
+		List<WordStats> currentList = _statsList.get(_level);
 
 		for (WordStats currentWord : currentList) {
 			if (count == rows) {
@@ -270,5 +270,16 @@ public class Statistics {
 		}
 
 		return null;
+	}
+	
+	/**
+	 * This method will clear the statistics for all levels.
+	 * Intended to be called by the settings card to remove all stats.
+	 */
+	public void clearStats(){
+		for (List<WordStats> list: _statsList){
+			list.clear();
+		}
+		_statsTableModel.fireTableDataChanged();
 	}
 }
