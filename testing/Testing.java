@@ -17,7 +17,11 @@ import statistics.Statistics;
 import words.Word;
 import words.WordList;
 
-//gitCheck!
+/**
+ * Unit testing class for testing various bits and pieces.
+ * @author Victor
+ *
+ */
 public class Testing {
 	/**
 	 * Testing the fileManager reads in the wordList properly.

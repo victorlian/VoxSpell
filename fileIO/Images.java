@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 
 /**
  * This class stores all the images. Singleton class.
+ * Will return images as icons to be used with
+ * different swing components.
  * @author victor
  *
  */

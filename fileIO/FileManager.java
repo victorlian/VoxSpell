@@ -28,6 +28,7 @@ import words.Word;
  * 3. get the path of current directory
  * 4. check if the video reward file exist
  * 5. Provide methods for reading in images.
+ * 6. Handles the stats history files. Including input and output.
  * 
  * @author victor
  *

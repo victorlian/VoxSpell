@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 import javax.swing.JComponent;
 
 /**
- * This class will draw the accuracy chart (in bar) to show the amount of
+ * This class represents the accuracy chart (in bar) to show the amount of
  * correct words as a percentage.
  * 
  * @author Victor
@@ -37,7 +37,10 @@ public class AccuracyChart extends JComponent {
 	public Dimension getPreferredSize() {
 		return (new Dimension(WIDTH + 10, HEIGHT + 10));
 	}
-
+	
+	/**
+	 * This method draws the chart.
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		int masteredWidth = 0;

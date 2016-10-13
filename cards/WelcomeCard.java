@@ -19,7 +19,7 @@ import fileIO.Images;
  * UI updates include:
  * added icons for tabbed pane
  * added new labels as instructions.
- * added the welcome diagram.
+ * added the welcome image.
  * @author Victor
  *
  */

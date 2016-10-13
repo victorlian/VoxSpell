@@ -25,6 +25,7 @@ import statistics.StatsTableModel;
  * Updates on UI: 
  * JLabels for selecting the level to view.
  * Accuracy Chart.
+ * JLabels for accuracy chart.
  *
  */
 public class StatsCard extends Card implements ActionListener {

@@ -17,6 +17,14 @@ import words.Word;
  * level). 2. Allows a JTable model to fetch information from it
  * 
  * @author Daniel
+ * 
+ * 
+ * Modified:
+ * 1. Now will return numbers of failure/success on each word.
+ * 2. Now will be able to clear all stats.
+ * 3. Now will be able to read/write from/to history files.
+ * 
+ * @author Victor
  *
  */
 public class Statistics {
