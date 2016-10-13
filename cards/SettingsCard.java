@@ -40,7 +40,7 @@ public class SettingsCard extends Card implements ActionListener {
 	private static final String DEFBUTTON = "English - Default";
 	private static final String NZBUTTON = "English - NZ";
 	private static final String DEFVIDEO = "Default Video";
-	private static final String ALTVIDEO = "Special Video";
+	private static final String ALTVIDEO = "Reversed Video";
 	private static final String FILEBTN = "Choose a new wordlist";
 	private static final String STATSBTN = "Clear all statistics";
 	
@@ -74,27 +74,36 @@ public class SettingsCard extends Card implements ActionListener {
 		//Panel 1: voice selection panel.
 		JPanel voicePanel = new JPanel();
 		voicePanel.setLayout(new GridLayout(0,1));
-		voicePanel.add(new JLabel("Speech Voice"));
+		JLabel voiceLabel = new JLabel("Speech Voice");
+		voiceLabel.setFont(bold16);
+		defVoiceBtn.setFont(plain14);
+		nzVoiceBtn.setFont(plain14);
+		
+		voicePanel.add(voiceLabel);
 		voicePanel.add(defVoiceBtn);
 		voicePanel.add(nzVoiceBtn);
 
 		//Below is the video options
-		JRadioButton defVideo = new JRadioButton(DEFVIDEO);
-		defVideo.setSelected(true);
-		defVideo.setActionCommand(DEFVIDEO);
+		JRadioButton defVideoBtn = new JRadioButton(DEFVIDEO);
+		defVideoBtn.setSelected(true);
+		defVideoBtn.setActionCommand(DEFVIDEO);
 
-		JRadioButton altVideo = new JRadioButton(ALTVIDEO);
-		altVideo.setActionCommand(ALTVIDEO);
+		JRadioButton altVideoBtn = new JRadioButton(ALTVIDEO);
+		altVideoBtn.setActionCommand(ALTVIDEO);
 
 		ButtonGroup videoGroup = new ButtonGroup();
-		videoGroup.add(defVideo);
-		videoGroup.add(altVideo);
+		videoGroup.add(defVideoBtn);
+		videoGroup.add(altVideoBtn);
 
 		//Panel 2: video selection panel.
 		JPanel videoPanel = new JPanel(new GridLayout(0, 1));
-		videoPanel.add(new JLabel("Video Type"));
-		videoPanel.add(defVideo);
-		videoPanel.add(altVideo);
+		JLabel videoLabel = new JLabel("Video Type");
+		videoLabel.setFont(bold16);
+		defVideoBtn.setFont(plain14);
+		altVideoBtn.setFont(plain14);
+		videoPanel.add(videoLabel);
+		videoPanel.add(defVideoBtn);
+		videoPanel.add(altVideoBtn);
 		
 		//Panel 3: clear stats panel.
 		JPanel clearStatsPanel = new JPanel(null);
@@ -143,8 +152,8 @@ public class SettingsCard extends Card implements ActionListener {
 		//Set the action listeners for all buttons.
 		defVoiceBtn.addActionListener(this);
 		nzVoiceBtn.addActionListener(this);
-		defVideo.addActionListener(this);
-		altVideo.addActionListener(this);
+		defVideoBtn.addActionListener(this);
+		altVideoBtn.addActionListener(this);
 		clearStatsBtn.addActionListener(this);
 		fileChooserBtn.addActionListener(this);
 
