@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Container;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -163,12 +164,37 @@ public class MainGUI {
 	}
 	
 	/**
+	 * This method will immediately start after the GUI has been created.
+	 * It will check if the default wordlist exist. If it does not,
+	 * an error message will be shown and system will close.
+	 */
+	private void checkWordList(){
+		if(!new FileManager().checkWordList()){
+			JOptionPane.showMessageDialog(null, "The wordlist file is missing. \n"
+					+ "Please make sure it is in the correct directory. (same as the jar file)", 
+					"Wordlist file missing!", JOptionPane.ERROR_MESSAGE);
+			System.exit(1);
+		}
+
+	}
+	
+	/**
+	 * This method uses the file manager to load stats file.
+	 * If a statsFile is missing, create one.
+	 */
+	private void loadStatsFile(){
+		new FileManager().loadStatsFile();
+	}
+	
+	/**
 	 * This method will load the dependency files to make sure the GUI 
 	 * components are loaded properly.
 	 */
 	private void preLaunchChecks(){
 		checkAndGenerateVideo();
 		loadImages();
+		checkWordList();
+		loadStatsFile();
 	}
 	
 }

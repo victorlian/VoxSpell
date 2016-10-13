@@ -45,9 +45,9 @@ public class StatsCard extends Card implements ActionListener {
 	private static StatsTableModel _statsTableModel = new StatsTableModel();
 	private static JTable _table;
 	
-    JLabel masteredLabel = new JLabel(masteredString + ": 0 words");
-    JLabel faultedLabel = new JLabel(faultedString+ ": 0 words");
-    JLabel failedLabel = new JLabel(failedString+ ": 0 words");
+    JLabel masteredLabel = new JLabel();
+    JLabel faultedLabel = new JLabel();
+    JLabel failedLabel = new JLabel();
 	
 	private static JComboBox<String> _levelList;
 	
@@ -119,6 +119,11 @@ public class StatsCard extends Card implements ActionListener {
         _statsCard.add(levelPanel, BorderLayout.NORTH);
         _statsCard.add(scrollPane, BorderLayout.CENTER);
         _statsCard.add(accuracyPanel, BorderLayout.SOUTH);
+        
+        masteredLabel.setText((masteredString + ": "+_statistics.getMasteredNumber(1)+ " words"));
+        faultedLabel.setText((faultedString+ ": "+_statistics.getFaultedNumber(1)+ " words"));
+        failedLabel.setText((failedString+ ": "+_statistics.getFailedNumber(1)+ " words"));
+        
         
         accuracyPanel.repaint(); 
         

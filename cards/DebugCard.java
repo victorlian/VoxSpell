@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import fileIO.FileManager;
 import quiz.NewQuiz;
 import quiz.Quiz;
-import quiz.ReviewQuiz;
 import video.VideoReward;
 import words.Word;
 
@@ -59,8 +59,7 @@ public class DebugCard extends Card {
 		reviewBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Quiz quiz = ReviewQuiz.getInstance(null, 12345);
-				quiz.toNumberX(null, 8, 8, Word.SuccessStatus.MASTERED);
+				new FileManager().updateStatsFile();
 			}
 		});
 		

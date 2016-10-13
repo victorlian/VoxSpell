@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cards.Card;
+import fileIO.FileManager;
 import words.Word;
 
 /**
@@ -59,9 +60,11 @@ public class Statistics {
 	/**
 	 * Takes a list of Word objects and their corresponding level. Add the stats
 	 * of the word into the master list.
+	 * Deprecated: no longer being used, call the method that records a single word.
 	 * 
 	 * @param newWords
 	 * @param level
+	 * @deprecated
 	 */
 	public void recordQuizResults(List<Word> newWords, int level) {
 		List<WordStats> currentLevel = _statsList.get(level - 1);
@@ -93,8 +96,7 @@ public class Statistics {
 	
 	/**
 	 * This function records the success of a word after it has been tested.
-	 * Maybe could implement some sort of sorting in the master list to make this
-	 * more efficient at some point?
+	 * It would also be written to the .stats file.
 	 * 
 	 * @param newWord
 	 * @param level
@@ -123,6 +125,7 @@ public class Statistics {
 			currentLevel.add(newWordStats);
 		}
 		
+		new FileManager().updateStatsFile();
 		_statsTableModel.fireTableDataChanged();
 	}
 
@@ -282,4 +285,9 @@ public class Statistics {
 		}
 		_statsTableModel.fireTableDataChanged();
 	}
+	
+	public List<List<WordStats>> getStatsList(){
+		return _statsList;
+	}
+	
 }

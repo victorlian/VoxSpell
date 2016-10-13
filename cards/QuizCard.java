@@ -251,7 +251,7 @@ public class QuizCard extends Card implements ActionListener, Viewer {
 				//Then convert to a char array to check each character
 				char[] textInput = txtInput.getText().trim().toCharArray();
 				if (textInput.length==0) {
-					popMessage("Please enter something in the text field!", MessageType.ERROR);
+					popMessage("Please enter your spelling in the text field!", MessageType.ERROR);
 					return;
 				} else {
 					for (int i=0; i<textInput.length; i++) {

@@ -230,6 +230,7 @@ public class SettingsCard extends Card implements ActionListener {
 					JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION){
 				Statistics.getInstance().clearStats();
+				new FileManager().updateStatsFile();
 			}
 			break;
 		}

@@ -21,6 +21,20 @@ public class WordStats {
 	}
 	
 	/**
+	 * Set up the word stats object as being was failed
+	 * if the number of fails > mastered.
+	 */
+	public WordStats(Word word, int mastered, int faulted, int failed){
+		_word = word;
+		_stats[0] = mastered;
+		_stats[1] = faulted;
+		_stats[2] = failed;
+		if (failed<=mastered){
+			_latestSuccess = Word.SuccessStatus.MASTERED;
+		}
+	}
+	
+	/**
 	 * Change the stat according to the index passed in
 	 * @param index
 	 */

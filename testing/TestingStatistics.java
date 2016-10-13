@@ -15,6 +15,7 @@ public class TestingStatistics {
 	/**
 	 * Generate words for each level to ensure they display correctly
 	 */
+	@SuppressWarnings("deprecation")
 	public static void testStatisticsDisplay(Statistics _statistics) {
 		List<Word> newWordsList = new ArrayList<>();
 		Word newWord;

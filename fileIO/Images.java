@@ -41,7 +41,8 @@ public class Images {
 	}
 
 	/**
-	 * Singleton so passing an instance of itself to other people
+	 * Singleton class to get Image object.
+	 * When initializing, loads all the image files.
 	 * 
 	 * @return
 	 */
