@@ -30,7 +30,8 @@ import words.Word;
  */
 public class Statistics {
 	private static Statistics _statistics = null;
-	private int _highScore = 0;
+	private int _historyHighScore = 0;
+	private int _currentHighScore = 0;
 	private StatsTableModel _statsTableModel;
 	private static List<List<WordStats>> _statsList = new ArrayList<>();
 	private int _level = 0;
@@ -111,7 +112,7 @@ public class Statistics {
 	 * @param newWord
 	 * @param level
 	 */
-	public void recordWordResult(Word newWord, int level, int highScore) {
+	public void recordWordResult(Word newWord, int level, int score) {
 		boolean found = false;
 		List<WordStats> currentLevel = _statsList.get(level - 1);
 		
@@ -135,11 +136,13 @@ public class Statistics {
 			currentLevel.add(newWordStats);
 		}
 		
-		if(highScore > _highScore){
-			_highScore = highScore;
+		if(score > _historyHighScore){
+			_historyHighScore = score;
 		}
 		
-		SettingsCard.updateHighscoreCurrent(highScore);
+		if(score > _currentHighScore){
+			SettingsCard.updateHighscoreCurrent(score);
+		}
 		new FileManager().updateStatsFile();
 		_statsTableModel.fireTableDataChanged();
 
@@ -312,14 +315,14 @@ public class Statistics {
 	 * @return the _highScore
 	 */
 	public int getHighScore() {
-		return _highScore;
+		return _historyHighScore;
 	}
 
 	/**
 	 * @param _highScore the _highScore to set
 	 */
 	public void setHighScore(int highScore) {
-		_highScore = highScore;
+		_historyHighScore = highScore;
 	}
 	
 }
