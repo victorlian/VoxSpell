@@ -31,6 +31,12 @@ import video.VideoReward;
  * TabDemo.java
  * 
  * @author Daniel
+ * 
+ * updated :
+ * now also runs pre-launch checks to make sure all the dependency files are created
+ * before the GUI displays anything
+ * 
+ * @author Victor
  *
  */
 public class MainGUI {
