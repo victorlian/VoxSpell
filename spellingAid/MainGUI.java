@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import cards.Card;
-import cards.DebugCard;
 import cards.QuizCard;
 import cards.SettingsCard;
 import cards.StatsCard;
