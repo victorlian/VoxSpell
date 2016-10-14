@@ -75,8 +75,8 @@ public class MainGUI {
 		settingsCard.setName(SETTINGS);
 		
 		//DEBUG
-		JPanel debugCard = new DebugCard().createContents();
-		debugCard.setName("Debug");
+		//JPanel debugCard = new DebugCard().createContents();
+		//debugCard.setName("Debug");
 
 		// Add all the cards to the tabbedPane layout
 		_tabbedPane.setFont(Card.bold20);
@@ -85,7 +85,7 @@ public class MainGUI {
 		_tabbedPane.addTab(STATS, _images.getStatsIcon(), statsCard);
 		_tabbedPane.addTab(SETTINGS, _images.getSettingsIcon(), settingsCard);
 		
-		_tabbedPane.addTab("Debug", debugCard);
+		//_tabbedPane.addTab("Debug", debugCard);
 
 		pane.add(_tabbedPane, BorderLayout.CENTER);
 	}

@@ -141,6 +141,7 @@ public class Statistics {
 		}
 		
 		if(score > _currentHighScore){
+			_currentHighScore = score;
 			SettingsCard.updateHighscoreCurrent(score);
 		}
 		new FileManager().updateStatsFile();

@@ -3,8 +3,8 @@
 ##TODO - Victor
 ~~1. Check source code for comments~~
 ~~2. Review the help text in UG4!!!~~
-3. Sound REWARDS! (TRY different punctuations.)
-4. Remove the debug panel
+~~3. Sound REWARDS! (TRY different punctuations.)~~
+~~4. Remove the debug panel~~
 5. Update the readMe (be careful of target audience.
 
 
