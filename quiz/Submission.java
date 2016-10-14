@@ -1,5 +1,9 @@
 package quiz;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import spellingAid.MessageType;
 import spellingAid.Option;
 import spellingAid.Viewer;
@@ -23,6 +27,8 @@ public class Submission implements Option{
 	private Quiz _quiz;
 	private String _spelling;
 	private Viewer _viewer;
+	
+	
 	
 	public Submission (Quiz quiz, String spelling, Viewer viewer){
 		_quiz = quiz;
@@ -54,10 +60,12 @@ public class Submission implements Option{
 				_quiz.incrementSpeltTimes();
 				if (correct){
 					_quiz.sayAndDisplay("Correct!" + _quiz.NL + _quiz.NL + _quiz.NL);
+					_quiz.say(generateAudioReward());
 					_viewer.displayTick();					
 				}
 				else {
 					_quiz.sayAndDisplay("Incorrect!" + _quiz.NL + _quiz.NL + _quiz.NL);
+					_quiz.say(generateAudioComfort());
 					_quiz._mainViewer.popMessage("Correct spelling is: " + currentWord.toString(), MessageType.INFORMATION);
 					_viewer.displayCross();
 				}
@@ -73,6 +81,7 @@ public class Submission implements Option{
 				if (correct){
 					_quiz.sayAndDisplay("Correct!" + _quiz.NL + _quiz.NL);
 					currentWord.setMastered();
+					_quiz.say(generateAudioReward());
 					_viewer.displayTick();	
 				}
 				else {
@@ -86,12 +95,14 @@ public class Submission implements Option{
 			case 1:
 				if (correct){
 					_quiz.sayAndDisplay("Correct!" + _quiz.NL + _quiz.NL);
+					_quiz.say(generateAudioReward());
 					currentWord.setFaulted();
 					_viewer.displayTick();
 				}
 				else {
 					_quiz.incrementSpeltTimes();
 					_quiz.sayAndDisplay("Incorrect!"+ _quiz.NL + _quiz.NL);
+					_quiz.say(generateAudioComfort());
 					currentWord.setFailed();
 					_viewer.displayCross();
 				}
@@ -106,6 +117,36 @@ public class Submission implements Option{
 		}
 		
 		
+	}
+	
+	/**
+	 * Festival saying something when user gets something right.
+	 * After saying "Correct!".
+	 * @return
+	 */
+	public String generateAudioReward(){
+		List<String> audioReward = new ArrayList<String>();
+		audioReward.add("Well done?");
+		audioReward.add("Nice work?");
+		audioReward.add("Good job?");
+		
+		Collections.shuffle(audioReward);
+		return audioReward.get(0);
+	}
+	
+	/**
+	 * Festival saying something when user gets something wrong.
+	 * After saying "Incorrect!".
+	 * @return
+	 */
+	public String generateAudioComfort(){
+		List<String> audioComfort = new ArrayList<String>();
+		audioComfort.add("Bad luck.");
+		audioComfort.add("Keep going.");
+		audioComfort.add("Let's move on?");
+		
+		Collections.shuffle(audioComfort);
+		return audioComfort.get(0);
 	}
 	
 

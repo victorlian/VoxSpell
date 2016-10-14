@@ -89,6 +89,7 @@ public class NewQuiz extends Quiz implements Option{
 		
 		//Video and level up options.
 		if (_numberOfCorrectWords>=9){
+			say("Congratulations! You passed this level!");
 			if(_mainViewer.videoOption()){
 				_mainViewer.playVideo();
 			}

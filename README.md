@@ -24,6 +24,7 @@
 ~~3. Stop the user from adding invalid txt. ~~
 ~~4. Good features: big icons/ big buttons / big fonts/ clear logical flow.~~
 ~~5. Good features: ability to switch between different cards when running a quiz~~
+~~6. Tick/Cross when submission.~~
 ---
 ---from user feedback
 ~~1. make starting quiz button more obvious (text/larger button)~~
