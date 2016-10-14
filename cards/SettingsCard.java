@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import fileIO.FileManager;
+import quiz.Quiz;
 import speech.Voices;
 import spellingAid.Settings;
 import statistics.Statistics;
@@ -248,6 +249,7 @@ public class SettingsCard extends Card implements ActionListener {
 			if (result == JOptionPane.OK_OPTION){
 				Statistics.getInstance().clearStats();
 				new FileManager().updateStatsFile();
+				Quiz.clearScore();
 				updateHighscoreHistory(0);
 				updateHighscoreCurrent(0);
 			}

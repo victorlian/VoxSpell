@@ -94,3 +94,7 @@ BETA SUBMISSION.
 5. Checked all source code again to improve on comments.
 
 14th.Oct final updates
+1. final updates on fonts.
+2. new functionality: audio rewards
+3. reorganize the git package for dependency files.
+4. new functionality: updates oon the highScore mechanism.

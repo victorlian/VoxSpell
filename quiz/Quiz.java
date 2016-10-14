@@ -2,6 +2,7 @@ package quiz;
 
 import java.util.List;
 
+import cards.QuizCard;
 import speech.Speech;
 import spellingAid.MessageType;
 import spellingAid.Option;
@@ -50,7 +51,7 @@ public abstract class Quiz implements Option{
 	protected Word _currentWord;
 	protected int _numberOfCorrectWords;
 	protected int _numberOfTimesSpelt;
-	protected int _score;
+	protected static int _score;
 	
 	/**
 	 * Protected constructor for child class only.
@@ -256,6 +257,14 @@ public abstract class Quiz implements Option{
 		return _currentLevel;
 	}
 	
+	/**
+	 * This method will clear the score (used for clear stats).
+	 */
+	public static void clearScore(){
+		_score = 0;
+		QuizCard.getInstance().setScore(0);
+	}
+	
 	//++++++++++++++++++++++++++++++
 	//Debugging methods:
 	/**
@@ -299,5 +308,7 @@ public abstract class Quiz implements Option{
 	public void cheat (){
 		_mainViewer.appendText("  cheat: " + _currentWord.toString() + " ");
 	}
+	
+
 
 }
