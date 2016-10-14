@@ -5,8 +5,7 @@
 ~~2. Review the help text in UG4!!!~~
 3. Sound REWARDS! (TRY different punctuations.)
 4. Remove the debug panel
-5. Update the readMe.
-6. Personal High score.
+5. Update the readMe (be careful of target audience.
 
 
 ##DONE 
@@ -36,6 +35,7 @@
 
 
 #TODO - report
+0. Name the target audience!
 1. Addressing the welcome page
 2. Addressing the design decisions for colours and different fonts.
 3. use of enter button

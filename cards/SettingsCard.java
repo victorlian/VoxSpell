@@ -124,6 +124,8 @@ public class SettingsCard extends Card implements ActionListener {
 		warning.setFont(Card.bold16);
 		warning.setForeground(Card.blueInstructionColor);
 		
+		fileLabel.setFont(bold14);
+		
 		fileChooserPanel.add(warning);
 		fileChooserPanel.add(fileChooserBtn);
 		fileChooserPanel.add(fileLabel);
@@ -132,8 +134,8 @@ public class SettingsCard extends Card implements ActionListener {
 		warning.setBounds(0,20,700,30);
 		fileChooserBtn.setBounds(30,60,200,30);
 		fileChooserBtn.setActionCommand(FILEBTN);
-		fileLabel.setBounds(250,60,150,30);
-		fileText.setBounds(390,60,350,30);
+		fileLabel.setBounds(240,60,170,30);
+		fileText.setBounds(420,60,300,30);
 		fileText.setEditable(false);
 		
 		//Add the four panels to the Card

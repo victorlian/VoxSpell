@@ -216,6 +216,13 @@ public abstract class Quiz implements Option{
 	}
 	
 	/**
+	 * This method will say the punishment/Reward
+	 */
+	public void say(String s){
+		_speech.say(s);
+	}
+	
+	/**
 	 * This method will increment the count for the number of times the current
 	 * word is spelt. Only to be called after submission.
 	 */
