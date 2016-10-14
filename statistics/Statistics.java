@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cards.Card;
+import cards.SettingsCard;
 import fileIO.FileManager;
 import words.Word;
 
@@ -29,6 +30,7 @@ import words.Word;
  */
 public class Statistics {
 	private static Statistics _statistics = null;
+	private int _highScore = 0;
 	private StatsTableModel _statsTableModel;
 	private static List<List<WordStats>> _statsList = new ArrayList<>();
 	private int _level = 0;
@@ -109,7 +111,7 @@ public class Statistics {
 	 * @param newWord
 	 * @param level
 	 */
-	public void recordWordResult(Word newWord, int level) {
+	public void recordWordResult(Word newWord, int level, int highScore) {
 		boolean found = false;
 		List<WordStats> currentLevel = _statsList.get(level - 1);
 		
@@ -133,8 +135,15 @@ public class Statistics {
 			currentLevel.add(newWordStats);
 		}
 		
+		if(highScore > _highScore){
+			_highScore = highScore;
+		}
+		
+		SettingsCard.updateHighscoreCurrent(highScore);
 		new FileManager().updateStatsFile();
 		_statsTableModel.fireTableDataChanged();
+
+		
 	}
 
 	/**
@@ -291,11 +300,26 @@ public class Statistics {
 		for (List<WordStats> list: _statsList){
 			list.clear();
 		}
+		setHighScore(0);
 		_statsTableModel.fireTableDataChanged();
 	}
 	
 	public List<List<WordStats>> getStatsList(){
 		return _statsList;
+	}
+
+	/**
+	 * @return the _highScore
+	 */
+	public int getHighScore() {
+		return _highScore;
+	}
+
+	/**
+	 * @param _highScore the _highScore to set
+	 */
+	public void setHighScore(int highScore) {
+		_highScore = highScore;
 	}
 	
 }

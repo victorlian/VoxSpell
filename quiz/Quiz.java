@@ -123,7 +123,6 @@ public abstract class Quiz implements Option{
 			return false;
 		}
 		
-		Statistics.getInstance().recordWordResult(_currentWord, _currentLevel);
 		Word.SuccessStatus currentSuccessStatus = _currentWord.getSuccessStatus();
 		
 		if(currentSuccessStatus.equals(Word.SuccessStatus.MASTERED)){
@@ -139,6 +138,8 @@ public abstract class Quiz implements Option{
 		else {
 			throw new RuntimeException ("Should not be configuring for next word.");
 		}
+		
+		Statistics.getInstance().recordWordResult(_currentWord, _currentLevel, _score);
 		
 		_mainViewer.setScore(_score);
 		_mainViewer.setProgess((_testNumber+1) * 100 / _numberOfTests );

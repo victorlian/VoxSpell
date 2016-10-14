@@ -49,3 +49,5 @@
 10. naming of Good Fair Poor.
 11. Design decision of only be able to select level at the start.1
 12. Prevention of adding not formatted list.
+13. history files and clear stats
+14. Audio rewards and audio comforts.

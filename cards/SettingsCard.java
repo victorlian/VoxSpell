@@ -41,14 +41,18 @@ public class SettingsCard extends Card implements ActionListener {
 	private static final String ALTVIDEO = "Reversed Video";
 	private static final String FILEBTN = "Choose a new wordlist";
 	private static final String STATSBTN = "Clear all statistics";
+	private static final String HISTORYHIGH = "Highscore history: ";
+	private static final String CURRENTHIGH = "Current session highscore: ";
 	
 	private FileManager _fm = new FileManager();
 	
 	JButton fileChooserBtn = new JButton (FILEBTN);
-	JLabel fileLabel = new JLabel ("     Current wordlist is: ");
+	JLabel fileLabel = new JLabel ("Current wordlist is: ");
 	JTextField fileText = new JTextField (_fm.getAbsolutePath(_fm.WORDLIST));
 	
 	JButton clearStatsBtn = new JButton (STATSBTN);
+	static JLabel highScoreLabel = new JLabel (HISTORYHIGH + Statistics.getInstance().getHighScore());
+	static JLabel currentHighScoreLabel = new JLabel (CURRENTHIGH + "0");
 
 	public SettingsCard() {
 	}
@@ -111,9 +115,15 @@ public class SettingsCard extends Card implements ActionListener {
 		
 		clearStatsPanel.add(clearStatsWarning);
 		clearStatsPanel.add(clearStatsBtn);
+		clearStatsPanel.add(highScoreLabel);
+		clearStatsPanel.add(currentHighScoreLabel);
 		clearStatsWarning.setBounds(0,20,700,30);
 		clearStatsBtn.setBounds(30, 60, 200, 30);
-		
+		highScoreLabel.setFont(bold14);
+		highScoreLabel.setBounds(270,60,170,30);
+		currentHighScoreLabel.setFont(bold14);
+		currentHighScoreLabel.setBounds(450,60,260,30);
+			
 		
 		
 		
@@ -134,7 +144,7 @@ public class SettingsCard extends Card implements ActionListener {
 		warning.setBounds(0,20,700,30);
 		fileChooserBtn.setBounds(30,60,200,30);
 		fileChooserBtn.setActionCommand(FILEBTN);
-		fileLabel.setBounds(240,60,170,30);
+		fileLabel.setBounds(270,60,170,30);
 		fileText.setBounds(420,60,300,30);
 		fileText.setEditable(false);
 		
@@ -238,8 +248,18 @@ public class SettingsCard extends Card implements ActionListener {
 			if (result == JOptionPane.OK_OPTION){
 				Statistics.getInstance().clearStats();
 				new FileManager().updateStatsFile();
+				updateHighscoreHistory(0);
+				updateHighscoreCurrent(0);
 			}
 			break;
 		}
+	}
+	
+	public static void updateHighscoreHistory(int highScore){
+		highScoreLabel.setText(HISTORYHIGH + highScore);
+	}
+	
+	public static void updateHighscoreCurrent(int highScore){
+		currentHighScoreLabel.setText(CURRENTHIGH + highScore); 
 	}
 }

@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import cards.SettingsCard;
 import statistics.Statistics;
 import statistics.WordStats;
 import words.Word;
@@ -38,6 +39,8 @@ public class FileManager {
 	public final String VIDEO = "big_buck_bunny_1_minute.avi";
 	public final String REVERSEVIDEO = "reversed.avi";
 	public final String STATSFILE = ".stats.txt";
+	
+	public final String HIGHSCOREHEADER = "High Score: ";
 
 	/**
 	 * This method would return the currentDirectory of the jar file/class files.
@@ -197,6 +200,8 @@ public class FileManager {
 
 			BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
 
+			bw.write(HIGHSCOREHEADER + statistics.getHighScore());
+			bw.newLine();
 			for(int i=0; i<11; i++){
 				List<WordStats> levelStats=statsList.get(i);
 				bw.write("Level: " + (i+1));
@@ -234,6 +239,11 @@ public class FileManager {
 				List<List<WordStats>> allStats = stats.getStatsList();
 				BufferedReader bufferedReader = new BufferedReader(new FileReader(file.getAbsolutePath()));
 				String line;
+				line = bufferedReader.readLine();
+				int score = Integer.parseInt(line.substring(HIGHSCOREHEADER.length()));
+				stats.setHighScore(score);
+				SettingsCard.updateHighscoreHistory(score);
+				
 				int level = 0;
 				while ((line = bufferedReader.readLine()) != null) {
 					if (line.trim().startsWith("Level:")){

@@ -92,6 +92,7 @@ public class MainGUI {
 
 	public void createAndShowGUI() {
 		preLaunchChecks();
+		
 		// Create and set up the window.
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
