@@ -86,3 +86,11 @@ line chracter will be printed.
 
 BETA SUBMISSION.
 ----------------------------------------
+13th.Oct review updates
+1. new functionality: clear stats.
+2. now will validate wordlist before adding it.
+3. new functionality: store history files
+4. update to settings panel and use larger fonts.
+5. Checked all source code again to improve on comments.
+
+14th.Oct final updates

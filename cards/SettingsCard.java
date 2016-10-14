@@ -1,7 +1,5 @@
 package cards;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -120,24 +118,22 @@ public class SettingsCard extends Card implements ActionListener {
 		
 		
 		//Panel 4: file chooser panel.
-		JPanel fileChooserPanel = new JPanel(new BorderLayout());
-
-		JPanel belowLabelPanel = new JPanel();
-		belowLabelPanel.add(fileChooserBtn);
-		belowLabelPanel.add(fileLabel);
-		belowLabelPanel.add(fileText);
+		JPanel fileChooserPanel = new JPanel(null);
 		
 		JLabel warning = new JLabel ("Warning! By choosing a new wordlist, the current quiz will be stopped.");
 		warning.setFont(Card.bold16);
 		warning.setForeground(Card.blueInstructionColor);
 		
-		fileChooserPanel.add(warning,BorderLayout.NORTH);
-		fileChooserPanel.add(belowLabelPanel, BorderLayout.CENTER);
+		fileChooserPanel.add(warning);
+		fileChooserPanel.add(fileChooserBtn);
+		fileChooserPanel.add(fileLabel);
+		fileChooserPanel.add(fileText);
 		
-		fileChooserBtn.setPreferredSize(new Dimension(200,30));
+		warning.setBounds(0,20,700,30);
+		fileChooserBtn.setBounds(30,60,200,30);
 		fileChooserBtn.setActionCommand(FILEBTN);
-		fileLabel.setPreferredSize(new Dimension(150,30));
-		fileText.setPreferredSize(new Dimension(350,30));
+		fileLabel.setBounds(250,60,150,30);
+		fileText.setBounds(390,60,350,30);
 		fileText.setEditable(false);
 		
 		//Add the four panels to the Card

@@ -1,11 +1,12 @@
 #SOFTENG 206 - Assignment 4
 
 ##TODO - Victor
-1. Check source code for comments
-2. Review the help text in UG4!!!
+~~1. Check source code for comments~~
+~~2. Review the help text in UG4!!!~~
 3. Sound REWARDS! (TRY different punctuations.)
 4. Remove the debug panel
 5. Update the readMe.
+6. Personal High score.
 
 
 ##DONE 
@@ -23,6 +24,7 @@
 ---from peer evaluation:
 ~~3. Stop the user from adding invalid txt. ~~
 ~~4. Good features: big icons/ big buttons / big fonts/ clear logical flow.~~
+~~5. Good features: ability to switch between different cards when running a quiz~~
 ---
 ---from user feedback
 ~~1. make starting quiz button more obvious (text/larger button)~~

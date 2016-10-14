@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  */
 public abstract class Card {
 	//Colour and Font fields. (public to other classes in this package)
-	public static final String fontName = "Century";
+	public static final String fontName = "Arial";
 	 
 	public static final Color blackColour = new Color (0, 0, 0);
 	public static final Color redColor = new Color (240, 10, 10);
